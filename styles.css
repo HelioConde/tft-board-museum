@@ -147,3 +147,8 @@ footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 .trait,.source-badge{font-size:11px}
 .star-row{font-size:11px}
 .profile-kpis span,.set-stat-kpis small{font-size:11px}
+
+/* Visual-audit readability round 2 */
+.insight-card span,.evolution-card span{font-size:11px}
+.trend-labels{font-size:11px}
+.placement-bar span,.placement-bar strong{font-size:11px}
