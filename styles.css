@@ -505,3 +505,39 @@ footer small{font-size:11px}
   #setHistory .section-head:after{width:38px;height:38px}
   .board-card:hover .board-card-top:after{opacity:0}
 }
+
+/* Extra visual pack usage: empty period + comparison identity */
+.period-empty{position:relative;padding-left:68px}
+.period-empty:before{
+  content:"";
+  position:absolute;
+  left:14px;
+  top:50%;
+  width:42px;
+  height:42px;
+  transform:translateY(-50%);
+  background:url("./img/tft-board-museum-image-pack/mascots/poro-sleeping.png") center/contain no-repeat;
+  opacity:.82;
+  filter:drop-shadow(0 6px 14px #0008);
+}
+.compare-grid{position:relative;isolation:isolate;overflow:hidden}
+.compare-grid:before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:50%;
+  top:20px;
+  width:150px;
+  height:150px;
+  transform:translateX(-50%);
+  background:url("./img/tft-board-museum-image-pack/mascots/raid-boss.png") center/contain no-repeat;
+  opacity:.055;
+  pointer-events:none;
+  filter:drop-shadow(0 10px 25px #000);
+}
+.compare-grid>*{position:relative;z-index:1}
+@media(max-width:680px){
+  .period-empty{padding-left:60px}
+  .period-empty:before{width:36px;height:36px;left:12px}
+  .compare-grid:before{width:112px;height:112px;top:16px;opacity:.045}
+}
