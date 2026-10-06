@@ -1,0 +1,15 @@
+{
+  "name": "TFT Board Museum",
+  "short_name": "Board Museum",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090b12",
+  "theme_color": "#090b12",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
