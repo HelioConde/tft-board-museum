@@ -2,27 +2,48 @@
 
 Museu visual da sua história no Teamfight Tactics.
 
-## Objetivo
+## Produção
 
-Transformar o histórico do jogador em uma galeria de boards finais: uma experiência mais emocional e visual do que um tracker tradicional.
+GitHub Pages: https://helioconde.github.io/tft-board-museum/
 
-## MVP
+## Funcionalidades
 
-- landing TFT-first;
-- busca por Riot ID;
-- galeria de boards;
-- filtros por set, colocação e favoritos;
-- reconstrução visual em board de 28 hexes;
-- detalhe da partida;
-- favoritos locais;
-- PT-BR principal + English;
-- responsivo;
-- espaços de anúncio reservados;
+- busca por Riot ID e região;
+- perfil TFT com rank e resumo;
+- histórico oficial via backend, sem expor RIOT_API_KEY;
+- paginação de até 100 partidas recentes;
+- boards visuais com champions, estrelas, custo/raridade e itens;
+- traits com ícones e augments;
+- filtros por Set, patch, resultado, favoritos e busca textual;
+- ordenação por data, colocação e ouro;
+- linha do tempo por Set;
+- favoritos e notas pessoais em localStorage;
+- comparação lado a lado com diferenças de units;
+- URLs compartilháveis de perfil e board;
+- insights de champion assinatura, item recorrente, 3★ e Sets;
+- PT-BR principal e English;
+- layout responsivo;
+- espaços reservados para anúncios;
 - atualização automática de versão;
-- dados demonstrativos identificados até a integração Riot.
+- SEO básico, sitemap, robots, manifest, favicon e páginas legais;
+- QA no GitHub Actions.
 
-## Próximas integrações
+## Regra de posicionamento
 
-Riot ID -> PUUID -> histórico TFT -> normalização das unidades, traits, itens e posicionamento -> museu real.
+A Riot Match API não fornece o posicionamento final exato das units. Quando não há dado confiável de posição, o site usa uma organização visual e informa isso explicitamente.
+
+## Dados demonstrativos
+
+O site mantém uma coleção demonstrativa como fallback quando nenhum Riot ID foi consultado ou quando a integração oficial está indisponível.
+
+## Desenvolvimento local
+
+```bash
+python -m http.server 4173
+```
+
+Acesse http://localhost:4173.
+
+## Compliance
 
 TFT Board Museum não é endossado pela Riot Games e não reflete as opiniões da Riot Games ou de qualquer pessoa oficialmente envolvida na produção ou gestão das propriedades da Riot Games.
