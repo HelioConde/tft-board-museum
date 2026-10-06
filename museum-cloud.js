@@ -166,6 +166,31 @@ async function loadArchive(riotId, region) {
   return (data || []).map(row => row.payload).filter(Boolean);
 }
 
+async function getWatchProfile(riotId, region) {
+  if (!currentUser || !riotId) return null;
+  const { data, error } = await client
+    .from("tft_museum_watch_profiles")
+    .select("riot_id,region,enabled,last_run_at,last_error")
+    .eq("riot_id", riotId)
+    .eq("region", region)
+    .maybeSingle();
+  if (error) throw error;
+  return data;
+}
+async function setWatchProfile(riotId, region, enabled) {
+  if (!currentUser) throw new Error("auth_required");
+  const { error } = await client
+    .from("tft_museum_watch_profiles")
+    .upsert({
+      user_id: currentUser.id,
+      riot_id: riotId,
+      region,
+      enabled: Boolean(enabled),
+      updated_at: new Date().toISOString()
+    }, { onConflict: "user_id,region,riot_id" });
+  if (error) throw error;
+  return { enabled: Boolean(enabled) };
+}
 function sharePayload(board) {
   return {
     title: board?.title || "Board TFT",
@@ -225,6 +250,8 @@ window.MuseumCloud = {
   removeCollection,
   archiveBoards,
   loadArchive,
+  getWatchProfile,
+  setWatchProfile,
   createPublicShare,
   isSignedIn,
   user
