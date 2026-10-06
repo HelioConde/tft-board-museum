@@ -25,6 +25,9 @@ GitHub Pages: https://helioconde.github.io/tft-board-museum/
 - URLs compartilháveis de perfil e board com preview server-rendered;
 - exportação PNG de board;
 - Hall da Fama, estatísticas por Set, mês e ano;
+- evolução recente comparando blocos de partidas;
+- recomendação de boards historicamente parecidos por units e traits;
+- renderização progressiva para arquivos grandes, evitando centenas de cards simultâneos;
 - insights de champion assinatura, item recorrente, 3★ e Sets;
 - PT-BR principal e English;
 - layout responsivo;
