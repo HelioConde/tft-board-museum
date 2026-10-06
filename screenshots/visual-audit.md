@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T17:23:32.404Z
+Generated: 2026-10-06T17:25:14.685Z
 
 ## desktop-full.png
 
