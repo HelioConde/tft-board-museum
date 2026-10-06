@@ -112,7 +112,19 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       })
       .map(el => ({ text: (el.textContent || "").trim().slice(0, 80), ...rectInfo(el) }))
       .slice(0, 40);
+    const imageAudit = Array.from(document.images).map(img => ({
+      src: img.currentSrc || img.src || "",
+      complete: img.complete,
+      naturalWidth: img.naturalWidth || 0,
+      naturalHeight: img.naturalHeight || 0,
+      renderedWidth: Math.round(img.getBoundingClientRect().width),
+      renderedHeight: Math.round(img.getBoundingClientRect().height),
+      loading: img.loading || "auto"
+    }));
+    const brokenImages = imageAudit.filter(img => !img.complete || img.naturalWidth === 0);
     const counts = {
+      images: imageAudit.length,
+      brokenImages: brokenImages.length,
       boardCards: document.querySelectorAll(".board-card:not(.skeleton-card)").length,
       skeletonCards: document.querySelectorAll(".skeleton-card").length,
       filters: document.querySelectorAll(".filter").length,
@@ -139,6 +151,8 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       smallTapTargets,
       tinyText,
       counts,
+      imageAudit,
+      brokenImages,
       metrics
     };
   });
@@ -200,6 +214,8 @@ for (const capture of captures) {
   auditLines.push(`- Tiny text nodes (<11px): ${capture.tinyText.length}`);
   auditLines.push(`- Console errors: ${capture.consoleErrors.length}`);
   auditLines.push(`- Failed requests: ${capture.failedRequests.length}`);
+  auditLines.push(`- Images loaded: ${capture.counts.images}`);
+  auditLines.push(`- Broken images: ${capture.counts.brokenImages}`);
   auditLines.push("");
   auditLines.push("### Sections");
   for (const section of capture.sections) {
@@ -231,6 +247,7 @@ for (const capture of captures) {
   if (capture.smallTapTargets.length) qualityFailures.push(`${capture.name}: ${capture.smallTapTargets.length} small tap target(s)`);
   if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
   if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
+  if (capture.brokenImages.length) qualityFailures.push(`${capture.name}: ${capture.brokenImages.length} broken image(s)`);
   if (capture.viewportWidth <= 420) {
     if (capture.height > 5200) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 5200px)`);
     const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
