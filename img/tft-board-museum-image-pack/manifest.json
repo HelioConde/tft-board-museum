@@ -1,0 +1,442 @@
+{
+  "source": "a_wide_high_resolution_ui_asset_sheet_themed_ar.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "asset_count": 36,
+  "assets": {
+    "brand/banner-main.png": {
+      "size": [
+        842,
+        146
+      ],
+      "crop_box": [
+        8,
+        8,
+        850,
+        154
+      ]
+    },
+    "brand/logo-horizontal-dark.png": {
+      "size": [
+        172,
+        146
+      ],
+      "crop_box": [
+        856,
+        8,
+        1028,
+        154
+      ]
+    },
+    "brand/logo-transparent-style.png": {
+      "size": [
+        177,
+        146
+      ],
+      "crop_box": [
+        1038,
+        8,
+        1215,
+        154
+      ]
+    },
+    "brand/favicon-concept.png": {
+      "size": [
+        107,
+        146
+      ],
+      "crop_box": [
+        1221,
+        8,
+        1328,
+        154
+      ]
+    },
+    "brand/app-icon-192.png": {
+      "size": [
+        100,
+        146
+      ],
+      "crop_box": [
+        1330,
+        8,
+        1430,
+        154
+      ]
+    },
+    "brand/app-icon-alt-192.png": {
+      "size": [
+        105,
+        146
+      ],
+      "crop_box": [
+        1430,
+        8,
+        1535,
+        154
+      ]
+    },
+    "backgrounds/hero-desktop.png": {
+      "size": [
+        512,
+        132
+      ],
+      "crop_box": [
+        8,
+        176,
+        520,
+        308
+      ]
+    },
+    "backgrounds/hero-mobile.png": {
+      "size": [
+        286,
+        132
+      ],
+      "crop_box": [
+        530,
+        176,
+        816,
+        308
+      ]
+    },
+    "backgrounds/section-dark.png": {
+      "size": [
+        414,
+        132
+      ],
+      "crop_box": [
+        824,
+        176,
+        1238,
+        308
+      ]
+    },
+    "backgrounds/card-board.png": {
+      "size": [
+        291,
+        132
+      ],
+      "crop_box": [
+        1244,
+        176,
+        1535,
+        308
+      ]
+    },
+    "mascots/poro-main.png": {
+      "size": [
+        148,
+        118
+      ],
+      "crop_box": [
+        12,
+        338,
+        160,
+        456
+      ]
+    },
+    "mascots/poro-victory.png": {
+      "size": [
+        135,
+        118
+      ],
+      "crop_box": [
+        150,
+        338,
+        285,
+        456
+      ]
+    },
+    "mascots/poro-trophy.png": {
+      "size": [
+        125,
+        118
+      ],
+      "crop_box": [
+        280,
+        338,
+        405,
+        456
+      ]
+    },
+    "mascots/poro-explorer.png": {
+      "size": [
+        135,
+        118
+      ],
+      "crop_box": [
+        400,
+        338,
+        535,
+        456
+      ]
+    },
+    "mascots/poro-books.png": {
+      "size": [
+        132,
+        118
+      ],
+      "crop_box": [
+        530,
+        338,
+        662,
+        456
+      ]
+    },
+    "mascots/poro-sleeping.png": {
+      "size": [
+        135,
+        118
+      ],
+      "crop_box": [
+        655,
+        338,
+        790,
+        456
+      ]
+    },
+    "mascots/poro-surprised.png": {
+      "size": [
+        130,
+        118
+      ],
+      "crop_box": [
+        785,
+        338,
+        915,
+        456
+      ]
+    },
+    "mascots/poro-sad.png": {
+      "size": [
+        125,
+        118
+      ],
+      "crop_box": [
+        910,
+        338,
+        1035,
+        456
+      ]
+    },
+    "mascots/raid-boss.png": {
+      "size": [
+        153,
+        118
+      ],
+      "crop_box": [
+        1032,
+        338,
+        1185,
+        456
+      ]
+    },
+    "mascots/alternatives-strip.png": {
+      "size": [
+        350,
+        118
+      ],
+      "crop_box": [
+        1185,
+        338,
+        1535,
+        456
+      ]
+    },
+    "icons/placements-strip.png": {
+      "size": [
+        540,
+        80
+      ],
+      "crop_box": [
+        8,
+        462,
+        548,
+        542
+      ]
+    },
+    "icons/ui-actions-strip.png": {
+      "size": [
+        981,
+        80
+      ],
+      "crop_box": [
+        554,
+        462,
+        1535,
+        542
+      ]
+    },
+    "icons/traits-strip.png": {
+      "size": [
+        1402,
+        80
+      ],
+      "crop_box": [
+        8,
+        548,
+        1410,
+        628
+      ]
+    },
+    "icons/set-icon.png": {
+      "size": [
+        125,
+        80
+      ],
+      "crop_box": [
+        1410,
+        548,
+        1535,
+        628
+      ]
+    },
+    "ui/buttons-strip.png": {
+      "size": [
+        628,
+        78
+      ],
+      "crop_box": [
+        8,
+        634,
+        636,
+        712
+      ]
+    },
+    "ui/status-and-controls-strip.png": {
+      "size": [
+        893,
+        78
+      ],
+      "crop_box": [
+        642,
+        634,
+        1535,
+        712
+      ]
+    },
+    "cards/match-desktop.png": {
+      "size": [
+        572,
+        110
+      ],
+      "crop_box": [
+        8,
+        720,
+        580,
+        830
+      ]
+    },
+    "cards/match-mobile.png": {
+      "size": [
+        278,
+        110
+      ],
+      "crop_box": [
+        592,
+        720,
+        870,
+        830
+      ]
+    },
+    "cards/image-placeholder.png": {
+      "size": [
+        145,
+        110
+      ],
+      "crop_box": [
+        880,
+        720,
+        1025,
+        830
+      ]
+    },
+    "cards/hover-overlay.png": {
+      "size": [
+        145,
+        110
+      ],
+      "crop_box": [
+        1030,
+        720,
+        1175,
+        830
+      ]
+    },
+    "cards/empty-card.png": {
+      "size": [
+        130,
+        110
+      ],
+      "crop_box": [
+        1180,
+        720,
+        1310,
+        830
+      ]
+    },
+    "cards/skeleton-loading.png": {
+      "size": [
+        220,
+        110
+      ],
+      "crop_box": [
+        1315,
+        720,
+        1535,
+        830
+      ]
+    },
+    "social/og-default.png": {
+      "size": [
+        384,
+        174
+      ],
+      "crop_box": [
+        8,
+        838,
+        392,
+        1012
+      ]
+    },
+    "social/og-match.png": {
+      "size": [
+        368,
+        174
+      ],
+      "crop_box": [
+        398,
+        838,
+        766,
+        1012
+      ]
+    },
+    "social/og-collection.png": {
+      "size": [
+        364,
+        174
+      ],
+      "crop_box": [
+        772,
+        838,
+        1136,
+        1012
+      ]
+    },
+    "social/og-profile.png": {
+      "size": [
+        395,
+        174
+      ],
+      "crop_box": [
+        1140,
+        838,
+        1535,
+        1012
+      ]
+    }
+  }
+}
