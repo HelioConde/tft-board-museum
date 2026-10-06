@@ -386,10 +386,10 @@ function renderTimeline(){
  }
  el.innerHTML=setButtons+patchButtons;
  el.querySelectorAll("[data-timeline]").forEach(function(btn){btn.addEventListener("click",function(){
-  activeSet=btn.dataset.timeline;setFilter.value="all";patchValue="all";document.querySelector("#patchFilter").value="all";renderTimeline();render();
+  activeSet=btn.dataset.timeline;setFilter.value="all";patchValue="all";document.querySelector("#patchFilter").value="all";visibleLimit=48;syncMuseumUrlState();renderTimeline();render();
  })});
  el.querySelectorAll("[data-timeline-patch]").forEach(function(btn){btn.addEventListener("click",function(){
-  patchValue=btn.dataset.timelinePatch;document.querySelector("#patchFilter").value=patchValue;renderTimeline();render();
+  patchValue=btn.dataset.timelinePatch;document.querySelector("#patchFilter").value=patchValue;visibleLimit=48;syncMuseumUrlState();renderTimeline();render();
  })});
 }
 function updateCompareBar(){var hint=document.querySelector("#compareHint"),btn=document.querySelector("#compareBtn");if(hint)hint.textContent=compareSelection.length+" / 2 "+t("selected");if(btn)btn.disabled=compareSelection.length!==2}
