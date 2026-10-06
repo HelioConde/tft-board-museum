@@ -97,7 +97,7 @@ function miniBoard(board){
  var cells=Array.from({length:28},function(_,slot){
   var u=map.get(slot);if(!u)return '<div class="hex"></div>';
   var entry=staticEntry(staticData&&staticData.champions,u.rawId),image=assetUrl("champion",entry),cost=rarityCost(u.rarity);
-  return '<div class="hex unit" title="'+escapeHtml(u.name)+'"><span class="unit-dot cost-ring cost-'+cost+'">'+(image?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+image+'" alt="" onerror="this.remove()">':initials(u.name))+'<span class="star-row">'+starText(u.stars)+'</span></span><span class="hex-items">'+itemImages(u.items)+'</span></div>';
+  return '<div class="hex unit" title="'+escapeHtml(u.name)+'"><span class="unit-dot cost-ring cost-'+cost+'">'+(image?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+image+'" alt="" onerror="this.onerror=null;this.src=&quot;./img/tft-board-museum-image-pack/cards/image-placeholder.png&quot;">':initials(u.name))+'<span class="star-row">'+starText(u.stars)+'</span></span><span class="hex-items">'+itemImages(u.items)+'</span></div>';
  }).join("");
  return '<div class="mini-board">'+cells+'</div>';
 }
