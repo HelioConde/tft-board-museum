@@ -1,15 +1,38 @@
 {
+  "id": "./",
   "name": "TFT Board Museum",
   "short_name": "Board Museum",
+  "description": "Museu visual do seu histórico de Teamfight Tactics.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#090b12",
   "theme_color": "#090b12",
+  "lang": "pt-BR",
+  "categories": [
+    "games",
+    "entertainment",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "./favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Abrir meu museu",
+      "short_name": "Meu museu",
+      "url": "./"
+    },
+    {
+      "name": "Favoritos",
+      "short_name": "Favoritos",
+      "url": "./?filter=favorite"
     }
   ]
 }
