@@ -52,6 +52,14 @@
 - [x] Tornar coleções públicas opcionalmente.
 - [x] Estatísticas mensais e anuais além de Set.
 - [x] Histórico maior que 100 partidas via arquivo privado acumulado em consultas autenticadas.
-- [ ] Exportação PNG com portraits reais caso o pipeline de imagens passe a usar assets sem restrição de canvas/CORS.
-- [ ] Página pública navegável para coleções compartilhadas.
-- [ ] Automação periódica de snapshots sem exigir que o usuário abra o perfil.
+- [x] Exportação PNG tenta incluir portraits e itens reais, com fallback seguro quando CORS impedir o asset.
+- [x] Página pública navegável para coleções compartilhadas.
+- [x] Automação periódica de snapshots opt-in sem exigir que o usuário abra o perfil.
+
+
+## Qualidade final concluída
+- [x] Tradução PT-BR dinâmica de traits/composições usando Data Dragon localizado.
+- [x] E2E Playwright de filtros, modal, comparação, idioma e overflow mobile.
+- [x] Diagnóstico automático de overflow nos snapshots.
+- [x] Skip link, foco visível e respeito a prefers-reduced-motion.
+- [x] JSON-LD e card social estático para a home.
