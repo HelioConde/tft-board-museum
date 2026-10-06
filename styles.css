@@ -363,3 +363,16 @@ footer small{font-size:11px}
   .placement{padding:5px 7px}
   .placement img{width:20px;height:20px}
 }
+
+/* Mascot-backed Riot status states */
+.demo-note{position:relative;padding-right:62px;min-height:50px;overflow:hidden}
+.demo-note:after{content:"";position:absolute;right:8px;bottom:-4px;width:48px;height:48px;background-repeat:no-repeat;background-position:center;background-size:contain;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease;pointer-events:none}
+.demo-note.state-loading:after{background-image:url("./img/tft-board-museum-image-pack/mascots/poro-surprised.png");opacity:.72;transform:none}
+.demo-note.state-success:after{background-image:url("./img/tft-board-museum-image-pack/mascots/poro-victory.png");opacity:.82;transform:none}
+.demo-note.state-error:after{background-image:url("./img/tft-board-museum-image-pack/mascots/poro-sad.png");opacity:.82;transform:none}
+.demo-note.state-success{border-color:#5bbf7a2d;background:#5bbf7a08}
+.demo-note.state-error{border-color:#c75d5d2d;background:#c75d5d08}
+@media(max-width:680px){
+  .demo-note{padding-right:55px}
+  .demo-note:after{width:42px;height:42px}
+}
