@@ -142,3 +142,8 @@ footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
   .profile-icon{width:54px;height:54px}
   .profile-kpis div{padding:10px}
 }
+
+/* Visual-audit readability pass */
+.trait,.source-badge{font-size:11px}
+.star-row{font-size:11px}
+.profile-kpis span,.set-stat-kpis small{font-size:11px}
