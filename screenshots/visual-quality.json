@@ -1,5 +1,7 @@
 {
-  "generatedAt": "2026-10-06T19:46:00.980Z",
-  "passed": true,
-  "failures": []
+  "generatedAt": "2026-10-06T19:48:55.787Z",
+  "passed": false,
+  "failures": [
+    "desktop-full.png: #setHistory too tall (543px > 540px)"
+  ]
 }

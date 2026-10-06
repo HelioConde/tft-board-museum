@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T19:46:00.980Z",
+  "generatedAt": "2026-10-06T19:48:55.787Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,7 +12,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4513,
+      "height": 4371,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -125,7 +125,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 503,
+          "height": 419,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -135,7 +135,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3386,
+          "top": 3302,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -149,11 +149,11 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 3699,
+          "top": 3615,
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 601,
+          "height": 543,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -177,7 +177,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4390,
+          "top": 4248,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -335,7 +335,7 @@
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.51
+        "pageHeightInViewports": 4.37
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -691,7 +691,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4845,
+      "height": 4694,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -804,7 +804,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 503,
+          "height": 419,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -814,7 +814,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3819,
+          "top": 3735,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -828,11 +828,11 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 4150,
+          "top": 4066,
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 481,
+          "height": 415,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -856,7 +856,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4722,
+          "top": 4571,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -912,9 +912,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/profileicon/581.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
           "renderedWidth": 62,
           "renderedHeight": 62,
           "loading": "auto"
@@ -2082,9 +2082,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_18_Sentry.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2100,27 +2100,27 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_ProtectorsVow.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 2,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_StrikersFlail.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 2,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_Scuttlecrab18.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2136,10 +2136,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_ProtectorsVow.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 2,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 13,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2154,36 +2154,36 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_Sentinel18.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 21,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_Component_TearOfTheGoddess.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
           "renderedWidth": 13,
           "renderedHeight": 13,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Riftbeast.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 32,
+          "naturalHeight": 32,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Invoker.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 32,
+          "naturalHeight": 32,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
@@ -2199,9 +2199,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_18_Alune.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
@@ -2226,10 +2226,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_InfinityEdge.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 2,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2262,18 +2262,18 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Ivern_splash_centered_0.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Vi_splash_centered_39.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2325,10 +2325,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_Morellonomicon.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 2,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 13,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2352,9 +2352,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Morgana_splash_centered_26.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 21,
           "loading": "lazy"
@@ -2388,9 +2388,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Greenfather.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 32,
+          "naturalHeight": 32,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
@@ -2415,9 +2415,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Alistar_splash_centered_40.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
@@ -2442,9 +2442,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Ornn_splash_centered_2.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2478,19 +2478,19 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Leblanc_splash_centered_5.TFT_Set18.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 512,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_BlueBuff.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 3,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2523,10 +2523,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_InfinityEdge.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 4,
+          "complete": true,
+          "naturalWidth": 128,
+          "naturalHeight": 128,
+          "renderedWidth": 13,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2616,7 +2616,7 @@
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.84
+        "pageHeightInViewports": 4.69
       },
       "consoleErrors": [],
       "failedRequests": []
