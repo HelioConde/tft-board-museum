@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T16:41:35.594Z
+Generated: 2026-10-06T16:47:13.926Z
 
 ## desktop-full.png
 
@@ -8,7 +8,7 @@ Generated: 2026-10-06T16:41:35.594Z
 - Page: 1440×4563 (4.56 viewports tall)
 - Boards rendered: 8
 - Overflow elements: 0
-- Horizontal scrollers: 7
+- Horizontal scrollers: 0
 - Small tap targets: 0
 - Tiny text nodes (<11px): 6
 - Console errors: 0
@@ -41,8 +41,8 @@ Generated: 2026-10-06T16:41:35.594Z
 - Viewport: 390×844
 - Page: 390×5433 (6.44 viewports tall)
 - Boards rendered: 3
-- Overflow elements: 0
-- Horizontal scrollers: 8
+- Overflow elements: 1
+- Horizontal scrollers: 5
 - Small tap targets: 0
 - Tiny text nodes (<11px): 6
 - Console errors: 0
@@ -62,6 +62,9 @@ Generated: 2026-10-06T16:41:35.594Z
 - #cloudCollections: top 0px · 0×0px
 - footer: top 5254px · 354×179px
 
+### Overflow
+- button#accountBtn.ghost account-btn: left 337, right 409, width 72
+
 ### Tiny text
 - 10px: AD
 - 10px: Melhor resultado
@@ -76,7 +79,7 @@ Generated: 2026-10-06T16:41:35.594Z
 - Page: 1440×5470 (5.47 viewports tall)
 - Boards rendered: 12
 - Overflow elements: 0
-- Horizontal scrollers: 30
+- Horizontal scrollers: 0
 - Small tap targets: 0
 - Tiny text nodes (<11px): 8
 - Console errors: 0
@@ -109,30 +112,40 @@ Generated: 2026-10-06T16:41:35.594Z
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×6027 (7.14 viewports tall)
+- Page: 390×5866 (6.95 viewports tall)
 - Boards rendered: 3
-- Overflow elements: 0
-- Horizontal scrollers: 25
-- Small tap targets: 0
-- Tiny text nodes (<11px): 8
+- Overflow elements: 1
+- Horizontal scrollers: 7
+- Small tap targets: 1
+- Tiny text nodes (<11px): 12
 - Console errors: 0
 - Failed requests: 0
 
 ### Sections
 - .topbar: top 0px · 390×82px
 - .hero: top 110px · 390×819px
-- #profilePanel: top 969px · 354×396px
-- .ad-slot: top 1399px · 354×82px
-- #museum: top 1529px · 390×2076px
-- .stats: top 3605px · 354×235px
-- #insights: top 3900px · 390×386px
-- #recentEvolution: top 4344px · 390×521px
-- #hallOfFame: top 4919px · 390×234px
-- #setHistory: top 5210px · 390×580px
-- #cloudCollections: top 1543px · 0×0px
-- footer: top 5848px · 354×179px
+- #profilePanel: top 969px · 354×235px
+- .ad-slot: top 1238px · 354×82px
+- #museum: top 1368px · 390×2076px
+- .stats: top 3444px · 354×235px
+- #insights: top 3739px · 390×386px
+- #recentEvolution: top 4183px · 390×521px
+- #hallOfFame: top 4758px · 390×234px
+- #setHistory: top 5049px · 390×580px
+- #cloudCollections: top 1382px · 0×0px
+- footer: top 5687px · 354×179px
+
+### Overflow
+- button#accountBtn.ghost account-btn: left 337, right 409, width 72
+
+### Small tap targets
+- button#shareProfileBtn.ghost profile-share: 159×33px
 
 ### Tiny text
+- 9px: Colocação média
+- 9px: Top 4
+- 9px: Vitórias
+- 9px: Partidas
 - 10px: AD
 - 10px: Melhor resultado
 - 10px: Mais ouro restante
