@@ -129,6 +129,8 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
     const counts = {
       images: imageAudit.length,
       brokenImages: brokenImages.length,
+      lazyImages: imageAudit.filter(img => img.loading === "lazy").length,
+      autoImages: imageAudit.filter(img => img.loading !== "lazy").length,
       boardCards: document.querySelectorAll(".board-card:not(.skeleton-card)").length,
       skeletonCards: document.querySelectorAll(".skeleton-card").length,
       filters: document.querySelectorAll(".filter").length,
@@ -219,6 +221,8 @@ for (const capture of captures) {
   auditLines.push(`- Console errors: ${capture.consoleErrors.length}`);
   auditLines.push(`- Failed requests: ${capture.failedRequests.length}`);
   auditLines.push(`- Images loaded: ${capture.counts.images}`);
+  auditLines.push(`- Lazy images: ${capture.counts.lazyImages}`);
+  auditLines.push(`- Auto/eager images: ${capture.counts.autoImages}`);
   auditLines.push(`- Broken images: ${capture.counts.brokenImages}`);
   auditLines.push("");
   auditLines.push("### Sections");
