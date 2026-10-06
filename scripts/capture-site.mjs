@@ -262,7 +262,9 @@ for (const capture of captures) {
     const budgets = [
       [".hero", 720],
       ["#profilePanel", 180],
-      ["#museum", 1600]
+      ["#museum", 1600],
+      ["#recentEvolution", 470],
+      ["#setHistory", 540]
     ];
     for (const [selector, maxHeight] of budgets) {
       const height = sectionHeight(selector);
