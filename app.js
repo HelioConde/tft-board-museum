@@ -535,14 +535,22 @@ document.querySelector("#authForm").addEventListener("submit",async function(e){
  status.textContent="Enviando…";try{await window.MuseumCloud.signIn(email);status.textContent="Confira seu e-mail para entrar no Museum."}catch(err){status.textContent=String(err.message||err)}
 });
 document.querySelector("#signOutBtn").addEventListener("click",async function(){if(window.MuseumCloud)await window.MuseumCloud.signOut()});
+document.querySelector("#exportDataBtn").addEventListener("click",async function(){
+ var status=document.querySelector("#authStatus");if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn())return;
+ status.textContent="Preparando exportação…";
+ try{
+  var data=await window.MuseumCloud.exportUserData(),blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="tft-board-museum-dados.json";a.click();setTimeout(function(){URL.revokeObjectURL(url)},1000);status.textContent="Exportação concluída."
+ }catch(err){status.textContent=String(err.message||err)}
+});
 document.querySelector("#collectionForm").addEventListener("submit",async function(e){
  e.preventDefault();var name=document.querySelector("#collectionName").value.trim(),desc=document.querySelector("#collectionDescription").value.trim(),dlg=document.querySelector("#collectionDialog"),boardId=dlg.dataset.boardId||"",status=document.querySelector("#collectionStatusMessage");
  if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn())return;
  try{var col=await window.MuseumCloud.createCollection({name:name,description:desc,boardIds:boardId?[boardId]:[]});status.textContent="Coleção criada: "+col.name;document.querySelector("#collectionName").value="";document.querySelector("#collectionDescription").value="";renderCloudCollections();if(boardId)openCollectionPicker(boardId)}catch(err){status.textContent=String(err.message||err)}
 });
 window.addEventListener("museum-auth-change",function(e){
- var user=e.detail&&e.detail.user,btn=document.querySelector("#accountBtn"),out=document.querySelector("#signOutBtn"),copy=document.querySelector("#authCopy");
- btn.textContent=user?(user.email||"Conta"):"Entrar";out.classList.toggle("hidden",!user);copy.textContent=user?"Sincronização ativa neste dispositivo.":"Entre por e-mail para sincronizar favoritos, notas e coleções.";renderCloudCollections();refreshAutoSnapshotButton();if(user)mergeCloudArchive()
+ var user=e.detail&&e.detail.user,btn=document.querySelector("#accountBtn"),out=document.querySelector("#signOutBtn"),copy=document.querySelector("#authCopy"),dataActions=document.querySelector("#accountDataActions");
+ btn.textContent=user?(user.email||"Conta"):"Entrar";out.classList.toggle("hidden",!user);dataActions.classList.toggle("hidden",!user);copy.textContent=user?"Sincronização ativa neste dispositivo.":"Entre por e-mail para sincronizar favoritos, notas e coleções.";renderCloudCollections();refreshAutoSnapshotButton();if(user)mergeCloudArchive()
 });
 window.addEventListener("museum-cloud-state",function(e){
  var state=e.detail||{};favorites=new Set(state.favorites||[]);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));if(state.notes)localStorage.setItem("tbm-notes",JSON.stringify(state.notes));render()
