@@ -302,3 +302,23 @@ footer small{font-size:11px}
   #insights .insight-card strong{font-size:18px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #insights .insight-card small{font-size:11px;margin-top:3px;line-height:1.25}
 }
+
+/* Capture-driven set history compaction */
+@media(max-width:680px){
+  #setHistory .section-head h2{font-size:27px}
+  #setHistory .set-stats-grid{margin-top:14px}
+  #setHistory .set-stat-card{padding:12px;border-radius:14px}
+  #setHistory .set-stat-kpis{gap:5px}
+  #setHistory .set-stat-kpis div{padding:7px 5px}
+  #setHistory .set-stat-kpis small{font-size:11px;line-height:1.15}
+  #setHistory .set-stat-kpis strong{font-size:16px}
+  #setHistory .set-stat-card p{margin-top:9px;font-size:11px}
+  #setHistory .section-subhead{margin-top:20px;padding-top:16px}
+  #setHistory .section-subhead h3{font-size:21px}
+  #setHistory .section-subhead p{font-size:11px;line-height:1.35}
+  #setHistory .period-stats-grid{margin-top:11px}
+  #setHistory .period-card{padding:11px 12px;border-radius:12px}
+  #setHistory .period-card span{font-size:11px}
+  #setHistory .period-card strong{margin-top:4px;font-size:14px}
+  #setHistory .period-card small{margin-top:4px;font-size:11px;line-height:1.3}
+}
