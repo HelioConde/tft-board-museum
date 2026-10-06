@@ -196,3 +196,23 @@ footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
     line-height:1.15;
   }
 }
+
+/* Capture-driven gate fixes */
+.hall-card span,.period-card span{font-size:11px}
+footer small{font-size:11px}
+@media(max-width:680px){
+  .topbar{padding-left:14px;padding-right:14px;gap:10px}
+  .brand>span:last-child{display:none}
+  .topbar nav{
+    flex:1;
+    min-width:0;
+    max-width:none;
+    overflow:visible;
+    justify-content:flex-end;
+    gap:6px;
+  }
+  .topbar nav .ghost{padding-left:10px;padding-right:10px}
+  .account-btn{min-width:64px;max-width:86px}
+  .profile-actions .ghost{min-height:44px}
+  .profile-kpis span{font-size:10px}
+}
