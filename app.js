@@ -66,9 +66,26 @@ async function loadStaticData(){
 function itemImages(ids){
  return (ids||[]).slice(0,3).map(function(id){var e=staticEntry(staticData&&staticData.items,id),src=assetUrl("item",e);return src?'<img src="'+src+'" title="'+escapeHtml((e&&e.name)||cleanEntityName(id))+'" alt="">':""}).join("");
 }
+function localizedTraitName(rawName){
+ var entry=rawName?staticEntry(staticData&&staticData.traits,rawName):null;
+ if(lang==="pt"&&entry&&entry.name)return String(entry.name);
+ return cleanEntityName(rawName);
+}
+function localizedTraitLabel(raw){
+ if(!raw)return "";
+ return String(raw.numUnits||"")+" "+localizedTraitName(raw.name);
+}
+function boardDisplayTitle(board){
+ if(board&&board.real&&board.rawTraits&&board.rawTraits[0])return localizedTraitLabel(board.rawTraits[0]);
+ return String(board&&board.title||"Board TFT");
+}
 function traitHtml(board){
  var raws=board.rawTraits||[];
- return (board.traits||[]).map(function(label,i){var raw=raws[i],entry=raw?staticEntry(staticData&&staticData.traits,raw.name):null,src=assetUrl("trait",entry);return '<span class="trait with-icon">'+(src?'<img src="'+src+'" alt="">':"")+escapeHtml(label)+'</span>'}).join("");
+ return (board.traits||[]).map(function(label,i){
+  var raw=raws[i],entry=raw?staticEntry(staticData&&staticData.traits,raw.name):null,src=assetUrl("trait",entry);
+  var text=raw?localizedTraitLabel(raw):label;
+  return '<span class="trait with-icon">'+(src?'<img loading="lazy" decoding="async" src="'+src+'" alt="">':"")+escapeHtml(text)+'</span>'
+ }).join("");
 }
 function augmentHtml(board){
  if(!board.augments||!board.augments.length)return '<span class="trait">—</span>';
@@ -85,7 +102,7 @@ function miniBoard(board){
 }
 function boardSearchText(b){
  var items=[];(b.units||[]).forEach(function(u){items.push(u[0],u[4]);(u[3]||[]).forEach(function(x){var e=staticEntry(staticData&&staticData.items,x);items.push(x,e&&e.name)})});
- return [b.title,b.patch,b.set].concat(b.traits||[],b.augments||[],items).join(" ").toLowerCase();
+ return [boardDisplayTitle(b),b.title,b.patch,b.set].concat((b.rawTraits||[]).map(localizedTraitLabel),b.traits||[],b.augments||[],items).join(" ").toLowerCase();
 }
 function visibleBoards(){
  var set=activeSet==="all"?setFilter.value:String(activeSet),query=searchTerm.toLowerCase();
@@ -106,7 +123,7 @@ function render(){
   '<button class="favorite-btn '+(favorites.has(board.id)?"active":"")+'" data-fav="'+escapeHtml(board.id)+'" title="'+(favorites.has(board.id)?t("unfavorite"):t("favorite"))+'">★</button>'+
   '<button class="compare-toggle '+(compareSelection.includes(board.id)?"active":"")+'" data-compare="'+escapeHtml(board.id)+'">'+(compareSelection.includes(board.id)?"✓":"＋")+'</button>'+
   '<div class="board-card-top"><span class="placement '+(board.placement===1?"win":"")+'">'+placementLabel(board.placement)+'</span>'+miniBoard(board)+'</div>'+
-  '<div class="board-meta"><h3>'+escapeHtml(board.title)+'</h3><p>Set '+escapeHtml(board.set)+' · '+escapeHtml(board.date)+' <span class="source-badge '+(board.real?"real":"demo")+'">'+(board.real?t("officialSource"):t("demoSource"))+'</span></p><div class="trait-row">'+traitHtml(board)+'</div>'+
+  '<div class="board-meta"><h3>'+escapeHtml(boardDisplayTitle(board))+'</h3><p>Set '+escapeHtml(board.set)+' · '+escapeHtml(board.date)+' <span class="source-badge '+(board.real?"real":"demo")+'">'+(board.real?t("officialSource"):t("demoSource"))+'</span></p><div class="trait-row">'+traitHtml(board)+'</div>'+
   '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+escapeHtml(board.patch)+'</span></div></div></article>';
  }).join("");
  document.querySelector("#emptyState").classList.toggle("hidden",data.length>0);bindCards();
@@ -131,7 +148,7 @@ async function publicBoardShareUrl(id){
  }
  return boardShareUrl(id)
 }
-async function shareBoard(id){var url=await publicBoardShareUrl(id),b=boards.find(function(x){return x.id===id});try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+(b?b.title:"Board"),url:url});else{await navigator.clipboard.writeText(url);alert(t("saved"))}}catch(_){}}
+async function shareBoard(id){var url=await publicBoardShareUrl(id),b=boards.find(function(x){return x.id===id});try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+(b?boardDisplayTitle(b):"Board"),url:url});else{await navigator.clipboard.writeText(url);alert(t("saved"))}}catch(_){}}
 async function shareProfile(){
  if(!loadedRiotId)return;
  var url=new URL(location.href);url.searchParams.set("riot",loadedRiotId);url.searchParams.set("region",loadedPlatform);url.searchParams.delete("board");
@@ -145,7 +162,7 @@ function exportBoardPng(id){
  var canvas=document.createElement("canvas");canvas.width=1200;canvas.height=630;var ctx=canvas.getContext("2d");
  var g=ctx.createLinearGradient(0,0,1200,630);g.addColorStop(0,"#171b28");g.addColorStop(1,"#090b12");ctx.fillStyle=g;ctx.fillRect(0,0,1200,630);
  ctx.fillStyle="#d7ad62";ctx.font="700 26px Arial";ctx.fillText("TFT BOARD MUSEUM",70,70);
- ctx.fillStyle="#f5f1e6";ctx.font="700 64px Georgia";ctx.fillText(String(b.title).slice(0,30),70,155);
+ ctx.fillStyle="#f5f1e6";ctx.font="700 64px Georgia";ctx.fillText(String(boardDisplayTitle(b)).slice(0,30),70,155);
  ctx.fillStyle="#d7ad62";ctx.font="700 46px Arial";ctx.fillText(placementLabel(b.placement),70,225);
  ctx.fillStyle="#a8abb9";ctx.font="26px Arial";ctx.fillText("Set "+b.set+" · "+b.patch+" · "+b.date,155,222);
  ctx.font="22px Arial";ctx.fillText((b.traits||[]).slice(0,4).join("  ·  "),70,278);
@@ -176,7 +193,7 @@ function openBoard(id,updateUrl){
  if(updateUrl)updateBoardUrl(id);
  var note=notes()[id]||"";
  document.querySelector("#dialogContent").innerHTML='<div class="dialog-layout"><div class="dialog-board">'+miniBoard(b)+'</div><div class="dialog-info">'+
- '<span class="eyebrow">Set '+escapeHtml(b.set)+' · '+escapeHtml(b.date)+(b.time?" · "+escapeHtml(b.time):"")+'</span><h2>'+escapeHtml(b.title)+'</h2><p>'+t("placement")+': <strong>'+placementLabel(b.placement)+'</strong></p>'+
+ '<span class="eyebrow">Set '+escapeHtml(b.set)+' · '+escapeHtml(b.date)+(b.time?" · "+escapeHtml(b.time):"")+'</span><h2>'+escapeHtml(boardDisplayTitle(b))+'</h2><p>'+t("placement")+': <strong>'+placementLabel(b.placement)+'</strong></p>'+
  '<div class="dialog-stat-grid"><div class="dialog-stat"><span>'+t("level")+'</span><strong>'+b.level+'</strong></div><div class="dialog-stat"><span>'+t("gold")+'</span><strong>'+b.gold+'g</strong></div><div class="dialog-stat"><span>'+t("queue")+'</span><strong>'+escapeHtml(queueLabel(b.queueId))+'</strong></div><div class="dialog-stat"><span>'+t("duration")+'</span><strong>'+formatDuration(b.duration)+'</strong></div><div class="dialog-stat"><span>'+t("damage")+'</span><strong>'+Number(b.damage||0)+'</strong></div><div class="dialog-stat"><span>'+t("eliminations")+'</span><strong>'+Number(b.eliminations||0)+'</strong></div></div>'+
  '<span class="eyebrow">'+t("traits")+'</span><div class="trait-row">'+traitHtml(b)+'</div><span class="eyebrow" style="margin-top:24px">'+t("augments")+'</span>'+augmentHtml(b)+
  '<span class="eyebrow" style="margin-top:24px">'+t("units")+'</span><div class="unit-list">'+unitListHtml(b)+'</div>'+
@@ -217,7 +234,7 @@ function renderHallOfFame(){
   var aa=a.units.filter(function(u){return Number(u[1])>=3}).length,bb=b.units.filter(function(u){return Number(u[1])>=3}).length;return bb-aa
  })[0];
  var damage=boards.slice().sort(function(a,b){return Number(b.damage||0)-Number(a.damage||0)})[0];
- function card(label,b,value){return '<button class="hall-card" data-open-hall="'+escapeHtml(b.id)+'"><span>'+label+'</span><strong>'+escapeHtml(value)+'</strong><small>'+escapeHtml(b.title)+' · '+escapeHtml(b.date)+'</small></button>'}
+ function card(label,b,value){return '<button class="hall-card" data-open-hall="'+escapeHtml(b.id)+'"><span>'+label+'</span><strong>'+escapeHtml(value)+'</strong><small>'+escapeHtml(boardDisplayTitle(b))+' · '+escapeHtml(b.date)+'</small></button>'}
  el.innerHTML=card("Melhor resultado",best,placementLabel(best.placement))+card("Mais ouro restante",richest,richest.gold+"g")+card("Mais unidades 3★",mostThree,mostThree.units.filter(function(u){return Number(u[1])>=3}).length+" × 3★")+card("Maior dano registrado",damage,String(damage.damage||0));
  el.querySelectorAll("[data-open-hall]").forEach(function(btn){btn.addEventListener("click",function(){openBoard(btn.dataset.openHall,true)})})
 }
@@ -321,13 +338,13 @@ function compareBoards(){
    '<div><span class="compare-label">'+escapeHtml(pair[1].title)+'</span><div class="compare-unit-diff">'+chips(rightOnly,"added","+ ")+'</div></div></div></section>';
  }
  function side(board){
-  return '<section class="compare-side"><span class="eyebrow">Set '+board.set+' · '+escapeHtml(board.date)+'</span><h2>'+escapeHtml(board.title)+'</h2>'+miniBoard(board)+
+  return '<section class="compare-side"><span class="eyebrow">Set '+board.set+' · '+escapeHtml(board.date)+'</span><h2>'+escapeHtml(boardDisplayTitle(board))+'</h2>'+miniBoard(board)+
   '<div class="compare-kpis"><div><span>'+t("placement")+'</span><strong>'+placementLabel(board.placement)+'</strong></div><div><span>'+t("level")+'</span><strong>'+board.level+'</strong></div><div><span>'+t("gold")+'</span><strong>'+board.gold+'g</strong></div><div><span>'+t("starPower")+'</span><strong>'+starTotal(board)+'</strong></div><div><span>'+t("items")+'</span><strong>'+itemCount(board)+'</strong></div><div><span>'+t("augments")+'</span><strong>'+(board.augments||[]).length+'</strong></div></div>'+
   '<div class="trait-row">'+traitHtml(board)+'</div></section>';
  }
  var a=pair[0],b=pair[1];
  var au=unitNames(a),bu=unitNames(b),at=normalizedTraits(a),bt=normalizedTraits(b),ai=boardItems(a),bi=boardItems(b),aa=augmentNames(a),ba=augmentNames(b);
- var summary='<div class="compare-delta"><span>'+t("placement")+': <strong>'+(a.placement===b.placement?"=":(a.placement<b.placement?escapeHtml(a.title):escapeHtml(b.title)))+'</strong></span><span>'+t("level")+': <strong>'+(a.level===b.level?"=":(a.level>b.level?escapeHtml(a.title):escapeHtml(b.title)))+'</strong></span><span>'+t("gold")+': <strong>'+Math.abs(a.gold-b.gold)+'g</strong></span><span>'+t("starPower")+': <strong>'+Math.abs(starTotal(a)-starTotal(b))+'</strong></span></div>';
+ var summary='<div class="compare-delta"><span>'+t("placement")+': <strong>'+(a.placement===b.placement?"=":(a.placement<b.placement?escapeHtml(boardDisplayTitle(a)):escapeHtml(boardDisplayTitle(b))))+'</strong></span><span>'+t("level")+': <strong>'+(a.level===b.level?"=":(a.level>b.level?escapeHtml(boardDisplayTitle(a)):escapeHtml(boardDisplayTitle(b))))+'</strong></span><span>'+t("gold")+': <strong>'+Math.abs(a.gold-b.gold)+'g</strong></span><span>'+t("starPower")+': <strong>'+Math.abs(starTotal(a)-starTotal(b))+'</strong></span></div>';
  document.querySelector("#compareContent").innerHTML='<div class="compare-grid">'+side(a)+side(b)+summary+
  compareSection(t("units"),intersect(au,bu),difference(au,bu),difference(bu,au))+
  compareSection(t("traits"),intersect(at,bt),difference(at,bt),difference(bt,at))+
