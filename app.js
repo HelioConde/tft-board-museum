@@ -230,6 +230,27 @@ function renderSetStats(){
   return '<article class="set-stat-card"><span class="eyebrow">Set '+escapeHtml(k)+'</span><div class="set-stat-kpis"><div><small>Partidas</small><strong>'+games+'</strong></div><div><small>Média</small><strong>'+avg.toFixed(2)+'</strong></div><div><small>Top 4</small><strong>'+top4+'%</strong></div><div><small>Vitórias</small><strong>'+wins+'</strong></div></div><p>'+escapeHtml(topTrait)+'</p></article>'
  }).join("")
 }
+function renderPeriodStats(){
+ var el=document.querySelector("#periodStatsGrid");if(!el)return;
+ var dated=boards.filter(function(b){return Number(b.playedAt||0)>0});
+ if(!dated.length){el.innerHTML='<div class="empty">Sem datas suficientes para gerar recortes mensais.</div>';return}
+ function build(key,label){
+  var list=dated.filter(function(b){var d=new Date(Number(b.playedAt));return key(d)});
+  if(!list.length)return "";
+  var avg=list.reduce(function(s,b){return s+b.placement},0)/list.length;
+  var top4=Math.round(list.filter(function(b){return b.placement<=4}).length/list.length*100);
+  var wins=list.filter(function(b){return b.placement===1}).length;
+  return '<article class="period-card"><span>'+escapeHtml(label)+'</span><strong>'+list.length+' partidas</strong><small>Média '+avg.toFixed(2)+' · Top 4 '+top4+'% · '+wins+' vitórias</small></article>'
+ }
+ var now=new Date(),month=now.getMonth(),year=now.getFullYear(),prev=new Date(year,month-1,1),prevM=prev.getMonth(),prevY=prev.getFullYear();
+ var items=[
+  build(function(d){return d.getFullYear()===year&&d.getMonth()===month},"Este mês"),
+  build(function(d){return d.getFullYear()===prevY&&d.getMonth()===prevM},"Mês anterior"),
+  build(function(d){return d.getFullYear()===year},"Ano "+year),
+  build(function(d){return d.getFullYear()===year-1},"Ano "+(year-1))
+ ].filter(Boolean);
+ el.innerHTML=items.join("")||'<div class="empty">Sem partidas suficientes nesses períodos.</div>'
+}
 async function renderCloudCollections(){
  var section=document.querySelector("#cloudCollections"),grid=document.querySelector("#collectionGrid");
  if(!section||!grid)return;
@@ -314,7 +335,7 @@ function compareBoards(){
  compareSection(t("augments"),intersect(aa,ba),difference(aa,ba),difference(ba,aa))+'</div>';
  document.querySelector("#compareDialog").showModal();
 }
-function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();renderHallOfFame();renderSetStats();render();renderCloudCollections();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
+function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();renderHallOfFame();renderSetStats();renderPeriodStats();render();renderCloudCollections();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
 function applyLanguage(){
  document.documentElement.lang=lang==="pt"?"pt-BR":"en";document.querySelectorAll("[data-i18n]").forEach(function(el){var key=el.dataset.i18n;if(copy[lang][key])el.textContent=copy[lang][key]});document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){el.placeholder=t(el.dataset.i18nPlaceholder)});document.querySelector("#langToggle").textContent=lang==="pt"?"EN":"PT";renderAll();
 }
