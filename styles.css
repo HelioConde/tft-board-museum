@@ -393,3 +393,12 @@ footer small{font-size:11px}
   .riot-search{margin-top:16px}
   .hero-mascot{width:74px}
 }
+
+/* Capture-driven desktop museum compaction */
+@media(min-width:1000px){
+  .board-card{min-height:350px}
+  .board-card-top{height:205px;padding:16px}
+  .board-meta{padding:15px 16px 16px}
+  .trait-row{margin-top:10px}
+  .board-card-footer{margin-top:10px;padding-top:10px}
+}
