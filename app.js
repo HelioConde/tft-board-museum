@@ -494,22 +494,50 @@ async function loadRiotHistory(riotId,platform){
  var status=document.querySelector("#collectionStatus"),note=document.querySelector(".demo-note span");status.textContent=t("loading");note.textContent=t("loading");
  var result=await fetchRiotPage(riotId,platform,0),data=result.data,parts=result.parts;if(!Array.isArray(data.matches)||!data.matches.length)throw new Error(lang==="pt"?"Nenhuma partida recente encontrada.":"No recent matches found.");
  boards=data.matches.map(normalizeRiotMatch);compareSelection=[];activeSet="all";loadedRiotId=riotId;loadedPlatform=platform;nextStart=data.paging&&Number(data.paging.returned)?Number(data.paging.returned):boards.length;hasMore=Boolean(data.paging&&Number(data.paging.returned)===pageSize);
- document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");note.textContent=t("realData");activeFilter="all";document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x.dataset.filter==="all")});renderAll();mergeCloudArchive();refreshAutoSnapshotButton();
+ document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");note.textContent=t("realData");if(!new URLSearchParams(location.search).has("filter"))activeFilter="all";applyUrlMuseumState(false);renderAll();mergeCloudArchive();refreshAutoSnapshotButton();
 }
 async function loadMoreHistory(){if(!loadedRiotId||!hasMore)return;var btn=document.querySelector("#loadMoreBtn");if(btn){btn.disabled=true;btn.textContent=t("loading")}try{var result=await fetchRiotPage(loadedRiotId,loadedPlatform,nextStart),list=Array.isArray(result.data.matches)?result.data.matches:[],known=new Set(boards.map(function(b){return b.id}));list.map(normalizeRiotMatch).forEach(function(b){if(!known.has(b.id)){boards.push(b);known.add(b.id)}});var returned=result.data.paging?Number(result.data.paging.returned)||0:list.length;nextStart+=returned;hasMore=returned===pageSize&&nextStart<100;renderAll();mergeCloudArchive()}catch(err){document.querySelector(".demo-note span").textContent=friendlyError(err)}finally{if(btn){btn.disabled=false;btn.textContent=t("loadMore");btn.classList.toggle("hidden",!hasMore)}}}
 function updateShareUrl(riotId,platform){var url=new URL(location.href);url.searchParams.set("riot",riotId);url.searchParams.set("region",platform);url.searchParams.delete("board");history.replaceState({},"",url)}
+function syncMuseumUrlState(){
+ var url=new URL(location.href),setValue=activeSet!=="all"?activeSet:setFilter.value;
+ if(activeFilter&&activeFilter!=="all")url.searchParams.set("filter",activeFilter);else url.searchParams.delete("filter");
+ if(setValue&&setValue!=="all")url.searchParams.set("set",setValue);else url.searchParams.delete("set");
+ if(patchValue&&patchValue!=="all")url.searchParams.set("patch",patchValue);else url.searchParams.delete("patch");
+ if(sortMode&&sortMode!=="newest")url.searchParams.set("sort",sortMode);else url.searchParams.delete("sort");
+ if(searchTerm)url.searchParams.set("q",searchTerm);else url.searchParams.delete("q");
+ if(view&&view!=="grid")url.searchParams.set("view",view);else url.searchParams.delete("view");
+ history.replaceState({},"",url)
+}
+function applyUrlMuseumState(shouldRender){
+ var params=new URLSearchParams(location.search),filter=params.get("filter"),set=params.get("set"),patch=params.get("patch"),sort=params.get("sort"),q=params.get("q"),urlView=params.get("view");
+ if(["all","top4","win","favorite"].includes(filter))activeFilter=filter;
+ if(set)activeSet=set;
+ if(patch)patchValue=patch;
+ if(["newest","best","worst","gold"].includes(sort))sortMode=sort;
+ if(q!=null){searchTerm=q;var search=document.querySelector("#museumSearch");if(search)search.value=q}
+ if(["grid","compact"].includes(urlView))view=urlView;
+ document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x.dataset.filter===activeFilter)});
+ var sortEl=document.querySelector("#sortFilter");if(sortEl)sortEl.value=sortMode;
+ document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x.dataset.view===view)});
+ if(shouldRender)renderAll()
+}
 function maybeOpenBoardFromUrl(){var id=new URLSearchParams(location.search).get("board");if(id&&boards.some(function(b){return b.id===id}))openBoard(id,false)}
-function hydrateFromUrl(){var params=new URLSearchParams(location.search),riot=params.get("riot"),region=params.get("region")||"br1";if(!riot)return;document.querySelector("#riotId").value=riot;document.querySelector("#region").value=region;document.querySelector("#riotForm").requestSubmit()}
+function hydrateFromUrl(){
+ applyUrlMuseumState(true);
+ var params=new URLSearchParams(location.search),riot=params.get("riot"),region=params.get("region")||"br1";
+ if(!riot)return;
+ document.querySelector("#riotId").value=riot;document.querySelector("#region").value=region;document.querySelector("#riotForm").requestSubmit()
+}
 
 document.querySelector("#closeDialog").addEventListener("click",closeBoard);dialog.addEventListener("click",function(e){if(e.target===dialog)closeBoard()});
 document.querySelector("#langToggle").addEventListener("click",function(){lang=lang==="pt"?"en":"pt";localStorage.setItem("tbm-lang",lang);applyLanguage()});
-document.querySelectorAll(".filter").forEach(function(btn){btn.addEventListener("click",function(){activeFilter=btn.dataset.filter;document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x===btn)});render()})});
+document.querySelectorAll(".filter").forEach(function(btn){btn.addEventListener("click",function(){activeFilter=btn.dataset.filter;visibleLimit=48;document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
 document.querySelector("#favoritesTop").addEventListener("click",function(){document.querySelector('[data-filter="favorite"]').click();document.querySelector("#museum").scrollIntoView({behavior:"smooth"})});
-setFilter.addEventListener("change",function(){activeSet="all";renderTimeline();visibleLimit=48;render()});
-document.querySelector("#patchFilter").addEventListener("change",function(e){patchValue=e.target.value;visibleLimit=48;render()});
-document.querySelector("#sortFilter").addEventListener("change",function(e){sortMode=e.target.value;visibleLimit=48;render()});
-document.querySelector("#museumSearch").addEventListener("input",function(e){searchTerm=e.target.value.trim();visibleLimit=48;render()});
-document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});render()})});
+setFilter.addEventListener("change",function(){activeSet="all";renderTimeline();visibleLimit=48;syncMuseumUrlState();render()});
+document.querySelector("#patchFilter").addEventListener("change",function(e){patchValue=e.target.value;visibleLimit=48;syncMuseumUrlState();render()});
+document.querySelector("#sortFilter").addEventListener("change",function(e){sortMode=e.target.value;visibleLimit=48;syncMuseumUrlState();render()});
+document.querySelector("#museumSearch").addEventListener("input",function(e){searchTerm=e.target.value.trim();visibleLimit=48;syncMuseumUrlState();render()});
+document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
 document.querySelector("#riotForm").addEventListener("submit",async function(e){
  e.preventDefault();var value=document.querySelector("#riotId").value.trim(),platform=document.querySelector("#region").value,button=document.querySelector("#openMuseumBtn");if(!value)return;button.disabled=true;button.textContent=t("loading");setMuseumLoading(true);document.querySelector("#museum").scrollIntoView({behavior:"smooth"});
  try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();var message=friendlyError(err);document.querySelector("#collectionStatus").textContent=message;document.querySelector(".demo-note span").textContent=message;renderAll()}finally{setMuseumLoading(false);button.disabled=false;button.textContent=t("openMuseum")}
