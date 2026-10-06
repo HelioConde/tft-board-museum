@@ -43,7 +43,7 @@ async function runDesktop() {
 
   await page.locator("#langToggle").click();
   await assert((await page.locator("html").getAttribute("lang")) === "en", "Language did not change to EN");
-  await assert((await page.locator("#recentEvolution .eyebrow").textContent()) === "RECENT EVOLUTION", "Recent evolution section did not translate");
+  await assert((await page.locator('[data-i18n="recentEvolution"]').textContent()) === "RECENT EVOLUTION", "Recent evolution section did not translate");
   await assert((await page.locator("#hallOfFame h2").textContent()) === "Preserved moments", "Hall of Fame did not translate");
   await assert((await page.locator("#setHistory .section-head h2").textContent()) === "Collection evolution", "Set history did not translate");
   await assert((await page.locator("#newCollectionBtn").textContent()) === "New collection", "Collections UI did not translate");
@@ -51,7 +51,7 @@ async function runDesktop() {
 
   await page.locator("#langToggle").click();
   await assert((await page.locator("html").getAttribute("lang")) === "pt-BR", "Language did not return to PT-BR");
-  await assert((await page.locator("#recentEvolution .eyebrow").textContent()) === "EVOLUÇÃO RECENTE", "Recent evolution did not return to PT-BR");
+  await assert((await page.locator('[data-i18n="recentEvolution"]').textContent()) === "EVOLUÇÃO RECENTE", "Recent evolution did not return to PT-BR");
 
   await page.close();
 }
