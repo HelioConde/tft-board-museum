@@ -556,6 +556,20 @@ window.addEventListener("museum-cloud-state",function(e){
  var state=e.detail||{};favorites=new Set(state.favorites||[]);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));if(state.notes)localStorage.setItem("tbm-notes",JSON.stringify(state.notes));render()
 });
 window.addEventListener("museum-collections-changed",renderCloudCollections);
+var deferredInstallPrompt=null;
+function refreshNetworkStatus(){
+ var el=document.querySelector("#networkStatus");if(!el)return;
+ var online=navigator.onLine;el.textContent=online?"Online":"Offline";el.classList.toggle("offline",!online)
+}
+window.addEventListener("online",refreshNetworkStatus);window.addEventListener("offline",refreshNetworkStatus);
+window.addEventListener("beforeinstallprompt",function(event){
+ event.preventDefault();deferredInstallPrompt=event;document.querySelector("#installBtn").classList.remove("hidden")
+});
+window.addEventListener("appinstalled",function(){deferredInstallPrompt=null;document.querySelector("#installBtn").classList.add("hidden")});
+document.querySelector("#installBtn").addEventListener("click",async function(){
+ if(!deferredInstallPrompt)return;deferredInstallPrompt.prompt();try{await deferredInstallPrompt.userChoice}catch(_){}deferredInstallPrompt=null;document.querySelector("#installBtn").classList.add("hidden")
+});
+refreshNetworkStatus();
 if("serviceWorker" in navigator&&location.protocol.startsWith("http")){
  window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(err){console.warn("service worker",err)})})
 }
