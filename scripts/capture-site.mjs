@@ -1,0 +1,90 @@
+import { chromium } from "playwright";
+import fs from "node:fs/promises";
+import path from "node:path";
+
+const baseUrl = process.env.SCREENSHOT_BASE_URL || "http://127.0.0.1:4173";
+const outputDir = process.env.SCREENSHOT_DIR || "screenshots";
+const riotId = process.env.SCREENSHOT_RIOT_ID || "AlchemyFlames#br1";
+const region = process.env.SCREENSHOT_REGION || "br1";
+
+await fs.mkdir(outputDir, { recursive: true });
+
+const browser = await chromium.launch({ headless: true });
+
+async function capture({ name, url, viewport, waitForProfile = false }) {
+  const page = await browser.newPage({ viewportSize: viewport });
+
+  page.on("console", msg => {
+    if (msg.type() === "error") console.error("[browser]", msg.text());
+  });
+
+  await page.goto(url, { waitUntil: "networkidle", timeout: 120000 });
+
+  if (waitForProfile) {
+    try {
+      await page.waitForSelector("#profilePanel:not(.hidden)", { timeout: 45000 });
+      await page.waitForTimeout(2500);
+    } catch {
+      console.warn("Profile did not become visible before timeout; capturing current state.");
+    }
+  } else {
+    await page.waitForTimeout(1200);
+  }
+
+  await page.screenshot({
+    path: path.join(outputDir, name),
+    fullPage: true
+  });
+
+  const size = await page.evaluate(() => ({
+    width: document.documentElement.scrollWidth,
+    height: document.documentElement.scrollHeight,
+    title: document.title
+  }));
+
+  await page.close();
+  return { name, url, viewport, ...size };
+}
+
+const encodedRiot = encodeURIComponent(riotId);
+const captures = [];
+
+captures.push(await capture({
+  name: "desktop-full.png",
+  url: baseUrl,
+  viewport: { width: 1440, height: 1000 }
+}));
+
+captures.push(await capture({
+  name: "mobile-full.png",
+  url: baseUrl,
+  viewport: { width: 390, height: 844 }
+}));
+
+captures.push(await capture({
+  name: "alchemyflames-desktop-full.png",
+  url: `${baseUrl}?riot=${encodedRiot}&region=${encodeURIComponent(region)}`,
+  viewport: { width: 1440, height: 1000 },
+  waitForProfile: true
+}));
+
+captures.push(await capture({
+  name: "alchemyflames-mobile-full.png",
+  url: `${baseUrl}?riot=${encodedRiot}&region=${encodeURIComponent(region)}`,
+  viewport: { width: 390, height: 844 },
+  waitForProfile: true
+}));
+
+await fs.writeFile(
+  path.join(outputDir, "capture-report.json"),
+  JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    baseUrl,
+    riotId,
+    region,
+    captures
+  }, null, 2)
+);
+
+await browser.close();
+console.log("Screenshots saved in", outputDir);
