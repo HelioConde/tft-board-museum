@@ -435,3 +435,8 @@ footer small{font-size:11px}
   #setHistory .period-stats-grid{margin-top:12px;gap:8px}
   #setHistory .period-card{padding:12px 13px}
 }
+
+/* Fine-tune desktop set-history budget */
+@media(min-width:1000px){
+  #setHistory .section-subhead{margin-top:15px;padding-top:14px}
+}
