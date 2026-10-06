@@ -43,7 +43,7 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
         const r = el.getBoundingClientRect();
         return { tag: el.tagName.toLowerCase(), id: el.id || "", className: String(el.className || "").slice(0,120), left: Math.round(r.left), right: Math.round(r.right), width: Math.round(r.width) };
       })
-      .filter(x => x.left < -1 || x.right > viewportWidth + 1)
+      .filter(x => (x.left < -1 || x.right > viewportWidth + 1) && !x.className.split(" ").includes("ambient"))
       .slice(0, 25);
     return {
       width: document.documentElement.scrollWidth,
