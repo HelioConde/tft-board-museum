@@ -119,3 +119,26 @@ dialog::backdrop{background:#03050acc;backdrop-filter:blur(3px)}
   .favorite-btn{right:10px;top:10px}
   .compare-toggle{left:10px;bottom:10px}
 }
+
+/* Visual audit round 2 */
+.skip-link{min-height:44px;display:flex;align-items:center}
+.riot-search label>span{font-size:11px}
+.ad-slot b{font-size:10px}
+.network-status{font-size:11px}
+.timeline button span,.timeline-sets button span{font-size:11px}
+.compare-toggle{font-size:12px}
+.star-row{font-size:10px}
+.consent-actions button{min-height:44px}
+footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+@media(max-width:680px){
+  #recentEvolution{margin-bottom:54px}
+  .evolution-grid{display:flex;overflow-x:auto;gap:8px;scroll-snap-type:inline proximity;margin-right:-18px;padding-right:18px}
+  .evolution-card{min-width:165px;scroll-snap-align:start}
+  .trend-panel{margin-top:16px}
+  .placement-distribution{display:flex;overflow-x:auto;gap:8px;scroll-snap-type:inline proximity}
+  .placement-bar{min-width:135px;scroll-snap-align:start}
+  .profile-panel{padding:16px}
+  .profile-main h2{font-size:26px}
+  .profile-icon{width:54px;height:54px}
+  .profile-kpis div{padding:10px}
+}
