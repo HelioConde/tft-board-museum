@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T18:26:00.831Z
+Generated: 2026-10-06T19:43:50.268Z
 
 ## desktop-full.png
 
@@ -65,16 +65,16 @@ Generated: 2026-10-06T18:26:00.831Z
 ## alchemyflames-desktop-full.png
 
 - Viewport: 1440×1000
-- Page: 1440×5498 (5.5 viewports tall)
-- Boards rendered: 12
+- Page: 1440×4935 (4.93 viewports tall)
+- Boards rendered: 8
 - Overflow elements: 0
 - Horizontal scrollers: 0
 - Small tap targets: 0
 - Tiny text nodes (<11px): 0
 - Console errors: 0
 - Failed requests: 0
-- Images loaded: 287
-- Lazy images: 283
+- Images loaded: 192
+- Lazy images: 188
 - Auto/eager images: 4
 - Broken images: 0
 
@@ -83,14 +83,14 @@ Generated: 2026-10-06T18:26:00.831Z
 - .hero: top 116px · 1220×679px
 - #profilePanel: top 835px · 1164×132px
 - .ad-slot: top 1001px · 1164×82px
-- #museum: top 1153px · 1220×2203px
-- .stats: top 3356px · 1164×112px
-- #insights: top 3553px · 1220×236px
-- #recentEvolution: top 3879px · 1220×503px
-- #hallOfFame: top 4472px · 1220×242px
-- #setHistory: top 4803px · 1220×481px
+- #museum: top 1153px · 1220×1640px
+- .stats: top 2793px · 1164×112px
+- #insights: top 2990px · 1220×236px
+- #recentEvolution: top 3316px · 1220×503px
+- #hallOfFame: top 3909px · 1220×242px
+- #setHistory: top 4240px · 1220×481px
 - #cloudCollections: top 1153px · 0×0px
-- footer: top 5375px · 1440×123px
+- footer: top 4812px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 
