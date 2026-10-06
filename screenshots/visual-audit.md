@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T21:06:32.398Z
+Generated: 2026-10-06T21:26:08.787Z
 
 ## desktop-full.png
 
@@ -35,7 +35,7 @@ Generated: 2026-10-06T21:06:32.398Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4225 (5.01 viewports tall)
+- Page: 390×4242 (5.03 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 4
@@ -58,9 +58,9 @@ Generated: 2026-10-06T21:06:32.398Z
 - #insights: top 2418px · 390×248px
 - #recentEvolution: top 2724px · 390×490px
 - #hallOfFame: top 3258px · 390×236px
-- #setHistory: top 3551px · 390×437px
+- #setHistory: top 3551px · 390×454px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4046px · 354×179px
+- footer: top 4063px · 354×179px
 
 ## alchemyflames-desktop-full.png
 
