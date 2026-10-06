@@ -619,3 +619,51 @@ footer small{font-size:11px}
   .consent-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
   .consent-actions button{min-height:42px;padding:8px 9px;font-size:11px}
 }
+
+
+/* Visual quality gate calibration — 2026-10-06 */
+@media(max-width:680px){
+  /* Preserve the compact KPI budget enforced by the screenshot quality gate. */
+  .stats{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:0;
+  }
+  .stats div{
+    min-width:0;
+    padding:13px 6px;
+    text-align:center;
+    border:0;
+    border-radius:0;
+    background:transparent;
+  }
+  .stats span{font-size:11px;line-height:1.15}
+  .stats strong{font-size:22px;margin-top:5px}
+
+  /* Keep the recent-evolution section glanceable and below the mobile height budget. */
+  #recentEvolution .evolution-grid{
+    display:flex;
+    overflow-x:auto;
+    gap:8px;
+    scroll-snap-type:inline proximity;
+    margin-right:-18px;
+    padding-right:18px;
+    scrollbar-width:none;
+  }
+  #recentEvolution .evolution-grid::-webkit-scrollbar{display:none}
+  #recentEvolution .evolution-card{
+    min-width:165px;
+    scroll-snap-align:start;
+  }
+  #recentEvolution .placement-distribution{
+    display:flex;
+    overflow-x:auto;
+    gap:8px;
+    scroll-snap-type:inline proximity;
+    scrollbar-width:none;
+  }
+  #recentEvolution .placement-distribution::-webkit-scrollbar{display:none}
+  #recentEvolution .placement-bar{
+    min-width:135px;
+    scroll-snap-align:start;
+  }
+}
