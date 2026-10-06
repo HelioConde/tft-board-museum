@@ -48,8 +48,10 @@
 - [ ] Login por magic link depende de a URL do GitHub Pages estar autorizada na configuração de redirects do Supabase Auth.
 
 ## Próximas melhorias incrementais
-- [ ] Renomear/excluir coleções pela interface.
-- [ ] Tornar coleções públicas opcionalmente.
-- [ ] Estatísticas mensais e anuais além de Set.
+- [x] Renomear/excluir coleções pela interface.
+- [x] Tornar coleções públicas opcionalmente.
+- [x] Estatísticas mensais e anuais além de Set.
+- [x] Histórico maior que 100 partidas via arquivo privado acumulado em consultas autenticadas.
 - [ ] Exportação PNG com portraits reais caso o pipeline de imagens passe a usar assets sem restrição de canvas/CORS.
-- [ ] Histórico maior que 100 partidas usando snapshots próprios e cache de longo prazo.
+- [ ] Página pública navegável para coleções compartilhadas.
+- [ ] Automação periódica de snapshots sem exigir que o usuário abra o perfil.
