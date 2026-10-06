@@ -10,8 +10,8 @@ var boards=[
 ];
 
 var copy={
-pt:{eyebrow:"Seu histórico, transformado em coleção",heroTitle:"Cada board conta uma história.",heroText:"Revisite composições, posicionamento, itens e momentos marcantes das suas partidas de TFT em um museu pessoal.",region:"Região",openMuseum:"Abrir meu museu",demoData:"Protótipo com dados demonstrativos — integração Riot será conectada na próxima etapa.",adReserved:"Espaço reservado para anúncio",collection:"COLEÇÃO",collectionText:"8 boards preservados neste protótipo.",all:"Todos",wins:"Vitórias",favorites:"Favoritos",allSets:"Todos os sets",boards:"Boards",favoriteTrait:"Trait favorita",bestPlacement:"Melhor colocação",prototype:"Protótipo independente",riotDisclaimer:"Não é endossado pela Riot Games.",emptyTitle:"Nenhum board aqui ainda.",emptyText:"Mude os filtros para explorar o restante da coleção.",newVersion:"Nova versão disponível.",update:"Atualizar",placement:"Colocação",level:"Nível",gold:"Ouro final",patch:"Patch",traits:"Traits",units:"Unidades",favorite:"Favoritar",unfavorite:"Remover favorito",compareTitle:"Comparar boards",compareHint:"Selecione 2 boards para comparar lado a lado.",compareAction:"Comparar",selected:"selecionados",timelineAll:"Todos",loading:"Consultando seu histórico oficial da Riot…",realData:"Histórico oficial carregado. A posição dos hexes é apenas uma organização visual quando a Riot não fornece posicionamento.",loadError:"Não foi possível carregar o histórico agora. Mantive o museu demonstrativo.",visualLayout:"Arranjo visual — a Match API não informa a posição real das unidades."},
-en:{eyebrow:"Your history, transformed into a collection",heroTitle:"Every board tells a story.",heroText:"Revisit compositions, positioning, items and memorable TFT moments inside your personal museum.",region:"Region",openMuseum:"Open my museum",demoData:"Prototype with demo data — Riot integration will be connected in the next stage.",adReserved:"Reserved advertising space",collection:"COLLECTION",collectionText:"8 boards preserved in this prototype.",all:"All",wins:"Wins",favorites:"Favorites",allSets:"All sets",boards:"Boards",favoriteTrait:"Favorite trait",bestPlacement:"Best placement",prototype:"Independent prototype",riotDisclaimer:"Not endorsed by Riot Games.",emptyTitle:"No boards here yet.",emptyText:"Change the filters to explore the rest of the collection.",newVersion:"New version available.",update:"Update",placement:"Placement",level:"Level",gold:"Final gold",patch:"Patch",traits:"Traits",units:"Units",favorite:"Favorite",unfavorite:"Remove favorite",compareTitle:"Compare boards",compareHint:"Select 2 boards to compare side by side.",compareAction:"Compare",selected:"selected",timelineAll:"All",loading:"Loading your official Riot match history…",realData:"Official history loaded. Hex positions are only a visual arrangement when Riot does not provide positioning.",loadError:"Could not load match history right now. The demo museum was kept.",visualLayout:"Visual arrangement — Match API does not provide real unit positions."}
+pt:{eyebrow:"Seu histórico, transformado em coleção",heroTitle:"Cada board conta uma história.",heroText:"Revisite composições, posicionamento, itens e momentos marcantes das suas partidas de TFT em um museu pessoal.",region:"Região",openMuseum:"Abrir meu museu",demoData:"Protótipo com dados demonstrativos — integração Riot será conectada na próxima etapa.",adReserved:"Espaço reservado para anúncio",collection:"COLEÇÃO",collectionText:"8 boards preservados neste protótipo.",all:"Todos",wins:"Vitórias",favorites:"Favoritos",allSets:"Todos os sets",boards:"Boards",favoriteTrait:"Trait favorita",bestPlacement:"Melhor colocação",prototype:"Protótipo independente",riotDisclaimer:"Não é endossado pela Riot Games.",emptyTitle:"Nenhum board aqui ainda.",emptyText:"Mude os filtros para explorar o restante da coleção.",newVersion:"Nova versão disponível.",update:"Atualizar",placement:"Colocação",level:"Nível",gold:"Ouro final",patch:"Patch",traits:"Traits",units:"Unidades",favorite:"Favoritar",unfavorite:"Remover favorito",compareTitle:"Comparar boards",compareHint:"Selecione 2 boards para comparar lado a lado.",compareAction:"Comparar",selected:"selecionados",timelineAll:"Todos",loading:"Consultando seu histórico oficial da Riot…",realData:"Histórico oficial carregado. A posição dos hexes é apenas uma organização visual quando a Riot não fornece posicionamento.",loadError:"Não foi possível carregar o histórico agora. Mantive o museu demonstrativo.",visualLayout:"Arranjo visual — a Match API não informa a posição real das unidades.",loadMore:"Carregar mais partidas",officialSource:"Riot oficial",demoSource:"Demo"},
+en:{eyebrow:"Your history, transformed into a collection",heroTitle:"Every board tells a story.",heroText:"Revisit compositions, positioning, items and memorable TFT moments inside your personal museum.",region:"Region",openMuseum:"Open my museum",demoData:"Prototype with demo data — Riot integration will be connected in the next stage.",adReserved:"Reserved advertising space",collection:"COLLECTION",collectionText:"8 boards preserved in this prototype.",all:"All",wins:"Wins",favorites:"Favorites",allSets:"All sets",boards:"Boards",favoriteTrait:"Favorite trait",bestPlacement:"Best placement",prototype:"Independent prototype",riotDisclaimer:"Not endorsed by Riot Games.",emptyTitle:"No boards here yet.",emptyText:"Change the filters to explore the rest of the collection.",newVersion:"New version available.",update:"Update",placement:"Placement",level:"Level",gold:"Final gold",patch:"Patch",traits:"Traits",units:"Units",favorite:"Favorite",unfavorite:"Remove favorite",compareTitle:"Compare boards",compareHint:"Select 2 boards to compare side by side.",compareAction:"Compare",selected:"selected",timelineAll:"All",loading:"Loading your official Riot match history…",realData:"Official history loaded. Hex positions are only a visual arrangement when Riot does not provide positioning.",loadError:"Could not load match history right now. The demo museum was kept.",visualLayout:"Visual arrangement — Match API does not provide real unit positions.",loadMore:"Load more matches",officialSource:"Official Riot",demoSource:"Demo"}
 };
 
 var lang=localStorage.getItem("tbm-lang")||"pt";
@@ -21,6 +21,11 @@ var favorites=new Set(JSON.parse(localStorage.getItem("tbm-favorites")||"[]"));
 var compareSelection=[];
 var activeSet="all";
 var staticData=null;
+var loadedRiotId="";
+var loadedPlatform="br1";
+var nextStart=0;
+var pageSize=20;
+var hasMore=false;
 var grid=document.querySelector("#boardGrid");
 var dialog=document.querySelector("#boardDialog");
 var setFilter=document.querySelector("#setFilter");
@@ -81,7 +86,7 @@ function render(){
       '<button class="favorite-btn '+(favorites.has(board.id)?"active":"")+'" data-fav="'+board.id+'" title="'+(favorites.has(board.id)?t("unfavorite"):t("favorite"))+'">★</button>'+
       '<button class="compare-toggle '+(compareSelection.includes(board.id)?"active":"")+'" data-compare="'+board.id+'">'+(compareSelection.includes(board.id)?"✓":"＋")+'</button>'+
       '<div class="board-card-top"><span class="placement '+(board.placement===1?"win":"")+'">'+placementLabel(board.placement)+'</span>'+miniBoard(board)+'</div>'+
-      '<div class="board-meta"><h3>'+board.title+'</h3><p>Set '+board.set+' · '+board.date+'</p><div class="trait-row">'+traits+'</div>'+
+      '<div class="board-meta"><h3>'+board.title+'</h3><p>Set '+board.set+' · '+board.date+' <span class="source-badge '+(board.real?"real":"demo")+'">'+(board.real?t("officialSource"):t("demoSource"))+'</span></p><div class="trait-row">'+traits+'</div>'+
       '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+board.patch+'</span></div></div></article>';
   }).join("");
   document.querySelector("#emptyState").classList.toggle("hidden",data.length>0);
@@ -184,6 +189,7 @@ function applyLanguage(){
   document.querySelectorAll("[data-i18n]").forEach(function(el){var key=el.dataset.i18n;if(copy[lang][key])el.textContent=copy[lang][key]});
   document.querySelector("#langToggle").textContent=lang==="pt"?"EN":"PT";
   syncSetFilter();renderTimeline();updateCompareBar();updateStats();render();
+  var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore);
 }
 
 
@@ -207,17 +213,23 @@ function normalizeRiotMatch(match,index){
   var patch=version.length>=2?version[0]+"."+version[1]:"—";
   return {id:String(match.id||("riot-"+index)),set:Number(match.setNumber)||0,placement:Number(match.placement)||8,title:traitLabels[0]||("Board "+(index+1)),patch:patch,date:date,playedAt:played,level:Number(match.level)||0,gold:Number(match.goldLeft)||0,traits:traitLabels.length?traitLabels:["TFT"],rawTraits:active,units:units.map(function(u,i){u[4]=(match.units[i]&&match.units[i].characterId)||u[0];return u}),real:true};
 }
-async function loadRiotHistory(riotId,platform){
+async function fetchRiotPage(riotId,platform,start){
   var parts=riotId.split("#");
   if(parts.length<2||!parts[0].trim()||!parts.slice(1).join("#").trim())throw new Error("Use Nome#TAG");
+  var response=await fetch(API_BASE+"/public-tft-history",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({gameName:parts[0].trim(),tagLine:parts.slice(1).join("#").trim(),platform:platform,start:start,count:pageSize})});
+  var data=await response.json().catch(function(){return {}});
+  if(!response.ok||data.error)throw new Error(data.message||data.error||"riot_history_failed");
+  return {parts:parts,data:data};
+}
+async function loadRiotHistory(riotId,platform){
   var status=document.querySelector("#collectionStatus");
   var note=document.querySelector(".demo-note span");
   status.textContent=t("loading");note.textContent=t("loading");
-  var response=await fetch(API_BASE+"/public-tft-history",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({gameName:parts[0].trim(),tagLine:parts.slice(1).join("#").trim(),platform:platform,start:0,count:20})});
-  var data=await response.json().catch(function(){return {}});
-  if(!response.ok||data.error)throw new Error(data.message||data.error||"riot_history_failed");
+  var result=await fetchRiotPage(riotId,platform,0);
+  var data=result.data,parts=result.parts;
   if(!Array.isArray(data.matches)||!data.matches.length)throw new Error(lang==="pt"?"Nenhuma partida recente encontrada.":"No recent matches found.");
   boards=data.matches.map(normalizeRiotMatch);compareSelection=[];activeSet="all";
+  loadedRiotId=riotId;loadedPlatform=platform;nextStart=data.paging&&Number(data.paging.returned)?Number(data.paging.returned):boards.length;hasMore=(data.paging&&Number(data.paging.returned)===pageSize);
   document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));
   status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");
   note.textContent=t("realData");
@@ -227,6 +239,42 @@ async function loadRiotHistory(riotId,platform){
   syncSetFilter();renderTimeline();updateCompareBar();updateStats();render();
 }
 
+
+async function loadMoreHistory(){
+  if(!loadedRiotId||!hasMore)return;
+  var btn=document.querySelector("#loadMoreBtn");
+  if(btn){btn.disabled=true;btn.textContent=t("loading")}
+  try{
+    var result=await fetchRiotPage(loadedRiotId,loadedPlatform,nextStart);
+    var list=Array.isArray(result.data.matches)?result.data.matches:[];
+    var known=new Set(boards.map(function(b){return b.id}));
+    list.map(normalizeRiotMatch).forEach(function(b){if(!known.has(b.id)){boards.push(b);known.add(b.id)}});
+    var returned=result.data.paging?Number(result.data.paging.returned)||0:list.length;
+    nextStart+=returned;
+    hasMore=returned===pageSize&&nextStart<100;
+    syncSetFilter();renderTimeline();updateStats();render();
+  }catch(err){
+    document.querySelector(".demo-note span").textContent=(err&&err.message)?String(err.message):t("loadError");
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=t("loadMore");btn.classList.toggle("hidden",!hasMore)}
+  }
+}
+function updateShareUrl(riotId,platform){
+  var url=new URL(location.href);
+  url.searchParams.set("riot",riotId);
+  url.searchParams.set("region",platform);
+  history.replaceState({},"",url);
+}
+function hydrateFromUrl(){
+  var params=new URLSearchParams(location.search);
+  var riot=params.get("riot");
+  var region=params.get("region")||"br1";
+  if(!riot)return;
+  document.querySelector("#riotId").value=riot;
+  document.querySelector("#region").value=region;
+  document.querySelector("#riotForm").requestSubmit();
+}
+
 document.querySelector("#closeDialog").addEventListener("click",function(){dialog.close()});
 dialog.addEventListener("click",function(e){if(e.target===dialog)dialog.close()});
 document.querySelector("#langToggle").addEventListener("click",function(){lang=lang==="pt"?"en":"pt";localStorage.setItem("tbm-lang",lang);applyLanguage()});
@@ -234,9 +282,11 @@ document.querySelectorAll(".filter").forEach(function(btn){btn.addEventListener(
 document.querySelector("#favoritesTop").addEventListener("click",function(){document.querySelector('[data-filter="favorite"]').click();document.querySelector("#museum").scrollIntoView({behavior:"smooth"})});
 setFilter.addEventListener("change",function(){activeSet="all";renderTimeline();render()});
 document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});render()})});
-document.querySelector("#riotForm").addEventListener("submit",async function(e){e.preventDefault();var value=document.querySelector("#riotId").value.trim();var platform=document.querySelector("#region").value;document.querySelector("#museum").scrollIntoView({behavior:"smooth"});try{await loadRiotHistory(value,platform)}catch(err){document.querySelector("#collectionStatus").textContent=t("loadError");document.querySelector(".demo-note span").textContent=(err&&err.message)?String(err.message):t("loadError");render()}});
+document.querySelector("#riotForm").addEventListener("submit",async function(e){e.preventDefault();var value=document.querySelector("#riotId").value.trim();var platform=document.querySelector("#region").value;document.querySelector("#museum").scrollIntoView({behavior:"smooth"});try{await loadRiotHistory(value,platform);updateShareUrl(value,platform)}catch(err){document.querySelector("#collectionStatus").textContent=t("loadError");document.querySelector(".demo-note span").textContent=(err&&err.message)?String(err.message):t("loadError");render()}});
 document.querySelector("#compareBtn").addEventListener("click",compareBoards);
+document.querySelector("#loadMoreBtn").addEventListener("click",loadMoreHistory);
 document.querySelector("#closeCompare").addEventListener("click",function(){document.querySelector("#compareDialog").close()});
 document.querySelector("#compareDialog").addEventListener("click",function(e){if(e.target.id==="compareDialog")e.target.close()});
 applyLanguage();
 loadStaticData();
+hydrateFromUrl();
