@@ -144,7 +144,7 @@ function boardShareUrl(id){var url=new URL(location.href);if(loadedRiotId){url.s
 async function publicBoardShareUrl(id){
  var b=boards.find(function(x){return x.id===id});
  if(window.MuseumCloud&&window.MuseumCloud.isSignedIn()&&loadedRiotId&&b){
-  try{return await window.MuseumCloud.createPublicShare({kind:"board",riotId:loadedRiotId,region:loadedPlatform,board:b})}catch(err){console.error(err)}
+  try{return await window.MuseumCloud.createPublicShare({kind:"board",riotId:loadedRiotId,region:loadedPlatform,board:Object.assign({},b,{title:boardDisplayTitle(b)})})}catch(err){console.error(err)}
  }
  return boardShareUrl(id)
 }
@@ -350,8 +350,8 @@ function compareBoards(){
  function compareSection(label,common,leftOnly,rightOnly){
   return '<section class="compare-breakdown"><h3>'+escapeHtml(label)+'</h3>'+
    '<div><span class="compare-label">'+t("common")+'</span><div class="compare-unit-diff">'+chips(common,"shared","")+'</div></div>'+
-   '<div class="compare-split"><div><span class="compare-label">'+escapeHtml(pair[0].title)+'</span><div class="compare-unit-diff">'+chips(leftOnly,"removed","− ")+'</div></div>'+
-   '<div><span class="compare-label">'+escapeHtml(pair[1].title)+'</span><div class="compare-unit-diff">'+chips(rightOnly,"added","+ ")+'</div></div></div></section>';
+   '<div class="compare-split"><div><span class="compare-label">'+escapeHtml(boardDisplayTitle(pair[0]))+'</span><div class="compare-unit-diff">'+chips(leftOnly,"removed","− ")+'</div></div>'+
+   '<div><span class="compare-label">'+escapeHtml(boardDisplayTitle(pair[1]))+'</span><div class="compare-unit-diff">'+chips(rightOnly,"added","+ ")+'</div></div></div></section>';
  }
  function side(board){
   return '<section class="compare-side"><span class="eyebrow">Set '+board.set+' · '+escapeHtml(board.date)+'</span><h2>'+escapeHtml(boardDisplayTitle(board))+'</h2>'+miniBoard(board)+
