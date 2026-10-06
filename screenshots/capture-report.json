@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-10-06T12:35:43.662Z",
+  "baseUrl": "http://127.0.0.1:4173/",
+  "riotId": "AlchemyFlames#br1",
+  "region": "br1",
+  "captures": [
+    {
+      "name": "desktop-full.png",
+      "url": "http://127.0.0.1:4173/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1280,
+      "height": 2843,
+      "title": "TFT Board Museum"
+    },
+    {
+      "name": "mobile-full.png",
+      "url": "http://127.0.0.1:4173/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 1280,
+      "height": 2843,
+      "title": "TFT Board Museum"
+    },
+    {
+      "name": "alchemyflames-desktop-full.png",
+      "url": "http://127.0.0.1:4173/?riot=AlchemyFlames%23br1&region=br1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "width": 1280,
+      "height": 4761,
+      "title": "TFT Board Museum"
+    },
+    {
+      "name": "alchemyflames-mobile-full.png",
+      "url": "http://127.0.0.1:4173/?riot=AlchemyFlames%23br1&region=br1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 1280,
+      "height": 4761,
+      "title": "TFT Board Museum"
+    }
+  ]
+}
