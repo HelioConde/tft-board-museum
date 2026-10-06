@@ -12,7 +12,7 @@ await fs.mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 
 async function capture({ name, url, viewport, waitForProfile = false }) {
-  const page = await browser.newPage({ viewportSize: viewport });
+  const page = await browser.newPage({ viewport });
 
   page.on("console", msg => {
     if (msg.type() === "error") console.error("[browser]", msg.text());
