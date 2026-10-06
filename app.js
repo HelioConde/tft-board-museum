@@ -449,6 +449,12 @@ function normalizeRiotMatch(match,index){
  var version=String(match.gameVersion||"").split("."),patch=version.length>=2?version[0]+"."+version[1]:"—";
  return {id:String(match.id||("riot-"+index)),set:Number(match.setNumber)||0,placement:Number(match.placement)||8,title:traitLabels[0]||("Board "+(index+1)),patch:patch,date:date,time:time,playedAt:played,level:Number(match.level)||0,gold:Number(match.goldLeft)||0,traits:traitLabels.length?traitLabels:["TFT"],rawTraits:active,augments:Array.isArray(match.augments)?match.augments:[],units:units,real:true,queueId:Number(match.queueId)||0,duration:Number(match.duration)||0,damage:Number(match.damageToPlayers)||0,eliminations:Number(match.playersEliminated)||0,lastRound:Number(match.lastRound)||0,hasTelemetry:match.hasChibiTelemetry===true};
 }
+function setDemoNoteState(state){
+ var note=document.querySelector(".demo-note");
+ if(!note)return;
+ note.classList.remove("state-loading","state-success","state-error");
+ if(state)note.classList.add("state-"+state)
+}
 function friendlyError(error){
  var raw=String(error&&error.message||error||"");
  if(/AbortError|timed?\s*out|timeout/i.test(raw))return lang==="pt"?"A Riot demorou demais para responder. Tente novamente.":"Riot took too long to respond. Try again.";
@@ -499,10 +505,10 @@ async function loadPlayerProfile(riotId,platform){
  }catch(_){document.querySelector("#profilePanel").classList.add("hidden")}
 }
 async function loadRiotHistory(riotId,platform){
- var status=document.querySelector("#collectionStatus"),note=document.querySelector(".demo-note span");status.textContent=t("loading");note.textContent=t("loading");
+ var status=document.querySelector("#collectionStatus"),note=document.querySelector(".demo-note span");status.textContent=t("loading");note.textContent=t("loading");setDemoNoteState("loading");
  var result=await fetchRiotPage(riotId,platform,0),data=result.data,parts=result.parts;if(!Array.isArray(data.matches)||!data.matches.length)throw new Error(lang==="pt"?"Nenhuma partida recente encontrada.":"No recent matches found.");
  boards=data.matches.map(normalizeRiotMatch);compareSelection=[];activeSet="all";loadedRiotId=riotId;loadedPlatform=platform;nextStart=data.paging&&Number(data.paging.returned)?Number(data.paging.returned):boards.length;hasMore=Boolean(data.paging&&Number(data.paging.returned)===pageSize);
- document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");note.textContent=t("realData");if(!new URLSearchParams(location.search).has("filter"))activeFilter="all";applyUrlMuseumState(false);renderAll();mergeCloudArchive();refreshAutoSnapshotButton();
+ document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");note.textContent=t("realData");setDemoNoteState("success");if(!new URLSearchParams(location.search).has("filter"))activeFilter="all";applyUrlMuseumState(false);renderAll();mergeCloudArchive();refreshAutoSnapshotButton();
 }
 async function loadMoreHistory(){if(!loadedRiotId||!hasMore)return;var btn=document.querySelector("#loadMoreBtn");if(btn){btn.disabled=true;btn.textContent=t("loading")}try{var result=await fetchRiotPage(loadedRiotId,loadedPlatform,nextStart),list=Array.isArray(result.data.matches)?result.data.matches:[],known=new Set(boards.map(function(b){return b.id}));list.map(normalizeRiotMatch).forEach(function(b){if(!known.has(b.id)){boards.push(b);known.add(b.id)}});var returned=result.data.paging?Number(result.data.paging.returned)||0:list.length;nextStart+=returned;hasMore=returned===pageSize&&nextStart<100;renderAll();mergeCloudArchive()}catch(err){document.querySelector(".demo-note span").textContent=friendlyError(err)}finally{if(btn){btn.disabled=false;btn.textContent=t("loadMore");btn.classList.toggle("hidden",!hasMore)}}}
 function updateShareUrl(riotId,platform){var url=new URL(location.href);url.searchParams.set("riot",riotId);url.searchParams.set("region",platform);url.searchParams.delete("board");history.replaceState({},"",url)}
@@ -548,7 +554,7 @@ document.querySelector("#museumSearch").addEventListener("input",function(e){sea
 document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
 document.querySelector("#riotForm").addEventListener("submit",async function(e){
  e.preventDefault();var value=document.querySelector("#riotId").value.trim(),platform=document.querySelector("#region").value,button=document.querySelector("#openMuseumBtn");if(!value)return;button.disabled=true;button.textContent=t("loading");setMuseumLoading(true);document.querySelector("#museum").scrollIntoView({behavior:"smooth"});
- try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();var message=friendlyError(err);document.querySelector("#collectionStatus").textContent=message;document.querySelector(".demo-note span").textContent=message;renderAll()}finally{setMuseumLoading(false);button.disabled=false;button.textContent=t("openMuseum")}
+ try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();var message=friendlyError(err);document.querySelector("#collectionStatus").textContent=message;document.querySelector(".demo-note span").textContent=message;setDemoNoteState("error");renderAll()}finally{setMuseumLoading(false);button.disabled=false;button.textContent=t("openMuseum")}
 });
 document.querySelector("#compareBtn").addEventListener("click",compareBoards);document.querySelector("#loadMoreBtn").addEventListener("click",loadMoreHistory);
 document.querySelector("#revealMoreBtn").addEventListener("click",function(){visibleLimit+=defaultVisibleLimit();render()});
