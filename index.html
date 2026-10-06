@@ -12,7 +12,7 @@
   <meta property="og:description" content="Seu histórico de TFT transformado em um museu visual de boards.">
   <meta property="og:url" content="https://helioconde.github.io/tft-board-museum/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://helioconde.github.io/tft-board-museum/og-card.svg">
+  <meta property="og:image" content="https://helioconde.github.io/tft-board-museum/img/tft-board-museum-image-pack/social/og-default.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TFT Board Museum","url":"https://helioconde.github.io/tft-board-museum/","applicationCategory":"GameApplication","operatingSystem":"Web","inLanguage":["pt-BR","en"],"description":"Museu visual de histórico do Teamfight Tactics com boards, traits, itens, augments, comparações e estatísticas."}</script>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
@@ -47,7 +47,7 @@
     </form>
     <div class="demo-note"><i></i><span data-i18n="demoData">Comece pesquisando um Riot ID. Enquanto isso, exibimos uma coleção demonstrativa.</span></div>
   </div>
-  <div class="hero-art" aria-hidden="true"><div class="display-card card-a"><span>1º</span><strong>7 Rebel</strong><small>Set 15</small></div><div class="display-card card-b"><span>2º</span><strong>6 Bastion</strong><small>Set 15</small></div><div class="display-card card-c"><span>4º</span><strong>4 Executioner</strong><small>Set 14</small></div><div class="orb"></div></div>
+  <div class="hero-art" aria-hidden="true"><img class="hero-visual" src="./img/tft-board-museum-image-pack/backgrounds/hero-desktop.png" alt="" loading="eager" decoding="async"><img class="hero-mascot" src="./img/tft-board-museum-image-pack/mascots/poro-main.png" alt="" loading="eager" decoding="async"><div class="display-card card-a"><span>1º</span><strong>7 Rebel</strong><small>Set 15</small></div><div class="display-card card-b"><span>2º</span><strong>6 Bastion</strong><small>Set 15</small></div><div class="display-card card-c"><span>4º</span><strong>4 Executioner</strong><small>Set 14</small></div><div class="orb"></div></div>
 </section>
 
 <section id="profilePanel" class="profile-panel hidden">
@@ -96,7 +96,7 @@
     <button id="revealMoreBtn" class="ghost hidden" type="button">Mostrar mais no museu</button>
     <button id="loadMoreBtn" class="ghost hidden" type="button" data-i18n="loadMore">Carregar mais partidas</button>
   </div>
-  <div id="emptyState" class="empty hidden"><strong data-i18n="emptyTitle">Nenhum board aqui ainda.</strong><span data-i18n="emptyText">Mude os filtros para explorar o restante da coleção.</span></div>
+  <div id="emptyState" class="empty hidden"><img class="empty-mascot" src="./img/tft-board-museum-image-pack/mascots/poro-explorer.png" alt="" loading="lazy" decoding="async"><div><strong data-i18n="emptyTitle">Nenhum board aqui ainda.</strong><span data-i18n="emptyText">Mude os filtros para explorar o restante da coleção.</span></div></div>
 </section>
 
 <section class="stats">
@@ -121,7 +121,7 @@
   <div id="placementDistribution" class="placement-distribution" aria-label="Distribuição de colocações" data-i18n-aria-label="placementDistributionAria"></div>
 </section>
 
-<section id="hallOfFame" class="insights">
+<section id="hallOfFame" class="insights visual-section visual-hall"><img class="section-mascot hall-mascot" src="./img/tft-board-museum-image-pack/mascots/poro-trophy.png" alt="" loading="lazy" decoding="async">
   <div class="section-head"><div><span class="eyebrow" data-i18n="hallOfFame">HALL DA FAMA</span><h2 data-i18n="preservedMoments">Momentos preservados</h2></div></div>
   <div id="hallGrid" class="hall-grid"></div>
 </section>
@@ -133,7 +133,7 @@
   <div id="periodStatsGrid" class="period-stats-grid"></div>
 </section>
 
-<section id="cloudCollections" class="insights hidden">
+<section id="cloudCollections" class="insights hidden visual-section visual-collections"><img class="section-mascot collection-mascot" src="./img/tft-board-museum-image-pack/mascots/poro-books.png" alt="" loading="lazy" decoding="async">
   <div class="section-head">
     <div><span class="eyebrow" data-i18n="collectionsLabel">COLEÇÕES</span><h2 data-i18n="savedExhibitions">Suas exposições salvas</h2></div>
     <button id="newCollectionBtn" class="ghost" type="button" data-i18n="newCollection">Nova coleção</button>
