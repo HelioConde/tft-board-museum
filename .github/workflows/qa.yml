@@ -34,6 +34,7 @@ jobs:
           test -f ads-consent.js
           test -f og-card.svg
           test -f scripts/e2e.mjs
+          test -f sw.js
       - name: Guard against private Riot keys in frontend
         shell: bash
         run: |
