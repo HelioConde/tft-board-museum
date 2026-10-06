@@ -121,7 +121,11 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       renderedHeight: Math.round(img.getBoundingClientRect().height),
       loading: img.loading || "auto"
     }));
-    const brokenImages = imageAudit.filter(img => !img.complete || img.naturalWidth === 0);
+    const brokenImages = imageAudit.filter(img =>
+      img.complete &&
+      img.naturalWidth === 0 &&
+      (img.renderedWidth > 0 || img.renderedHeight > 0)
+    );
     const counts = {
       images: imageAudit.length,
       brokenImages: brokenImages.length,
