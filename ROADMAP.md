@@ -12,36 +12,44 @@
 - [x] Data, horário, duração, fila, dano e eliminações.
 - [x] Filtros por Set, patch, resultado, favoritos e busca livre.
 - [x] Ordenação.
-- [x] Timeline por Set.
+- [x] Timeline Set -> patch -> partidas.
 - [x] Favoritos locais.
 - [x] Notas pessoais locais.
-- [x] Comparação lado a lado com diferença de units.
+- [x] Comparação detalhada de units, traits, itens, augments, estrelas e economia.
 - [x] URL compartilhável de perfil.
 - [x] Deep link de board.
 - [x] Compartilhamento/cópia de link.
-- [x] Insights pessoais básicos.
+- [x] Open Graph dinâmico de perfil/board via Edge Function.
+- [x] Página pública server-rendered para preview social.
+- [x] Insights pessoais.
+- [x] Estatísticas por Set.
+- [x] Hall da Fama com highlights sustentados pelos dados disponíveis.
+- [x] Card PNG exportável.
+- [x] Login e sincronização autenticada de favoritos/notas.
+- [x] Coleções personalizadas persistidas no backend.
+- [x] RLS para dados pessoais e compartilhamentos.
 - [x] PT-BR/EN.
 - [x] Mobile responsivo.
 - [x] SEO básico, sitemap, robots, canonical e metadata social.
 - [x] Manifest e favicon.
 - [x] Páginas Sobre, Privacidade, Termos e Contato.
 - [x] Espaços de anúncio preparados.
+- [x] Preferência de consentimento preparada com anúncios desativados por padrão.
 - [x] QA automático e verificação contra chave Riot no frontend.
+- [x] Screenshots automáticos desktop/mobile no GitHub.
 - [x] Atualização automática de versão.
 - [x] GitHub Pages.
 
-## Próximos incrementos
-- [ ] Persistência autenticada de favoritos/notas entre dispositivos.
-- [ ] Coleções personalizadas salvas no backend.
-- [ ] Comparação detalhada de itens e augments, além de units.
-- [ ] Agrupamento visual Set -> patch -> partidas.
-- [ ] Estatísticas históricas mais profundas por Set.
-- [ ] Card PNG exportável.
-- [ ] Open Graph dinâmico por board/perfil.
-- [ ] Página pública server-rendered por board para preview social dinâmico.
-- [ ] Hall da Fama, maior comeback e outros highlights que dependem de dados históricos/telemetria suficientes.
-- [ ] Posicionamento real quando uma fonte de telemetria confiável fornecer hexes.
-- [ ] Sincronização/autenticação de usuário.
-- [ ] Consentimento e integração de rede de anúncios quando anúncios forem efetivamente ativados.
+## Dependências externas / bloqueios honestos
+- [ ] Posicionamento histórico real das units: depende de telemetria confiável; a Riot Match API não fornece os hexes finais exatos.
+- [ ] Highlight de "maior comeback" real: depende de evolução rodada a rodada suficiente para provar o comeback; o Museum não infere isso sem dado.
+- [ ] Ativar rede de anúncios: só quando houver provedor aprovado/configurado; o código mantém ads desativados até lá.
+- [ ] Preview social com PNG raster dinâmico no servidor: hoje o preview dinâmico usa imagem SVG; pode ser migrado para PNG/Storage quando houver necessidade de compatibilidade adicional.
+- [ ] Login por magic link depende de a URL do GitHub Pages estar autorizada na configuração de redirects do Supabase Auth.
 
-Itens acima permanecem separados porque exigem autenticação/backend adicional, geração de imagem dinâmica ou dados que a Riot Match API não fornece diretamente.
+## Próximas melhorias incrementais
+- [ ] Renomear/excluir coleções pela interface.
+- [ ] Tornar coleções públicas opcionalmente.
+- [ ] Estatísticas mensais e anuais além de Set.
+- [ ] Exportação PNG com portraits reais caso o pipeline de imagens passe a usar assets sem restrição de canvas/CORS.
+- [ ] Histórico maior que 100 partidas usando snapshots próprios e cache de longo prazo.
