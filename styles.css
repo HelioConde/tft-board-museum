@@ -440,3 +440,17 @@ footer small{font-size:11px}
 @media(min-width:1000px){
   #setHistory .section-subhead{margin-top:15px;padding-top:14px}
 }
+
+/* Compact period-history empty state */
+.period-empty{
+  min-height:0;
+  padding:16px 18px;
+  justify-content:flex-start;
+  text-align:left;
+  border-radius:14px;
+  font-size:12px;
+  line-height:1.4;
+}
+@media(max-width:680px){
+  .period-empty{padding:14px 16px}
+}
