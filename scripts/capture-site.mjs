@@ -86,7 +86,10 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       return el ? { selector, ...rectInfo(el) } : { selector, missing: true };
     });
     const horizontalScrollers = all
-      .filter(el => el.scrollWidth > el.clientWidth + 2)
+      .filter(el => {
+        const style = getComputedStyle(el);
+        return el.scrollWidth > el.clientWidth + 2 && ["auto","scroll"].includes(style.overflowX);
+      })
       .map(el => ({
         ...rectInfo(el),
         clientWidth: el.clientWidth,
