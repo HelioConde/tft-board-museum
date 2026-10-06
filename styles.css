@@ -93,3 +93,6 @@ dialog::backdrop{background:#03050acc;backdrop-filter:blur(3px)}
 .data-quality-note{margin-top:18px;padding:10px 12px;border-radius:11px;font-size:11px;line-height:1.5}.data-quality-note.visual{color:#b99b65;background:#d8ae600d;border:1px solid #d8ae6022}.data-quality-note.exact{color:#9fe0b1;background:#5bbf7a0d;border:1px solid #5bbf7a28}
 
 .account-data-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid #ffffff0d}.account-data-actions .ghost{flex:1;min-width:170px}
+
+.network-status{display:inline-flex;align-items:center;gap:6px;color:#7f8494;font-size:10px;white-space:nowrap}.network-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#5bbf7a;box-shadow:0 0 10px #5bbf7a66}.network-status.offline{color:#d39898}.network-status.offline::before{background:#c75d5d;box-shadow:none}
+@media(max-width:680px){.network-status{display:none}}
