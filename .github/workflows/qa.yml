@@ -1,0 +1,35 @@
+name: QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: node --check app.js && node --check live-update.js
+      - name: Check required production files
+        shell: bash
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f version.json
+          test -f robots.txt
+          test -f sitemap.xml
+          test -f privacy.html
+          test -f terms.html
+          test -f about.html
+          test -f contact.html
+          test -f manifest.webmanifest
+      - name: Guard against private Riot keys in frontend
+        shell: bash
+        run: |
+          ! grep -R --exclude-dir=.git -E "RGAPI-[A-Za-z0-9_-]{10,}|RIOT_API_KEY[[:space:]]*=" .
