@@ -1,11 +1,11 @@
 # Visual audit
 
-Generated: 2026-10-06T19:43:50.268Z
+Generated: 2026-10-06T19:46:00.980Z
 
 ## desktop-full.png
 
 - Viewport: 1440×1000
-- Page: 1440×4603 (4.6 viewports tall)
+- Page: 1440×4513 (4.51 viewports tall)
 - Boards rendered: 8
 - Overflow elements: 0
 - Horizontal scrollers: 0
@@ -23,14 +23,14 @@ Generated: 2026-10-06T19:43:50.268Z
 - .hero: top 116px · 1220×679px
 - #profilePanel: top 0px · 0×0px
 - .ad-slot: top 835px · 1164×82px
-- #museum: top 987px · 1220×1399px
-- .stats: top 2386px · 1164×112px
-- #insights: top 2583px · 1220×210px
-- #recentEvolution: top 2883px · 1220×503px
-- #hallOfFame: top 3476px · 1220×223px
-- #setHistory: top 3789px · 1220×601px
+- #museum: top 987px · 1220×1309px
+- .stats: top 2296px · 1164×112px
+- #insights: top 2493px · 1220×210px
+- #recentEvolution: top 2793px · 1220×503px
+- #hallOfFame: top 3386px · 1220×223px
+- #setHistory: top 3699px · 1220×601px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4480px · 1440×123px
+- footer: top 4390px · 1440×123px
 
 ## mobile-full.png
 
@@ -65,7 +65,7 @@ Generated: 2026-10-06T19:43:50.268Z
 ## alchemyflames-desktop-full.png
 
 - Viewport: 1440×1000
-- Page: 1440×4935 (4.93 viewports tall)
+- Page: 1440×4845 (4.84 viewports tall)
 - Boards rendered: 8
 - Overflow elements: 0
 - Horizontal scrollers: 0
@@ -83,14 +83,14 @@ Generated: 2026-10-06T19:43:50.268Z
 - .hero: top 116px · 1220×679px
 - #profilePanel: top 835px · 1164×132px
 - .ad-slot: top 1001px · 1164×82px
-- #museum: top 1153px · 1220×1640px
-- .stats: top 2793px · 1164×112px
-- #insights: top 2990px · 1220×236px
-- #recentEvolution: top 3316px · 1220×503px
-- #hallOfFame: top 3909px · 1220×242px
-- #setHistory: top 4240px · 1220×481px
+- #museum: top 1153px · 1220×1550px
+- .stats: top 2703px · 1164×112px
+- #insights: top 2900px · 1220×236px
+- #recentEvolution: top 3226px · 1220×503px
+- #hallOfFame: top 3819px · 1220×242px
+- #setHistory: top 4150px · 1220×481px
 - #cloudCollections: top 1153px · 0×0px
-- footer: top 4812px · 1440×123px
+- footer: top 4722px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T19:43:50.268Z",
+  "generatedAt": "2026-10-06T19:46:00.980Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,7 +12,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4603,
+      "height": 4513,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -83,7 +83,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 1399,
+          "height": 1309,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -93,7 +93,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2386,
+          "top": 2296,
           "left": 138,
           "right": 1302,
           "width": 1164,
@@ -107,7 +107,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2583,
+          "top": 2493,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -121,7 +121,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 2883,
+          "top": 2793,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -135,7 +135,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3476,
+          "top": 3386,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -149,7 +149,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 3789,
+          "top": 3699,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -177,7 +177,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4480,
+          "top": 4390,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -335,7 +335,7 @@
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.6
+        "pageHeightInViewports": 4.51
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -691,7 +691,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4935,
+      "height": 4845,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -762,7 +762,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 1640,
+          "height": 1550,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -772,7 +772,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2793,
+          "top": 2703,
           "left": 138,
           "right": 1302,
           "width": 1164,
@@ -786,7 +786,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2990,
+          "top": 2900,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -800,7 +800,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 3316,
+          "top": 3226,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -814,7 +814,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3909,
+          "top": 3819,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -828,7 +828,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 4240,
+          "top": 4150,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -856,7 +856,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4812,
+          "top": 4722,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -912,9 +912,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/profileicon/581.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 62,
           "renderedHeight": 62,
           "loading": "auto"
@@ -933,7 +933,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -978,7 +978,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1023,7 +1023,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -1096,7 +1096,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1105,7 +1105,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1167,7 +1167,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1203,7 +1203,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1230,7 +1230,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -1267,7 +1267,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1311,7 +1311,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1329,7 +1329,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1374,7 +1374,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -1438,7 +1438,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1456,7 +1456,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1518,7 +1518,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1545,7 +1545,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1608,7 +1608,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -1672,7 +1672,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1734,7 +1734,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1788,7 +1788,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -1860,7 +1860,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -1933,7 +1933,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -1977,7 +1977,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -2013,7 +2013,7 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -2082,10 +2082,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_18_Sentry.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
-          "renderedWidth": 20,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -2100,27 +2100,27 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_ProtectorsVow.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 12,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 2,
           "renderedHeight": 12,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_StrikersFlail.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 12,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 2,
           "renderedHeight": 12,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_Scuttlecrab18.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2136,10 +2136,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_ProtectorsVow.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 13,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 2,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2154,36 +2154,36 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_Sentinel18.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_Component_TearOfTheGoddess.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 13,
           "renderedHeight": 13,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Riftbeast.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 32,
-          "naturalHeight": 32,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Invoker.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 32,
-          "naturalHeight": 32,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
@@ -2199,10 +2199,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/DA_18_Alune.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
-          "renderedWidth": 20,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -2226,10 +2226,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_InfinityEdge.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 12,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 2,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2256,25 +2256,25 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Ivern_splash_centered_0.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Vi_splash_centered_39.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
-          "renderedWidth": 20,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
@@ -2325,10 +2325,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_Morellonomicon.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 13,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 2,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2347,16 +2347,16 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Morgana_splash_centered_26.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -2388,9 +2388,9 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-trait/Trait_Icon_18_Greenfather.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 32,
-          "naturalHeight": 32,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 16,
           "renderedHeight": 16,
           "loading": "lazy"
@@ -2415,10 +2415,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Alistar_splash_centered_40.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
-          "renderedWidth": 20,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
@@ -2436,15 +2436,15 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 20,
+          "renderedWidth": 21,
           "renderedHeight": 19,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Ornn_splash_centered_2.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
           "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
@@ -2478,19 +2478,19 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-champion/TFT18_Leblanc_splash_centered_5.TFT_Set18.png",
-          "complete": true,
-          "naturalWidth": 1024,
-          "naturalHeight": 512,
-          "renderedWidth": 20,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 21,
           "renderedHeight": 20,
           "loading": "lazy"
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_BlueBuff.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 12,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 3,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2523,10 +2523,10 @@
         },
         {
           "src": "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/tft-item/DA_InfinityEdge.png",
-          "complete": true,
-          "naturalWidth": 128,
-          "naturalHeight": 128,
-          "renderedWidth": 13,
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "renderedWidth": 4,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -2536,7 +2536,7 @@
           "naturalWidth": 1024,
           "naturalHeight": 512,
           "renderedWidth": 21,
-          "renderedHeight": 20,
+          "renderedHeight": 21,
           "loading": "lazy"
         },
         {
@@ -2616,7 +2616,7 @@
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.93
+        "pageHeightInViewports": 4.84
       },
       "consoleErrors": [],
       "failedRequests": []
