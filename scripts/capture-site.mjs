@@ -11,6 +11,25 @@ await fs.mkdir(outputDir, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
 
+async function prepareLayoutCapture(page) {
+  const essential = page.locator('#consentToast [data-consent="essential"]');
+  if (await essential.isVisible().catch(() => false)) {
+    await essential.click();
+    await page.waitForTimeout(80);
+  }
+
+  await page.evaluate(async () => {
+    const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const step = Math.max(420, Math.floor(window.innerHeight * 0.8));
+    for (let y = 0; y <= max; y += step) {
+      window.scrollTo(0, y);
+      await new Promise(resolve => setTimeout(resolve, 45));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(180);
+}
+
 async function capture({ name, url, viewport, waitForProfile = false }) {
   const page = await browser.newPage({ viewport });
 
@@ -41,6 +60,8 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       console.warn("Profile did not become visible before timeout; capturing current state.");
     }
   }
+
+  await prepareLayoutCapture(page);
 
   await page.screenshot({
     path: path.join(outputDir, name),
