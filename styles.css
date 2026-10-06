@@ -61,3 +61,6 @@ html{max-width:100%;overflow-x:clip}body,main,header,footer,section{min-width:0;
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e2bd73;outline-offset:3px}
 dialog::backdrop{background:#03050acc;backdrop-filter:blur(3px)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.profile-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.profile-actions .ghost[aria-pressed="true"]{border-color:#5bbf7a55;background:#5bbf7a12;color:#a9e4b8}
