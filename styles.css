@@ -25,3 +25,13 @@ footer nav{display:flex;gap:14px;flex-wrap:wrap}footer a{color:#7d8292;text-deco
 .diff-chip.shared{color:#d9c48b;border-color:#d8ae6044;background:#d8ae6010}
 .compare-none{color:#555b6d;font-size:12px}
 @media(max-width:680px){.compare-breakdown{padding:18px 20px}.compare-split{grid-template-columns:1fr}.compare-side .compare-kpis{grid-template-columns:repeat(2,1fr)}}
+
+.timeline{display:block}
+.timeline-sets,.timeline-patches{display:flex;gap:10px;overflow:auto;scrollbar-width:thin}
+.timeline-sets{padding:4px 0 10px}
+.timeline-patches{align-items:center;padding:0 0 14px}
+.timeline-sets button,.timeline-patches button{min-width:max-content;border:1px solid #ffffff14;background:#0f121b;color:#b9bdca;border-radius:14px;padding:10px 12px;text-align:left;cursor:pointer}
+.timeline-sets button.active,.timeline-patches button.active{border-color:#d8ae6055;background:#d8ae6018;color:#f0cb83}
+.timeline-sets button strong,.timeline-sets button span{display:block}.timeline-sets button span{font-size:10px;color:#777d90;margin-top:3px}
+.timeline-patches button small{margin-left:5px;color:#777d90}.timeline-label{color:#777d90;font-size:10px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+@media(max-width:680px){.timeline-sets,.timeline-patches{margin-right:-18px;padding-right:18px}}
