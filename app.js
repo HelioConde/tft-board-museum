@@ -333,7 +333,7 @@ function renderSetStats(){
 function renderPeriodStats(){
  var el=document.querySelector("#periodStatsGrid");if(!el)return;
  var dated=boards.filter(function(b){return Number(b.playedAt||0)>0});
- if(!dated.length){el.innerHTML='<div class="empty">Sem datas suficientes para gerar recortes mensais.</div>';return}
+ if(!dated.length){el.innerHTML='<div class="empty period-empty">'+t("noPeriodData")+'</div>';return}
  function build(key,label){
   var list=dated.filter(function(b){var d=new Date(Number(b.playedAt));return key(d)});
   if(!list.length)return "";
@@ -349,7 +349,7 @@ function renderPeriodStats(){
   build(function(d){return d.getFullYear()===year},t("yearWord")+" "+year),
   build(function(d){return d.getFullYear()===year-1},t("yearWord")+" "+(year-1))
  ].filter(Boolean);
- el.innerHTML=items.join("")||'<div class="empty">'+t("noPeriodData")+'</div>'
+ el.innerHTML=items.join("")||'<div class="empty period-empty">'+t("noPeriodData")+'</div>'
 }
 async function renderCloudCollections(){
  var section=document.querySelector("#cloudCollections"),grid=document.querySelector("#collectionGrid");
