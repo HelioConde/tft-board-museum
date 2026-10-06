@@ -17,9 +17,13 @@ GitHub Pages: https://helioconde.github.io/tft-board-museum/
 - filtros por Set, patch, resultado, favoritos e busca textual;
 - ordenação por data, colocação e ouro;
 - linha do tempo por Set;
-- favoritos e notas pessoais em localStorage;
-- comparação lado a lado com diferenças de units;
-- URLs compartilháveis de perfil e board;
+- favoritos e notas locais com sincronização autenticada opcional;
+- coleções persistidas no Supabase;
+- arquivo privado de partidas para acumular histórico além do recorte da Riot;
+- comparação lado a lado de units, traits, itens, augments e estrelas;
+- URLs compartilháveis de perfil e board com preview server-rendered;
+- exportação PNG de board;
+- Hall da Fama, estatísticas por Set, mês e ano;
 - insights de champion assinatura, item recorrente, 3★ e Sets;
 - PT-BR principal e English;
 - layout responsivo;
