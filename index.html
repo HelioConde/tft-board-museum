@@ -12,12 +12,15 @@
   <meta property="og:description" content="Seu histórico de TFT transformado em um museu visual de boards.">
   <meta property="og:url" content="https://helioconde.github.io/tft-board-museum/">
   <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://helioconde.github.io/tft-board-museum/og-card.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TFT Board Museum","url":"https://helioconde.github.io/tft-board-museum/","applicationCategory":"GameApplication","operatingSystem":"Web","inLanguage":["pt-BR","en"],"description":"Museu visual de histórico do Teamfight Tactics com boards, traits, itens, augments, comparações e estatísticas."}</script>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>TFT Board Museum</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+<a class="skip-link" href="#museum">Pular para o museu</a>
 <div class="ambient a"></div><div class="ambient b"></div>
 <header class="topbar">
   <a class="brand" href="./" aria-label="TFT Board Museum"><span class="brand-mark">BM</span><span><strong>TFT Board</strong><small>Museum</small></span></a>
@@ -29,7 +32,7 @@
   </nav>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 <section class="hero">
   <div class="hero-copy">
     <span class="eyebrow" data-i18n="eyebrow">Seu histórico, transformado em coleção</span>
@@ -63,7 +66,7 @@
 
 <section id="museum" class="museum">
   <div class="section-head">
-    <div><span class="eyebrow" data-i18n="collection">COLEÇÃO</span><h2 id="museumTitle">Museu demonstrativo</h2><p id="collectionStatus" data-i18n="collectionText">8 boards preservados neste protótipo.</p></div>
+    <div><span class="eyebrow" data-i18n="collection">COLEÇÃO</span><h2 id="museumTitle">Museu demonstrativo</h2><p id="collectionStatus" aria-live="polite" data-i18n="collectionText">8 boards preservados neste protótipo.</p></div>
     <div class="view-switch"><button class="active" data-view="grid" aria-label="Grade">▦</button><button data-view="compact" aria-label="Lista">☷</button></div>
   </div>
 
