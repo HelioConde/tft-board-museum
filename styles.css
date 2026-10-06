@@ -216,3 +216,26 @@ footer small{font-size:11px}
   .profile-actions .ghost{min-height:44px}
   .profile-kpis span{font-size:10px}
 }
+
+/* Capture-driven mobile density pass */
+@media(max-width:680px){
+  .hero{gap:18px}
+  .hero-copy>p{font-size:15px;line-height:1.55}
+  .riot-search{margin-top:20px}
+  .hero-art{height:155px}
+  .display-card{width:112px;height:145px;padding:14px;border-radius:18px}
+  .display-card:before{inset:10px;border-radius:14px}
+  .display-card span{top:16px;right:16px;padding:4px 7px;font-size:11px}
+  .display-card strong{font-size:17px}
+  .display-card small{font-size:11px}
+  .card-a{left:34%;top:8px}
+  .card-b{left:8%;top:30px}
+  .card-c{right:4%;top:26px}
+  .orb{width:145px;height:145px;top:5px}
+  .trend-panel{padding:12px}
+  .trend-panel h3{font-size:21px}
+  .placement-trend{min-height:105px}
+  .placement-trend svg{height:105px}
+  .trend-labels{inset:12px auto 12px 0}
+  #recentEvolution{margin-bottom:44px}
+}
