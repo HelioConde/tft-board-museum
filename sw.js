@@ -24,7 +24,9 @@ const SHELL=[
   "./img/tft-board-museum-image-pack/cards/hover-overlay.png",
   "./img/tft-board-museum-image-pack/cards/image-placeholder.png",
   "./img/tft-board-museum-image-pack/cards/skeleton-loading.png",
-  "./img/tft-board-museum-image-pack/icons/set-icon.png"
+  "./img/tft-board-museum-image-pack/icons/set-icon.png",
+  "./img/tft-board-museum-image-pack/mascots/poro-sleeping.png",
+  "./img/tft-board-museum-image-pack/mascots/raid-boss.png"
 ];
 
 self.addEventListener("install",event=>{
