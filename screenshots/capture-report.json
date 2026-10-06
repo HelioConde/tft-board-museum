@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T15:57:35.871Z",
+  "generatedAt": "2026-10-06T16:11:26.709Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -80,7 +80,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 5739,
+      "height": 3932,
       "viewportWidth": 1440,
       "title": "TFT Board Museum",
       "overflow": [
@@ -110,7 +110,7 @@
         "height": 844
       },
       "width": 390,
-      "height": 14275,
+      "height": 7827,
       "viewportWidth": 390,
       "title": "TFT Board Museum",
       "overflow": [
