@@ -256,6 +256,19 @@ for (const capture of captures) {
   if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
   if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
   if (capture.brokenImages.length) qualityFailures.push(`${capture.name}: ${capture.brokenImages.length} broken image(s)`);
+  if (capture.viewportWidth >= 1000) {
+    if (capture.height > 5000) qualityFailures.push(`${capture.name}: desktop page too tall (${capture.height}px > 5000px)`);
+    const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
+    const budgets = [
+      [".hero", 720],
+      ["#profilePanel", 180],
+      ["#museum", 1600]
+    ];
+    for (const [selector, maxHeight] of budgets) {
+      const height = sectionHeight(selector);
+      if (height > maxHeight) qualityFailures.push(`${capture.name}: ${selector} too tall (${height}px > ${maxHeight}px)`);
+    }
+  }
   if (capture.viewportWidth <= 420) {
     if (capture.height > 5200) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 5200px)`);
     const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
