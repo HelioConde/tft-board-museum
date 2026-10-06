@@ -19,7 +19,7 @@ var API_BASE="https://bieihhaobdztjyoweewa.supabase.co/functions/v1";
 var lang=localStorage.getItem("tbm-lang")||"pt";
 var activeFilter="all",activeSet="all",view="grid",sortMode="newest",searchTerm="",patchValue="all",collectionSearchTerm="";
 var favorites=new Set(JSON.parse(localStorage.getItem("tbm-favorites")||"[]"));
-function defaultVisibleLimit(){return window.matchMedia("(max-width: 680px)").matches?3:12}
+function defaultVisibleLimit(){return window.matchMedia("(max-width: 680px)").matches?2:12}
 var compareSelection=[],staticData=null,loadedRiotId="",loadedPlatform="br1",nextStart=0,pageSize=20,hasMore=false,visibleLimit=defaultVisibleLimit();
 var grid=document.querySelector("#boardGrid"),dialog=document.querySelector("#boardDialog"),setFilter=document.querySelector("#setFilter");
 
