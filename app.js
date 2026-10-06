@@ -283,7 +283,20 @@ function renderRecentEvolution(){
  el.innerHTML='<article class="evolution-card"><span>Colocação média</span><strong>'+(a.avg!=null?a.avg.toFixed(2):"—")+'</strong><small class="'+avgDelta.className+'">'+avgDelta.text+(hasPrevious?" vs. bloco anterior":"")+'</small></article>'+
  '<article class="evolution-card"><span>Top 4</span><strong>'+a.top4+'%</strong><small class="'+topDelta.className+'">'+topDelta.text+(hasPrevious?" p.p.":"")+'</small></article>'+
  '<article class="evolution-card"><span>Vitórias</span><strong>'+a.wins+'</strong><small class="'+winDelta.className+'">'+winDelta.text+(hasPrevious?" partidas":"")+'</small></article>'+
- '<article class="evolution-card"><span>Ouro médio final</span><strong>'+a.gold+'g</strong><small class="'+goldDelta.className+'">'+goldDelta.text+(hasPrevious?"g":"")+'</small></article>'
+ '<article class="evolution-card"><span>Ouro médio final</span><strong>'+a.gold+'g</strong><small class="'+goldDelta.className+'">'+goldDelta.text+(hasPrevious?"g":"")+'</small></article>';
+ var trend=document.querySelector("#placementTrend"),series=ordered.slice(0,20).reverse();
+ if(trend&&series.length){
+  var w=800,h=160,padX=34,padY=20,usableW=w-padX*2,usableH=h-padY*2;
+  var pts=series.map(function(board,i){var x=padX+(series.length===1?usableW/2:i*(usableW/(series.length-1))),place=Math.max(1,Math.min(8,Number(board.placement)||8)),y=padY+(place-1)*(usableH/7);return {x:x,y:y,p:place,id:board.id}});
+  var poly=pts.map(function(p){return p.x.toFixed(1)+","+p.y.toFixed(1)}).join(" ");
+  var circles=pts.map(function(p){return '<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="5" data-trend-board="'+escapeHtml(p.id)+'"><title>'+placementLabel(p.p)+'</title></circle>'}).join("");
+  trend.innerHTML='<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true"><line x1="'+padX+'" y1="'+padY+'" x2="'+(w-padX)+'" y2="'+padY+'" class="trend-guide"/><line x1="'+padX+'" y1="'+(padY+3*usableH/7)+'" x2="'+(w-padX)+'" y2="'+(padY+3*usableH/7)+'" class="trend-guide top4"/><polyline points="'+poly+'" class="trend-line"/>'+circles+'</svg><div class="trend-labels"><span>1º</span><span>4º</span><span>8º</span></div>';
+  trend.querySelectorAll("[data-trend-board]").forEach(function(dot){dot.addEventListener("click",function(){openBoard(dot.dataset.trendBoard,true)})})
+ }
+ var dist=document.querySelector("#placementDistribution");if(dist){
+  var counts=Array.from({length:8},function(_,i){return boards.filter(function(board){return Number(board.placement)===i+1}).length}),max=Math.max.apply(null,counts.concat([1]));
+  dist.innerHTML=counts.map(function(count,i){var pct=Math.round(count/max*100);return '<div class="placement-bar"><span>'+(i+1)+'º</span><div><i style="width:'+pct+'%"></i></div><strong>'+count+'</strong></div>'}).join("")
+ }
 }
 function renderHallOfFame(){
  var el=document.querySelector("#hallGrid");if(!el||!boards.length)return;
