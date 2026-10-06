@@ -191,6 +191,28 @@ async function setWatchProfile(riotId, region, enabled) {
   if (error) throw error;
   return { enabled: Boolean(enabled) };
 }
+async function exportUserData() {
+  if (!currentUser) throw new Error("auth_required");
+  const [state, collections, shares, archive, watches] = await Promise.all([
+    client.from("tft_museum_state").select("*").eq("user_id", currentUser.id),
+    client.from("tft_museum_collections").select("*").eq("user_id", currentUser.id),
+    client.from("tft_museum_public_shares").select("*").eq("user_id", currentUser.id),
+    client.from("tft_museum_match_archive").select("*").eq("user_id", currentUser.id).order("played_at",{ascending:false}),
+    client.from("tft_museum_watch_profiles").select("*").eq("user_id", currentUser.id)
+  ]);
+  for (const result of [state, collections, shares, archive, watches]) {
+    if (result.error) throw result.error;
+  }
+  return {
+    exported_at: new Date().toISOString(),
+    user: { id: currentUser.id, email: currentUser.email || null },
+    state: state.data || [],
+    collections: collections.data || [],
+    shares: shares.data || [],
+    archive: archive.data || [],
+    watch_profiles: watches.data || []
+  };
+}
 function sharePayload(board) {
   return {
     title: board?.title || "Board TFT",
@@ -252,6 +274,7 @@ window.MuseumCloud = {
   loadArchive,
   getWatchProfile,
   setWatchProfile,
+  exportUserData,
   createPublicShare,
   isSignedIn,
   user
