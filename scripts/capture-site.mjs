@@ -70,7 +70,13 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
     };
     const overflow = all
       .map(rectInfo)
-      .filter(x => (x.left < -1 || x.right > viewportWidth + 1) && !x.className.split(" ").includes("ambient"))
+      .filter(x => {
+        const el = document.querySelector(
+          x.id ? "#" + CSS.escape(x.id) : x.className ? "." + x.className.split(" ").filter(Boolean).map(CSS.escape).join(".") : x.tag
+        );
+        const intentional = el && el.closest(".hall-grid,.set-stats-grid,.collection-grid,.period-stats-grid,.timeline-sets,.timeline-patches");
+        return (x.left < -1 || x.right > viewportWidth + 1) && !x.className.split(" ").includes("ambient") && !intentional;
+      })
       .slice(0, 25);
     const selectors = [
       ".topbar",".hero","#profilePanel",".ad-slot","#museum",".stats",
