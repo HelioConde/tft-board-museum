@@ -1,0 +1,72 @@
+name: Capture site screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "screenshots/**"
+      - "capture-report.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-screenshots
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start local site
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/tbm-http.log 2>&1 &
+          echo $! > /tmp/tbm-http.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/tbm-http.log
+          exit 1
+
+      - name: Capture full-page screenshots
+        env:
+          SCREENSHOT_BASE_URL: http://127.0.0.1:4173/
+          SCREENSHOT_RIOT_ID: AlchemyFlames#br1
+          SCREENSHOT_REGION: br1
+          SCREENSHOT_DIR: screenshots
+        run: npm run screenshots
+
+      - name: Commit screenshots
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add screenshots
+          if git diff --cached --quiet; then
+            echo "No screenshot changes."
+            exit 0
+          fi
+          git commit -m "chore: update visual snapshots [skip ci]"
+          git push
