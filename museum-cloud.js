@@ -113,11 +113,57 @@ async function addBoardToCollection(collectionId, boardId) {
   return boardIds;
 }
 
+async function updateCollection(collectionId, changes) {
+  if (!currentUser) throw new Error("auth_required");
+  const payload = { updated_at: new Date().toISOString() };
+  if (typeof changes.name === "string") payload.name = changes.name.trim().slice(0, 80);
+  if (typeof changes.description === "string") payload.description = changes.description.trim().slice(0, 500);
+  if (typeof changes.is_public === "boolean") payload.is_public = changes.is_public;
+  const { error } = await client.from("tft_museum_collections").update(payload).eq("id", collectionId);
+  if (error) throw error;
+  emit("museum-collections-changed");
+}
 async function removeCollection(collectionId) {
   if (!currentUser) throw new Error("auth_required");
   const { error } = await client.from("tft_museum_collections").delete().eq("id", collectionId);
   if (error) throw error;
   emit("museum-collections-changed");
+}
+async function archiveBoards(riotId, region, boards) {
+  if (!currentUser || !riotId || !Array.isArray(boards) || !boards.length) return { skipped: true };
+  const rows = boards.map(board => ({
+    user_id: currentUser.id,
+    riot_id: riotId,
+    region,
+    match_id: String(board.id),
+    played_at: Number(board.playedAt || 0),
+    payload: {
+      id: board.id, set: board.set, placement: board.placement, title: board.title,
+      patch: board.patch, date: board.date, time: board.time, playedAt: board.playedAt,
+      level: board.level, gold: board.gold, traits: board.traits, rawTraits: board.rawTraits,
+      augments: board.augments, units: board.units, real: true, queueId: board.queueId,
+      duration: board.duration, damage: board.damage, eliminations: board.eliminations,
+      lastRound: board.lastRound, hasTelemetry: board.hasTelemetry
+    },
+    archived_at: new Date().toISOString()
+  }));
+  const { error } = await client
+    .from("tft_museum_match_archive")
+    .upsert(rows, { onConflict: "user_id,region,riot_id,match_id" });
+  if (error) throw error;
+  return { ok: true, count: rows.length };
+}
+async function loadArchive(riotId, region) {
+  if (!currentUser || !riotId) return [];
+  const { data, error } = await client
+    .from("tft_museum_match_archive")
+    .select("match_id,played_at,payload")
+    .eq("riot_id", riotId)
+    .eq("region", region)
+    .order("played_at", { ascending: false })
+    .limit(500);
+  if (error) throw error;
+  return (data || []).map(row => row.payload).filter(Boolean);
 }
 
 function sharePayload(board) {
@@ -163,7 +209,10 @@ window.MuseumCloud = {
   listCollections,
   createCollection,
   addBoardToCollection,
+  updateCollection,
   removeCollection,
+  archiveBoards,
+  loadArchive,
   createPublicShare,
   isSignedIn,
   user
