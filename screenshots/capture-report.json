@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T19:48:55.787Z",
+  "generatedAt": "2026-10-06T19:50:49.933Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,7 +12,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4371,
+      "height": 4367,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -153,7 +153,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 543,
+          "height": 539,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -177,7 +177,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4248,
+          "top": 4244,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -691,7 +691,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4694,
+      "height": 4690,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -832,7 +832,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 415,
+          "height": 411,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -856,7 +856,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4571,
+          "top": 4567,
           "left": 0,
           "right": 1440,
           "width": 1440,
