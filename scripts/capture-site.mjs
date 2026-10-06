@@ -72,7 +72,7 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       .filter(el => {
         const r = el.getBoundingClientRect();
         const className = String(el.className || "");
-        const intentional = el.closest(".hall-grid,.set-stats-grid,.collection-grid,.period-stats-grid,.timeline-sets,.timeline-patches");
+        const intentional = el.closest(".hall-grid,.set-stats-grid,.collection-grid,.period-stats-grid,.timeline-sets,.timeline-patches,.evolution-grid,.placement-distribution");
         return (r.left < -1 || r.right > viewportWidth + 1) && !className.split(" ").includes("ambient") && !intentional;
       })
       .map(rectInfo)
@@ -221,6 +221,27 @@ for (const capture of captures) {
   }
 }
 await fs.writeFile(path.join(outputDir, "visual-audit.md"), auditLines.join("\n"));
+
+const qualityFailures = [];
+for (const capture of captures) {
+  if (capture.overflow.length) qualityFailures.push(`${capture.name}: ${capture.overflow.length} unintended overflow element(s)`);
+  if (capture.smallTapTargets.length) qualityFailures.push(`${capture.name}: ${capture.smallTapTargets.length} small tap target(s)`);
+  if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
+  if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
+  if (capture.viewportWidth <= 420 && capture.height > 6500) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 6500px)`);
+}
+await fs.writeFile(
+  path.join(outputDir, "visual-quality.json"),
+  JSON.stringify({
+    generatedAt,
+    passed: qualityFailures.length === 0,
+    failures: qualityFailures
+  }, null, 2)
+);
+if (qualityFailures.length) {
+  console.error("Visual quality gate failed:\n" + qualityFailures.map(x => "- " + x).join("\n"));
+  process.exitCode = 1;
+}
 
 await browser.close();
 console.log("Screenshots saved in", outputDir);
