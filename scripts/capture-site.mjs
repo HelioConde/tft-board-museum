@@ -231,7 +231,7 @@ for (const capture of captures) {
   if (capture.smallTapTargets.length) qualityFailures.push(`${capture.name}: ${capture.smallTapTargets.length} small tap target(s)`);
   if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
   if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
-  if (capture.viewportWidth <= 420 && capture.height > 6500) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 6500px)`);
+  if (capture.viewportWidth <= 420 && capture.height > 6000) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 6000px)`);
 }
 await fs.writeFile(
   path.join(outputDir, "visual-quality.json"),
