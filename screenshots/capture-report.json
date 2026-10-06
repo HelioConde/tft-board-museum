@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T16:11:26.709Z",
+  "generatedAt": "2026-10-06T16:25:52.399Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,27 +12,10 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 3932,
+      "height": 4521,
       "viewportWidth": 1440,
       "title": "TFT Board Museum",
-      "overflow": [
-        {
-          "tag": "div",
-          "id": "",
-          "className": "ambient a",
-          "left": 1040,
-          "right": 1560,
-          "width": 520
-        },
-        {
-          "tag": "div",
-          "id": "",
-          "className": "ambient b",
-          "left": -220,
-          "right": 240,
-          "width": 460
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "mobile-full.png",
@@ -42,33 +25,193 @@
         "height": 844
       },
       "width": 390,
-      "height": 7808,
+      "height": 7888,
       "viewportWidth": 390,
       "title": "TFT Board Museum",
       "overflow": [
         {
-          "tag": "div",
+          "tag": "button",
           "id": "",
-          "className": "ambient a",
-          "left": -10,
-          "right": 510,
-          "width": 520
+          "className": "hall-card",
+          "left": 280,
+          "right": 530,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "className": "hall-card",
+          "left": 542,
+          "right": 792,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "className": "hall-card",
+          "left": 804,
+          "right": 1054,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "article",
+          "id": "",
+          "className": "set-stat-card",
+          "left": 280,
+          "right": 530,
+          "width": 250
         },
         {
           "tag": "div",
           "id": "",
-          "className": "ambient b",
-          "left": -220,
-          "right": 240,
-          "width": 460
+          "className": "set-stat-kpis",
+          "left": 301,
+          "right": 509,
+          "width": 208
         },
         {
           "tag": "div",
           "id": "",
-          "className": "display-card card-c",
-          "left": 219,
-          "right": 394,
-          "width": 176
+          "className": "",
+          "left": 301,
+          "right": 402,
+          "width": 101
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 409,
+          "right": 509,
+          "width": 101
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 402,
+          "width": 101
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 409,
+          "right": 509,
+          "width": 101
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "p",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
         }
       ]
     },
@@ -80,27 +223,10 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 3932,
+      "height": 4521,
       "viewportWidth": 1440,
       "title": "TFT Board Museum",
-      "overflow": [
-        {
-          "tag": "div",
-          "id": "",
-          "className": "ambient a",
-          "left": 1040,
-          "right": 1560,
-          "width": 520
-        },
-        {
-          "tag": "div",
-          "id": "",
-          "className": "ambient b",
-          "left": -220,
-          "right": 240,
-          "width": 460
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "alchemyflames-mobile-full.png",
@@ -110,33 +236,193 @@
         "height": 844
       },
       "width": 390,
-      "height": 7827,
+      "height": 7907,
       "viewportWidth": 390,
       "title": "TFT Board Museum",
       "overflow": [
         {
-          "tag": "div",
+          "tag": "button",
           "id": "",
-          "className": "ambient a",
-          "left": -10,
-          "right": 510,
-          "width": 520
+          "className": "hall-card",
+          "left": 280,
+          "right": 530,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "className": "hall-card",
+          "left": 542,
+          "right": 792,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 563,
+          "right": 771,
+          "width": 208
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "className": "hall-card",
+          "left": 804,
+          "right": 1054,
+          "width": 250
+        },
+        {
+          "tag": "span",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 825,
+          "right": 1033,
+          "width": 208
+        },
+        {
+          "tag": "article",
+          "id": "",
+          "className": "set-stat-card",
+          "left": 280,
+          "right": 530,
+          "width": 250
         },
         {
           "tag": "div",
           "id": "",
-          "className": "ambient b",
-          "left": -220,
-          "right": 240,
-          "width": 460
+          "className": "set-stat-kpis",
+          "left": 301,
+          "right": 509,
+          "width": 208
         },
         {
           "tag": "div",
           "id": "",
-          "className": "display-card card-c",
-          "left": 219,
-          "right": 394,
-          "width": 176
+          "className": "",
+          "left": 301,
+          "right": 402,
+          "width": 101
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 409,
+          "right": 509,
+          "width": 101
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 402,
+          "width": 101
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "",
+          "left": 409,
+          "right": 509,
+          "width": 101
+        },
+        {
+          "tag": "small",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "strong",
+          "id": "",
+          "className": "",
+          "left": 420,
+          "right": 498,
+          "width": 79
+        },
+        {
+          "tag": "p",
+          "id": "",
+          "className": "",
+          "left": 301,
+          "right": 509,
+          "width": 208
         }
       ]
     }
