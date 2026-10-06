@@ -256,6 +256,7 @@ for (const capture of captures) {
     if (capture.height > 5200) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 5200px)`);
     const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
     const budgets = [
+      [".hero", 740],
       ["#profilePanel", 280],
       ["#museum", 1500],
       [".stats", 120],
