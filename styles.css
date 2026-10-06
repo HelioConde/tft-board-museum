@@ -541,3 +541,81 @@ footer small{font-size:11px}
   .period-empty:before{width:36px;height:36px;left:12px}
   .compare-grid:before{width:112px;height:112px;top:16px;opacity:.045}
 }
+
+
+/* Capture-driven mobile analytics refinement — 2026-10-06 */
+@media(max-width:680px){
+  /* Summary KPIs should read at a glance instead of becoming four tiny columns. */
+  .stats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .stats div{
+    padding:13px 14px;
+    text-align:left;
+    border:1px solid #ffffff0d;
+    border-radius:13px;
+    background:#0e1119;
+  }
+  .stats span{font-size:11px;line-height:1.2}
+  .stats strong{font-size:24px;margin-top:5px}
+
+  /* Recent evolution is comparison data, so keep every value visible without a hidden rail. */
+  #recentEvolution .evolution-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:visible;
+    margin-right:0;
+    padding-right:0;
+    scroll-snap-type:none;
+  }
+  #recentEvolution .evolution-card{min-width:0}
+  #recentEvolution .placement-distribution{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:visible;
+    scroll-snap-type:none;
+  }
+  #recentEvolution .placement-bar{min-width:0}
+
+  /* Hall of fame and period cuts are short summaries; a 2×N grid is clearer than clipped cards. */
+  #hallGrid,
+  #setHistory .period-stats-grid{
+    display:grid;
+    grid-auto-flow:row;
+    grid-auto-columns:auto;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:visible;
+    margin-right:0;
+    padding-right:0;
+    scroll-snap-type:none;
+  }
+  #hallGrid .hall-card{min-width:0;padding:13px}
+  #hallGrid .hall-card strong{font-size:22px}
+  #hallGrid .hall-card small{font-size:11px}
+  #setHistory .period-card{min-width:0}
+
+  /* The set-history cards contain denser four-KPI groups, so keep only this rail scrollable. */
+  #setHistory .set-stats-grid{
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  #setHistory .set-stats-grid::-webkit-scrollbar{display:none}
+}
+
+/* Keep consent compact on first visit; capture automation dismisses it before layout auditing. */
+@media(max-width:680px){
+  .consent-toast{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    padding:12px;
+    border-radius:14px;
+    max-height:42vh;
+    overflow:auto;
+    backdrop-filter:blur(12px);
+  }
+  .consent-toast p{margin-bottom:9px;font-size:11px;line-height:1.45}
+  .consent-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .consent-actions button{min-height:42px;padding:8px 9px;font-size:11px}
+}
