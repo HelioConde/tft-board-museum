@@ -1,9 +1,5 @@
 {
-  "generatedAt": "2026-10-06T16:47:13.926Z",
-  "passed": false,
-  "failures": [
-    "mobile-full.png: 1 unintended overflow element(s)",
-    "alchemyflames-mobile-full.png: 1 unintended overflow element(s)",
-    "alchemyflames-mobile-full.png: 1 small tap target(s)"
-  ]
+  "generatedAt": "2026-10-06T16:49:12.645Z",
+  "passed": true,
+  "failures": []
 }
