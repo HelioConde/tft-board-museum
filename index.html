@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090b12">
+<meta name="description" content="Reviva seus boards de Teamfight Tactics em uma galeria visual."><title>TFT Board Museum</title><link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="ambient a"></div><div class="ambient b"></div>
+<header class="topbar"><a class="brand" href="#top"><span class="brand-mark">BM</span><span><strong>TFT Board</strong><small>Museum</small></span></a><nav><button id="langToggle" class="ghost">EN</button><button id="favoritesTop" class="ghost" data-i18n="favorites">Favoritos</button></nav></header>
+<main id="top">
+<section class="hero"><div class="hero-copy"><span class="eyebrow" data-i18n="eyebrow">Seu histórico, transformado em coleção</span><h1 data-i18n="heroTitle">Cada board conta uma história.</h1><p data-i18n="heroText">Revisite composições, posicionamento, itens e momentos marcantes das suas partidas de TFT em um museu pessoal.</p><form id="riotForm" class="riot-search"><label><span>Riot ID</span><input id="riotId" value="Helio#BR1" placeholder="Nome#TAG"></label><label><span data-i18n="region">Região</span><select id="region"><option>BR</option><option>NA</option><option>EUW</option><option>KR</option></select></label><button class="primary" type="submit" data-i18n="openMuseum">Abrir meu museu</button></form><div class="demo-note"><i></i><span data-i18n="demoData">Protótipo com dados demonstrativos — integração Riot será conectada na próxima etapa.</span></div></div><div class="hero-art" aria-hidden="true"><div class="display-card card-a"><span>1º</span><strong>7 Rebel</strong><small>Set 15</small></div><div class="display-card card-b"><span>2º</span><strong>6 Bastion</strong><small>Set 15</small></div><div class="display-card card-c"><span>4º</span><strong>4 Executioner</strong><small>Set 14</small></div><div class="orb"></div></div></section>
+<section class="ad-slot"><b>AD</b><span data-i18n="adReserved">Espaço reservado para anúncio</span></section>
+<section id="museum" class="museum"><div class="section-head"><div><span class="eyebrow" data-i18n="collection">COLEÇÃO</span><h2 id="museumTitle">Helio#BR1</h2><p data-i18n="collectionText">8 boards preservados neste protótipo.</p></div><div class="view-switch"><button class="active" data-view="grid">▦</button><button data-view="compact">☷</button></div></div><div class="filters"><button class="filter active" data-filter="all" data-i18n="all">Todos</button><button class="filter" data-filter="top4">Top 4</button><button class="filter" data-filter="win" data-i18n="wins">Vitórias</button><button class="filter" data-filter="favorite" data-i18n="favorites">Favoritos</button><select id="setFilter"><option value="all" data-i18n="allSets">Todos os sets</option><option value="15">Set 15</option><option value="14">Set 14</option></select></div><div id="boardGrid" class="board-grid"></div><div id="emptyState" class="empty hidden"><strong data-i18n="emptyTitle">Nenhum board aqui ainda.</strong><span data-i18n="emptyText">Mude os filtros para explorar o restante da coleção.</span></div></section>
+<section class="stats"><div><span data-i18n="boards">Boards</span><strong>8</strong></div><div><span>Top 4</span><strong>75%</strong></div><div><span data-i18n="favoriteTrait">Trait favorita</span><strong>Rebel</strong></div><div><span data-i18n="bestPlacement">Melhor colocação</span><strong>1º</strong></div></section>
+</main>
+<dialog id="boardDialog"><button id="closeDialog" class="dialog-close">×</button><div id="dialogContent"></div></dialog>
+<div id="updateToast" class="update-toast hidden"><span data-i18n="newVersion">Nova versão disponível.</span><button id="reloadBtn" data-i18n="update">Atualizar</button></div>
+<footer><p>TFT Board Museum · <span data-i18n="prototype">Protótipo independente</span></p><small data-i18n="riotDisclaimer">Não é endossado pela Riot Games.</small></footer>
+<script src="./app.js" defer></script><script src="./live-update.js" defer></script>
+</body></html>
