@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T21:49:18.071Z
+Generated: 2026-10-06T21:52:44.412Z
 
 ## desktop-full.png
 
@@ -35,10 +35,10 @@ Generated: 2026-10-06T21:49:18.071Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4673 (5.54 viewports tall)
+- Page: 390×4375 (5.18 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
-- Horizontal scrollers: 1
+- Horizontal scrollers: 3
 - Small tap targets: 0
 - Tiny text nodes (<11px): 0
 - Console errors: 0
@@ -54,13 +54,13 @@ Generated: 2026-10-06T21:49:18.071Z
 - #profilePanel: top 0px · 0×0px
 - .ad-slot: top 870px · 354×82px
 - #museum: top 1000px · 390×1285px
-- .stats: top 2285px · 354×156px
-- #insights: top 2487px · 390×248px
-- #recentEvolution: top 2793px · 390×716px
-- #hallOfFame: top 3553px · 390×338px
-- #setHistory: top 3949px · 390×487px
+- .stats: top 2285px · 354×84px
+- #insights: top 2415px · 390×248px
+- #recentEvolution: top 2721px · 390×490px
+- #hallOfFame: top 3255px · 390×338px
+- #setHistory: top 3651px · 390×487px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4494px · 354×179px
+- footer: top 4196px · 354×179px
 
 ## alchemyflames-desktop-full.png
 
@@ -89,16 +89,16 @@ Generated: 2026-10-06T21:49:18.071Z
 - #recentEvolution: top 3226px · 1220×419px
 - #hallOfFame: top 3735px · 1220×242px
 - #setHistory: top 4066px · 1220×411px
-- #cloudCollections: top 0px · 0×0px
+- #cloudCollections: top 117px · 0×0px
 - footer: top 4567px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×5058 (5.99 viewports tall)
+- Page: 390×4760 (5.64 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
-- Horizontal scrollers: 2
+- Horizontal scrollers: 4
 - Small tap targets: 0
 - Tiny text nodes (<11px): 0
 - Console errors: 0
@@ -114,10 +114,10 @@ Generated: 2026-10-06T21:49:18.071Z
 - #profilePanel: top 870px · 354×240px
 - .ad-slot: top 1143px · 354×82px
 - #museum: top 1273px · 390×1404px
-- .stats: top 2677px · 354×156px
-- #insights: top 2880px · 390×248px
-- #recentEvolution: top 3186px · 390×716px
-- #hallOfFame: top 3946px · 390×338px
-- #setHistory: top 4341px · 390×480px
-- #cloudCollections: top 836px · 0×0px
-- footer: top 4879px · 354×179px
+- .stats: top 2677px · 354×84px
+- #insights: top 2808px · 390×248px
+- #recentEvolution: top 3114px · 390×490px
+- #hallOfFame: top 3648px · 390×338px
+- #setHistory: top 4043px · 390×480px
+- #cloudCollections: top 710px · 0×0px
+- footer: top 4581px · 354×179px

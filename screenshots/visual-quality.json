@@ -1,10 +1,5 @@
 {
-  "generatedAt": "2026-10-06T21:49:18.071Z",
-  "passed": false,
-  "failures": [
-    "mobile-full.png: .stats too tall (156px > 120px)",
-    "mobile-full.png: #recentEvolution too tall (716px > 520px)",
-    "alchemyflames-mobile-full.png: .stats too tall (156px > 120px)",
-    "alchemyflames-mobile-full.png: #recentEvolution too tall (716px > 520px)"
-  ]
+  "generatedAt": "2026-10-06T21:52:44.412Z",
+  "passed": true,
+  "failures": []
 }
