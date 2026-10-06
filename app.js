@@ -124,6 +124,9 @@ function placementIconSrc(place){
 function placementBadgeHtml(place){
  return '<span class="placement '+(Number(place)===1?"win":"")+'"><img src="'+placementIconSrc(place)+'" alt="" loading="lazy" decoding="async"><b>'+placementLabel(place)+'</b></span>'
 }
+function placementInlineHtml(place){
+ return '<span class="placement-inline '+(Number(place)===1?"win":"")+'"><img src="'+placementIconSrc(place)+'" alt="" loading="lazy" decoding="async"><b>'+placementLabel(place)+'</b></span>'
+}
 function render(){
  var allData=visibleBoards(),data=allData.slice(0,visibleLimit);grid.classList.toggle("compact",view==="compact");
  grid.innerHTML=data.map(function(board){
@@ -233,7 +236,7 @@ function openBoard(id,updateUrl){
  if(updateUrl)updateBoardUrl(id);
  var note=notes()[id]||"";
  document.querySelector("#dialogContent").innerHTML='<div class="dialog-layout"><div class="dialog-board">'+miniBoard(b)+'</div><div class="dialog-info">'+
- '<span class="eyebrow">Set '+escapeHtml(b.set)+' · '+escapeHtml(b.date)+(b.time?" · "+escapeHtml(b.time):"")+'</span><h2>'+escapeHtml(boardDisplayTitle(b))+'</h2><p>'+t("placement")+': <strong>'+placementLabel(b.placement)+'</strong></p>'+
+ '<span class="eyebrow">Set '+escapeHtml(b.set)+' · '+escapeHtml(b.date)+(b.time?" · "+escapeHtml(b.time):"")+'</span><h2>'+escapeHtml(boardDisplayTitle(b))+'</h2><p class="dialog-placement-line"><span>'+t("placement")+'</span>'+placementInlineHtml(b.placement)+'</p>'+
  '<div class="dialog-stat-grid"><div class="dialog-stat"><span>'+t("level")+'</span><strong>'+b.level+'</strong></div><div class="dialog-stat"><span>'+t("gold")+'</span><strong>'+b.gold+'g</strong></div><div class="dialog-stat"><span>'+t("queue")+'</span><strong>'+escapeHtml(queueLabel(b.queueId))+'</strong></div><div class="dialog-stat"><span>'+t("duration")+'</span><strong>'+formatDuration(b.duration)+'</strong></div><div class="dialog-stat"><span>'+t("damage")+'</span><strong>'+Number(b.damage||0)+'</strong></div><div class="dialog-stat"><span>'+t("eliminations")+'</span><strong>'+Number(b.eliminations||0)+'</strong></div></div>'+
  '<span class="eyebrow">'+t("traits")+'</span><div class="trait-row">'+traitHtml(b)+'</div><span class="eyebrow" style="margin-top:24px">'+t("augments")+'</span>'+augmentHtml(b)+
  '<span class="eyebrow" style="margin-top:24px">'+t("units")+'</span><div class="unit-list">'+unitListHtml(b)+'</div>'+
@@ -422,7 +425,7 @@ function compareBoards(){
  }
  function side(board){
   return '<section class="compare-side"><span class="eyebrow">Set '+board.set+' · '+escapeHtml(board.date)+'</span><h2>'+escapeHtml(boardDisplayTitle(board))+'</h2>'+miniBoard(board)+
-  '<div class="compare-kpis"><div><span>'+t("placement")+'</span><strong>'+placementLabel(board.placement)+'</strong></div><div><span>'+t("level")+'</span><strong>'+board.level+'</strong></div><div><span>'+t("gold")+'</span><strong>'+board.gold+'g</strong></div><div><span>'+t("starPower")+'</span><strong>'+starTotal(board)+'</strong></div><div><span>'+t("items")+'</span><strong>'+itemCount(board)+'</strong></div><div><span>'+t("augments")+'</span><strong>'+(board.augments||[]).length+'</strong></div></div>'+
+  '<div class="compare-kpis"><div><span>'+t("placement")+'</span>'+placementInlineHtml(board.placement)+'</div><div><span>'+t("level")+'</span><strong>'+board.level+'</strong></div><div><span>'+t("gold")+'</span><strong>'+board.gold+'g</strong></div><div><span>'+t("starPower")+'</span><strong>'+starTotal(board)+'</strong></div><div><span>'+t("items")+'</span><strong>'+itemCount(board)+'</strong></div><div><span>'+t("augments")+'</span><strong>'+(board.augments||[]).length+'</strong></div></div>'+
   '<div class="trait-row">'+traitHtml(board)+'</div></section>';
  }
  var a=pair[0],b=pair[1];
