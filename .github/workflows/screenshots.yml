@@ -49,6 +49,11 @@ jobs:
           cat /tmp/tbm-http.log
           exit 1
 
+      - name: Run Playwright E2E smoke tests
+        env:
+          E2E_BASE_URL: http://127.0.0.1:4173/
+        run: npm run e2e
+
       - name: Capture full-page screenshots
         env:
           SCREENSHOT_BASE_URL: http://127.0.0.1:4173/
