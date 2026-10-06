@@ -70,7 +70,21 @@ jobs:
           git add screenshots
           if git diff --cached --quiet; then
             echo "No screenshot changes."
-            exit 0
+          else
+            git commit -m "chore: update visual snapshots [skip ci]"
+            git push
           fi
-          git commit -m "chore: update visual snapshots [skip ci]"
-          git push
+
+      - name: Enforce visual quality gate
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const quality = JSON.parse(fs.readFileSync('screenshots/visual-quality.json', 'utf8'));
+          if (!quality.passed) {
+            console.error('Visual quality gate failed:');
+            quality.failures.forEach(x => console.error('- ' + x));
+            process.exit(1);
+          }
+          console.log('Visual quality gate passed.');
+          NODE
