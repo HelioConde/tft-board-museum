@@ -382,7 +382,34 @@ function normalizeRiotMatch(match,index){
  var version=String(match.gameVersion||"").split("."),patch=version.length>=2?version[0]+"."+version[1]:"—";
  return {id:String(match.id||("riot-"+index)),set:Number(match.setNumber)||0,placement:Number(match.placement)||8,title:traitLabels[0]||("Board "+(index+1)),patch:patch,date:date,time:time,playedAt:played,level:Number(match.level)||0,gold:Number(match.goldLeft)||0,traits:traitLabels.length?traitLabels:["TFT"],rawTraits:active,augments:Array.isArray(match.augments)?match.augments:[],units:units,real:true,queueId:Number(match.queueId)||0,duration:Number(match.duration)||0,damage:Number(match.damageToPlayers)||0,eliminations:Number(match.playersEliminated)||0,lastRound:Number(match.lastRound)||0,hasTelemetry:match.hasChibiTelemetry===true};
 }
-async function postFunction(name,body){var response=await fetch(API_BASE+"/"+name,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}),data=await response.json().catch(function(){return {}});if(!response.ok||data.error)throw new Error(data.message||data.error||"request_failed");return data}
+function friendlyError(error){
+ var raw=String(error&&error.message||error||"");
+ if(/AbortError|timed?\s*out|timeout/i.test(raw))return lang==="pt"?"A Riot demorou demais para responder. Tente novamente.":"Riot took too long to respond. Try again.";
+ if(/429|rate/i.test(raw))return lang==="pt"?"Muitas consultas em pouco tempo. Tente novamente em instantes.":"Too many requests. Try again shortly.";
+ if(/404|not.?found|summoner/i.test(raw))return lang==="pt"?"Riot ID não encontrado nessa região.":"Riot ID was not found in this region.";
+ if(/network|fetch|failed/i.test(raw))return lang==="pt"?"Não foi possível conectar ao serviço agora.":"Could not connect to the service right now.";
+ return raw&&raw!=="request_failed"?raw:t("loadError")
+}
+function setMuseumLoading(active){
+ var museum=document.querySelector("#museum");if(!museum)return;
+ museum.classList.toggle("is-loading",Boolean(active));
+ if(active){
+  grid.innerHTML=Array.from({length:8},function(){return '<article class="board-card skeleton-card" aria-hidden="true"><div class="skeleton skeleton-board"></div><div class="skeleton-lines"><span></span><span></span><span></span></div></article>'}).join("");
+  document.querySelector("#emptyState").classList.add("hidden");
+ }
+}
+async function postFunction(name,body){
+ var controller=new AbortController(),timer=setTimeout(function(){controller.abort()},20000);
+ try{
+  var response=await fetch(API_BASE+"/"+name,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),signal:controller.signal});
+  var data=await response.json().catch(function(){return {}});
+  if(!response.ok||data.error)throw new Error(data.message||data.error||("HTTP "+response.status));
+  return data
+ }catch(err){
+  if(err&&err.name==="AbortError")throw new Error("timeout");
+  throw err
+ }finally{clearTimeout(timer)}
+}
 async function fetchRiotPage(riotId,platform,start){var parts=riotId.split("#");if(parts.length<2||!parts[0].trim()||!parts.slice(1).join("#").trim())throw new Error("Use Nome#TAG");var data=await postFunction("public-tft-history",{gameName:parts[0].trim(),tagLine:parts.slice(1).join("#").trim(),platform:platform,start:start,count:pageSize});return {parts:parts,data:data}}
 async function refreshAutoSnapshotButton(){
  var btn=document.querySelector("#autoSnapshotBtn");if(!btn)return;
@@ -410,7 +437,7 @@ async function loadRiotHistory(riotId,platform){
  boards=data.matches.map(normalizeRiotMatch);compareSelection=[];activeSet="all";loadedRiotId=riotId;loadedPlatform=platform;nextStart=data.paging&&Number(data.paging.returned)?Number(data.paging.returned):boards.length;hasMore=Boolean(data.paging&&Number(data.paging.returned)===pageSize);
  document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");note.textContent=t("realData");activeFilter="all";document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x.dataset.filter==="all")});renderAll();mergeCloudArchive();refreshAutoSnapshotButton();
 }
-async function loadMoreHistory(){if(!loadedRiotId||!hasMore)return;var btn=document.querySelector("#loadMoreBtn");if(btn){btn.disabled=true;btn.textContent=t("loading")}try{var result=await fetchRiotPage(loadedRiotId,loadedPlatform,nextStart),list=Array.isArray(result.data.matches)?result.data.matches:[],known=new Set(boards.map(function(b){return b.id}));list.map(normalizeRiotMatch).forEach(function(b){if(!known.has(b.id)){boards.push(b);known.add(b.id)}});var returned=result.data.paging?Number(result.data.paging.returned)||0:list.length;nextStart+=returned;hasMore=returned===pageSize&&nextStart<100;renderAll();mergeCloudArchive()}catch(err){document.querySelector(".demo-note span").textContent=(err&&err.message)?String(err.message):t("loadError")}finally{if(btn){btn.disabled=false;btn.textContent=t("loadMore");btn.classList.toggle("hidden",!hasMore)}}}
+async function loadMoreHistory(){if(!loadedRiotId||!hasMore)return;var btn=document.querySelector("#loadMoreBtn");if(btn){btn.disabled=true;btn.textContent=t("loading")}try{var result=await fetchRiotPage(loadedRiotId,loadedPlatform,nextStart),list=Array.isArray(result.data.matches)?result.data.matches:[],known=new Set(boards.map(function(b){return b.id}));list.map(normalizeRiotMatch).forEach(function(b){if(!known.has(b.id)){boards.push(b);known.add(b.id)}});var returned=result.data.paging?Number(result.data.paging.returned)||0:list.length;nextStart+=returned;hasMore=returned===pageSize&&nextStart<100;renderAll();mergeCloudArchive()}catch(err){document.querySelector(".demo-note span").textContent=friendlyError(err)}finally{if(btn){btn.disabled=false;btn.textContent=t("loadMore");btn.classList.toggle("hidden",!hasMore)}}}
 function updateShareUrl(riotId,platform){var url=new URL(location.href);url.searchParams.set("riot",riotId);url.searchParams.set("region",platform);url.searchParams.delete("board");history.replaceState({},"",url)}
 function maybeOpenBoardFromUrl(){var id=new URLSearchParams(location.search).get("board");if(id&&boards.some(function(b){return b.id===id}))openBoard(id,false)}
 function hydrateFromUrl(){var params=new URLSearchParams(location.search),riot=params.get("riot"),region=params.get("region")||"br1";if(!riot)return;document.querySelector("#riotId").value=riot;document.querySelector("#region").value=region;document.querySelector("#riotForm").requestSubmit()}
@@ -425,8 +452,8 @@ document.querySelector("#sortFilter").addEventListener("change",function(e){sort
 document.querySelector("#museumSearch").addEventListener("input",function(e){searchTerm=e.target.value.trim();render()});
 document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});render()})});
 document.querySelector("#riotForm").addEventListener("submit",async function(e){
- e.preventDefault();var value=document.querySelector("#riotId").value.trim(),platform=document.querySelector("#region").value,button=document.querySelector("#openMuseumBtn");if(!value)return;button.disabled=true;button.textContent=t("loading");document.querySelector("#museum").scrollIntoView({behavior:"smooth"});
- try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();document.querySelector("#collectionStatus").textContent=t("loadError");document.querySelector(".demo-note span").textContent=(err&&err.message)?String(err.message):t("loadError");renderAll()}finally{button.disabled=false;button.textContent=t("openMuseum")}
+ e.preventDefault();var value=document.querySelector("#riotId").value.trim(),platform=document.querySelector("#region").value,button=document.querySelector("#openMuseumBtn");if(!value)return;button.disabled=true;button.textContent=t("loading");setMuseumLoading(true);document.querySelector("#museum").scrollIntoView({behavior:"smooth"});
+ try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();var message=friendlyError(err);document.querySelector("#collectionStatus").textContent=message;document.querySelector(".demo-note span").textContent=message;renderAll()}finally{setMuseumLoading(false);button.disabled=false;button.textContent=t("openMuseum")}
 });
 document.querySelector("#compareBtn").addEventListener("click",compareBoards);document.querySelector("#loadMoreBtn").addEventListener("click",loadMoreHistory);
 document.querySelector("#closeCompare").addEventListener("click",function(){document.querySelector("#compareDialog").close()});document.querySelector("#compareDialog").addEventListener("click",function(e){if(e.target.id==="compareDialog")e.target.close()});
