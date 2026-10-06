@@ -96,3 +96,26 @@ dialog::backdrop{background:#03050acc;backdrop-filter:blur(3px)}
 
 .network-status{display:inline-flex;align-items:center;gap:6px;color:#7f8494;font-size:10px;white-space:nowrap}.network-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#5bbf7a;box-shadow:0 0 10px #5bbf7a66}.network-status.offline{color:#d39898}.network-status.offline::before{background:#c75d5d;box-shadow:none}
 @media(max-width:680px){.network-status{display:none}}
+
+/* Visual-audit fixes */
+.favorite-btn,.compare-toggle{min-width:42px;min-height:42px;display:grid;place-items:center;padding:0}
+.riot-search input,.riot-search select{min-height:42px}
+.account-btn{min-width:44px}
+.profile-kpis span,.set-stat-kpis small{font-size:10px}
+.star-row{font-size:9px}
+@media(max-width:680px){
+  .load-more-wrap{display:grid;grid-template-columns:1fr;gap:8px;padding-left:0;padding-right:0}
+  .load-more-wrap .ghost{width:100%;min-width:0;max-width:none}
+  .hero{padding-top:26px;padding-bottom:26px}
+  .hero h1{font-size:46px;line-height:.98}
+  .hero-art{height:210px}
+  .display-card{width:132px;height:172px;padding:18px;border-radius:22px}
+  .display-card strong{font-size:20px}
+  .orb{width:190px;height:190px;top:40px}
+  .board-card{min-height:340px}
+  .board-card-top{height:195px;padding:14px}
+  .board-meta{padding:15px}
+  .profile-kpis span,.set-stat-kpis small{font-size:10px}
+  .favorite-btn{right:10px;top:10px}
+  .compare-toggle{left:10px;bottom:10px}
+}
