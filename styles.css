@@ -64,3 +64,16 @@ dialog::backdrop{background:#03050acc;backdrop-filter:blur(3px)}
 
 .profile-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .profile-actions .ghost[aria-pressed="true"]{border-color:#5bbf7a55;background:#5bbf7a12;color:#a9e4b8}
+
+.skeleton-card{pointer-events:none}.skeleton{position:relative;overflow:hidden;background:#ffffff08}.skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,#ffffff10,transparent);animation:skeleton-sweep 1.35s infinite}.skeleton-board{height:230px}.skeleton-lines{padding:18px;display:grid;gap:10px}.skeleton-lines span{display:block;height:12px;border-radius:999px;background:#ffffff08}.skeleton-lines span:nth-child(1){width:72%}.skeleton-lines span:nth-child(2){width:48%}.skeleton-lines span:nth-child(3){width:88%}@keyframes skeleton-sweep{100%{transform:translateX(100%)}}
+.museum.is-loading .filters,.museum.is-loading .museum-tools,.museum.is-loading .timeline,.museum.is-loading .compare-bar{opacity:.45;pointer-events:none}
+@media(max-width:680px){
+  .card-c{right:0;transform:rotate(7deg)}
+  .ambient{pointer-events:none}
+  .insights{margin-bottom:58px}
+  .hall-grid,.set-stats-grid,.collection-grid,.period-stats-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,82vw);grid-template-columns:none;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline proximity;padding-bottom:8px;margin-right:-18px;padding-right:18px}
+  .hall-card,.set-stat-card,.collection-card,.period-card{scroll-snap-align:start}
+  .insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ad-slot{margin-left:18px;margin-right:18px;margin-bottom:48px}
+  .museum{padding-bottom:58px}
+}
