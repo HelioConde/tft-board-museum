@@ -1,4 +1,4 @@
-const CACHE_NAME="tbm-shell-v2";
+const CACHE_NAME="tbm-shell-v3";
 const SHELL=[
   "./",
   "./index.html",
@@ -19,7 +19,8 @@ const SHELL=[
   "./img/tft-board-museum-image-pack/mascots/poro-trophy.png",
   "./img/tft-board-museum-image-pack/mascots/poro-books.png",
   "./img/tft-board-museum-image-pack/social/og-default.png",
-  "./img/tft-board-museum-image-pack/brand/app-icon-192.png"
+  "./img/tft-board-museum-image-pack/brand/app-icon-192.png",
+  "./img/tft-board-museum-image-pack/backgrounds/section-dark.png"
 ];
 
 self.addEventListener("install",event=>{
