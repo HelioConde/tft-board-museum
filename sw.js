@@ -1,4 +1,4 @@
-const CACHE_NAME="tbm-shell-v1";
+const CACHE_NAME="tbm-shell-v2";
 const SHELL=[
   "./",
   "./index.html",
@@ -10,7 +10,16 @@ const SHELL=[
   "./live-update.js",
   "./favicon.svg",
   "./manifest.webmanifest",
-  "./og-card.svg"
+  "./og-card.svg",
+  "./img/tft-board-museum-image-pack/backgrounds/hero-desktop.png",
+  "./img/tft-board-museum-image-pack/backgrounds/hero-mobile.png",
+  "./img/tft-board-museum-image-pack/backgrounds/card-board.png",
+  "./img/tft-board-museum-image-pack/mascots/poro-main.png",
+  "./img/tft-board-museum-image-pack/mascots/poro-explorer.png",
+  "./img/tft-board-museum-image-pack/mascots/poro-trophy.png",
+  "./img/tft-board-museum-image-pack/mascots/poro-books.png",
+  "./img/tft-board-museum-image-pack/social/og-default.png",
+  "./img/tft-board-museum-image-pack/brand/app-icon-192.png"
 ];
 
 self.addEventListener("install",event=>{
