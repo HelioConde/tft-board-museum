@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T18:16:25.383Z",
+  "generatedAt": "2026-10-06T18:18:13.065Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -192,7 +192,7 @@
       "tinyText": [],
       "counts": {
         "images": 14,
-        "brokenImages": 2,
+        "brokenImages": 0,
         "boardCards": 8,
         "skeletonCards": 0,
         "filters": 4,
@@ -329,26 +329,7 @@
           "loading": "lazy"
         }
       ],
-      "brokenImages": [
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-explorer.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        },
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-books.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        }
-      ],
+      "brokenImages": [],
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
@@ -606,7 +587,7 @@
       "tinyText": [],
       "counts": {
         "images": 8,
-        "brokenImages": 2,
+        "brokenImages": 0,
         "boardCards": 2,
         "skeletonCards": 0,
         "filters": 4,
@@ -689,26 +670,7 @@
           "loading": "lazy"
         }
       ],
-      "brokenImages": [
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-explorer.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        },
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-books.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        }
-      ],
+      "brokenImages": [],
       "metrics": {
         "heroTitleFontSize": 46,
         "bodyFontSize": 16,
@@ -905,7 +867,7 @@
       "tinyText": [],
       "counts": {
         "images": 287,
-        "brokenImages": 2,
+        "brokenImages": 0,
         "boardCards": 12,
         "skeletonCards": 0,
         "filters": 4,
@@ -3499,26 +3461,7 @@
           "loading": "lazy"
         }
       ],
-      "brokenImages": [
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-explorer.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        },
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-books.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        }
-      ],
+      "brokenImages": [],
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
@@ -3806,7 +3749,7 @@
       "tinyText": [],
       "counts": {
         "images": 49,
-        "brokenImages": 2,
+        "brokenImages": 0,
         "boardCards": 2,
         "skeletonCards": 0,
         "filters": 4,
@@ -4258,26 +4201,7 @@
           "loading": "lazy"
         }
       ],
-      "brokenImages": [
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-explorer.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        },
-        {
-          "src": "http://127.0.0.1:4173/img/tft-board-museum-image-pack/mascots/poro-books.png",
-          "complete": false,
-          "naturalWidth": 0,
-          "naturalHeight": 0,
-          "renderedWidth": 0,
-          "renderedHeight": 0,
-          "loading": "lazy"
-        }
-      ],
+      "brokenImages": [],
       "metrics": {
         "heroTitleFontSize": 46,
         "bodyFontSize": 16,

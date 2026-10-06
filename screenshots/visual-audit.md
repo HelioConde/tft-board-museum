@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T18:16:25.383Z
+Generated: 2026-10-06T18:18:13.065Z
 
 ## desktop-full.png
 
@@ -14,7 +14,7 @@ Generated: 2026-10-06T18:16:25.383Z
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 14
-- Broken images: 2
+- Broken images: 0
 
 ### Sections
 - .topbar: top 0px · 1220×88px
@@ -42,7 +42,7 @@ Generated: 2026-10-06T18:16:25.383Z
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 8
-- Broken images: 2
+- Broken images: 0
 
 ### Sections
 - .topbar: top 0px · 390×80px
@@ -70,7 +70,7 @@ Generated: 2026-10-06T18:16:25.383Z
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 287
-- Broken images: 2
+- Broken images: 0
 
 ### Sections
 - .topbar: top 0px · 1220×88px
@@ -98,7 +98,7 @@ Generated: 2026-10-06T18:16:25.383Z
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 49
-- Broken images: 2
+- Broken images: 0
 
 ### Sections
 - .topbar: top 0px · 390×80px
