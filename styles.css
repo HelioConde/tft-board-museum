@@ -239,3 +239,8 @@ footer small{font-size:11px}
   .trend-labels{inset:12px auto 12px 0}
   #recentEvolution{margin-bottom:44px}
 }
+
+/* Capture-driven profile readability */
+@media(max-width:680px){
+  .profile-kpis span{font-size:11px}
+}
