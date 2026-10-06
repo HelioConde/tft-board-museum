@@ -65,7 +65,7 @@ async function loadStaticData(){
 }
 
 function itemImages(ids){
- return (ids||[]).slice(0,3).map(function(id){var e=staticEntry(staticData&&staticData.items,id),src=assetUrl("item",e);return src?'<img src="'+src+'" title="'+escapeHtml((e&&e.name)||cleanEntityName(id))+'" alt="">':""}).join("");
+ return (ids||[]).slice(0,3).map(function(id){var e=staticEntry(staticData&&staticData.items,id),src=assetUrl("item",e);return src?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+src+'" title="'+escapeHtml((e&&e.name)||cleanEntityName(id))+'" alt="">':""}).join("");
 }
 function localizedTraitName(rawName){
  var entry=rawName?staticEntry(staticData&&staticData.traits,rawName):null;
@@ -90,14 +90,14 @@ function traitHtml(board){
 }
 function augmentHtml(board){
  if(!board.augments||!board.augments.length)return '<span class="trait">—</span>';
- return '<div class="augment-row">'+board.augments.map(function(id){var e=staticEntry(staticData&&staticData.augments,id),src=assetUrl("augment",e),name=(e&&e.name)||cleanEntityName(id);return '<span class="augment-card">'+(src?'<img src="'+src+'" alt="">':"")+'<span>'+escapeHtml(name)+'</span></span>'}).join("")+'</div>';
+ return '<div class="augment-row">'+board.augments.map(function(id){var e=staticEntry(staticData&&staticData.augments,id),src=assetUrl("augment",e),name=(e&&e.name)||cleanEntityName(id);return '<span class="augment-card">'+(src?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+src+'" alt="">':"")+'<span>'+escapeHtml(name)+'</span></span>'}).join("")+'</div>';
 }
 function miniBoard(board){
  var map=new Map(board.units.map(function(u){return [u[2],{name:u[0],stars:u[1],items:u[3]||[],rawId:u[4]||u[0],rarity:u[5]}]}));
  var cells=Array.from({length:28},function(_,slot){
   var u=map.get(slot);if(!u)return '<div class="hex"></div>';
   var entry=staticEntry(staticData&&staticData.champions,u.rawId),image=assetUrl("champion",entry),cost=rarityCost(u.rarity);
-  return '<div class="hex unit" title="'+escapeHtml(u.name)+'"><span class="unit-dot cost-ring cost-'+cost+'">'+(image?'<img src="'+image+'" alt="" onerror="this.remove()">':initials(u.name))+'<span class="star-row">'+starText(u.stars)+'</span></span><span class="hex-items">'+itemImages(u.items)+'</span></div>';
+  return '<div class="hex unit" title="'+escapeHtml(u.name)+'"><span class="unit-dot cost-ring cost-'+cost+'">'+(image?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+image+'" alt="" onerror="this.remove()">':initials(u.name))+'<span class="star-row">'+starText(u.stars)+'</span></span><span class="hex-items">'+itemImages(u.items)+'</span></div>';
  }).join("");
  return '<div class="mini-board">'+cells+'</div>';
 }
@@ -150,7 +150,7 @@ function bindCards(){
  document.querySelectorAll("[data-fav]").forEach(function(btn){btn.addEventListener("click",function(e){e.stopPropagation();var id=btn.dataset.fav;if(favorites.has(id))favorites.delete(id);else favorites.add(id);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));queueCloudStateSave();render()})});
 }
 function unitListHtml(b){
- return b.units.map(function(u){var e=staticEntry(staticData&&staticData.champions,u[4]||u[0]),image=assetUrl("champion",e),cost=rarityCost(u[5]);return '<span class="unit-chip cost-'+cost+'">'+(image?'<img src="'+image+'" alt="">':"")+'<span>'+escapeHtml(u[0])+' · '+u[1]+'★</span><span class="item-icons">'+itemImages(u[3])+'</span></span>'}).join("");
+ return b.units.map(function(u){var e=staticEntry(staticData&&staticData.champions,u[4]||u[0]),image=assetUrl("champion",e),cost=rarityCost(u[5]);return '<span class="unit-chip cost-'+cost+'">'+(image?'<img loading="lazy" decoding="async" fetchpriority="low" src="'+image+'" alt="">':"")+'<span>'+escapeHtml(u[0])+' · '+u[1]+'★</span><span class="item-icons">'+itemImages(u[3])+'</span></span>'}).join("");
 }
 function updateBoardUrl(id){var url=new URL(location.href);if(id)url.searchParams.set("board",id);else url.searchParams.delete("board");history.replaceState({},"",url)}
 function boardShareUrl(id){var url=new URL(location.href);if(loadedRiotId){url.searchParams.set("riot",loadedRiotId);url.searchParams.set("region",loadedPlatform)}url.searchParams.set("board",id);return url.toString()}
