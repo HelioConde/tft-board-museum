@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check JavaScript syntax
-        run: node --check app.js && node --check live-update.js
+        run: node --check app.js && node --check live-update.js && node --check museum-cloud.js && node --check ads-config.js && node --check ads-consent.js
       - name: Check required production files
         shell: bash
         run: |
@@ -29,6 +29,9 @@ jobs:
           test -f about.html
           test -f contact.html
           test -f manifest.webmanifest
+          test -f museum-cloud.js
+          test -f ads-config.js
+          test -f ads-consent.js
       - name: Guard against private Riot keys in frontend
         shell: bash
         run: |
