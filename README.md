@@ -13,6 +13,7 @@ GitHub Pages: https://helioconde.github.io/tft-board-museum/
 - histórico oficial via backend, sem expor RIOT_API_KEY;
 - paginação de até 100 partidas recentes;
 - boards visuais com champions, estrelas, custo/raridade e itens;
+- nomes de traits/composições localizados em PT-BR pelo Data Dragon, com inglês separado;
 - traits com ícones e augments;
 - filtros por Set, patch, resultado, favoritos e busca textual;
 - ordenação por data, colocação e ouro;
@@ -30,7 +31,9 @@ GitHub Pages: https://helioconde.github.io/tft-board-museum/
 - espaços reservados para anúncios;
 - atualização automática de versão;
 - SEO básico, sitemap, robots, manifest, favicon e páginas legais;
-- QA no GitHub Actions.
+- QA no GitHub Actions;
+- E2E Playwright e screenshots automáticos desktop/mobile;
+- atualização automática opcional do histórico a cada 6 horas para perfis autenticados.
 
 ## Regra de posicionamento
 
