@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T16:49:12.645Z
+Generated: 2026-10-06T16:51:08.143Z
 
 ## desktop-full.png
 
@@ -34,7 +34,7 @@ Generated: 2026-10-06T16:49:12.645Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×5431 (6.43 viewports tall)
+- Page: 390×5326 (6.31 viewports tall)
 - Boards rendered: 3
 - Overflow elements: 0
 - Horizontal scrollers: 4
@@ -45,17 +45,17 @@ Generated: 2026-10-06T16:49:12.645Z
 
 ### Sections
 - .topbar: top 0px · 390×78px
-- .hero: top 106px · 390×805px
+- .hero: top 106px · 390×741px
 - #profilePanel: top 0px · 0×0px
-- .ad-slot: top 951px · 354×82px
-- #museum: top 1081px · 390×1913px
-- .stats: top 2994px · 354×235px
-- #insights: top 3289px · 390×315px
-- #recentEvolution: top 3662px · 390×521px
-- #hallOfFame: top 4237px · 390×236px
-- #setHistory: top 4531px · 390×663px
+- .ad-slot: top 887px · 354×82px
+- #museum: top 1017px · 390×1913px
+- .stats: top 2930px · 354×235px
+- #insights: top 3225px · 390×315px
+- #recentEvolution: top 3598px · 390×490px
+- #hallOfFame: top 4132px · 390×236px
+- #setHistory: top 4426px · 390×663px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 5252px · 354×179px
+- footer: top 5147px · 354×179px
 
 ### Tiny text
 - 10px: AD
@@ -92,7 +92,7 @@ Generated: 2026-10-06T16:49:12.645Z
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×5868 (6.95 viewports tall)
+- Page: 390×5763 (6.83 viewports tall)
 - Boards rendered: 3
 - Overflow elements: 0
 - Horizontal scrollers: 6
@@ -103,17 +103,17 @@ Generated: 2026-10-06T16:49:12.645Z
 
 ### Sections
 - .topbar: top 0px · 390×78px
-- .hero: top 106px · 390×819px
-- #profilePanel: top 965px · 354×237px
-- .ad-slot: top 1236px · 354×82px
-- #museum: top 1366px · 390×2076px
-- .stats: top 3442px · 354×235px
-- #insights: top 3737px · 390×386px
-- #recentEvolution: top 4181px · 390×521px
-- #hallOfFame: top 4756px · 390×236px
-- #setHistory: top 5050px · 390×582px
-- #cloudCollections: top 1380px · 0×0px
-- footer: top 5689px · 354×179px
+- .hero: top 106px · 390×755px
+- #profilePanel: top 901px · 354×237px
+- .ad-slot: top 1172px · 354×82px
+- #museum: top 1302px · 390×2076px
+- .stats: top 3378px · 354×235px
+- #insights: top 3673px · 390×386px
+- #recentEvolution: top 4117px · 390×490px
+- #hallOfFame: top 4651px · 390×236px
+- #setHistory: top 4945px · 390×582px
+- #cloudCollections: top 1316px · 0×0px
+- footer: top 5584px · 354×179px
 
 ### Tiny text
 - 10px: Colocação média
