@@ -117,13 +117,20 @@ function visibleBoards(){
  list.sort(function(a,b){if(sortMode==="best")return a.placement-b.placement;if(sortMode==="worst")return b.placement-a.placement;if(sortMode==="gold")return b.gold-a.gold;return (b.playedAt||0)-(a.playedAt||0)});
  return list;
 }
+function placementIconSrc(place){
+ var n=Math.max(1,Math.min(8,Number(place)||8));
+ return "./img/icons/placements/item_"+String(n).padStart(2,"0")+".png"
+}
+function placementBadgeHtml(place){
+ return '<span class="placement '+(Number(place)===1?"win":"")+'"><img src="'+placementIconSrc(place)+'" alt="" loading="lazy" decoding="async"><b>'+placementLabel(place)+'</b></span>'
+}
 function render(){
  var allData=visibleBoards(),data=allData.slice(0,visibleLimit);grid.classList.toggle("compact",view==="compact");
  grid.innerHTML=data.map(function(board){
   return '<article class="board-card" data-id="'+escapeHtml(board.id)+'" tabindex="0">'+
   '<button class="favorite-btn '+(favorites.has(board.id)?"active":"")+'" data-fav="'+escapeHtml(board.id)+'" title="'+(favorites.has(board.id)?t("unfavorite"):t("favorite"))+'">★</button>'+
   '<button class="compare-toggle '+(compareSelection.includes(board.id)?"active":"")+'" data-compare="'+escapeHtml(board.id)+'">'+(compareSelection.includes(board.id)?"✓":"＋")+'</button>'+
-  '<div class="board-card-top"><span class="placement '+(board.placement===1?"win":"")+'">'+placementLabel(board.placement)+'</span>'+miniBoard(board)+'</div>'+
+  '<div class="board-card-top">'+placementBadgeHtml(board.placement)+miniBoard(board)+'</div>'+
   '<div class="board-meta"><h3>'+escapeHtml(boardDisplayTitle(board))+'</h3><p>Set '+escapeHtml(board.set)+' · '+escapeHtml(board.date)+' <span class="source-badge '+(board.real?"real":"demo")+'">'+(board.real?t("officialSource"):t("demoSource"))+'</span>'+(board.real?'<span class="source-badge '+(board.hasTelemetry?"real":"demo")+'">'+(board.hasTelemetry?t("recordedPosition"):t("visualPosition"))+'</span>':"")+'</p><div class="trait-row">'+traitHtml(board)+'</div>'+
   '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+escapeHtml(board.patch)+'</span></div></div></article>';
  }).join("");
