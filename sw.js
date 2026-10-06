@@ -20,7 +20,11 @@ const SHELL=[
   "./img/tft-board-museum-image-pack/mascots/poro-books.png",
   "./img/tft-board-museum-image-pack/social/og-default.png",
   "./img/tft-board-museum-image-pack/brand/app-icon-192.png",
-  "./img/tft-board-museum-image-pack/backgrounds/section-dark.png"
+  "./img/tft-board-museum-image-pack/backgrounds/section-dark.png",
+  "./img/tft-board-museum-image-pack/cards/hover-overlay.png",
+  "./img/tft-board-museum-image-pack/cards/image-placeholder.png",
+  "./img/tft-board-museum-image-pack/cards/skeleton-loading.png",
+  "./img/tft-board-museum-image-pack/icons/set-icon.png"
 ];
 
 self.addEventListener("install",event=>{
