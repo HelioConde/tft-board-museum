@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T15:42:33.417Z",
+  "generatedAt": "2026-10-06T15:57:35.871Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,8 +12,27 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 2933,
-      "title": "TFT Board Museum"
+      "height": 3932,
+      "viewportWidth": 1440,
+      "title": "TFT Board Museum",
+      "overflow": [
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient a",
+          "left": 1040,
+          "right": 1560,
+          "width": 520
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient b",
+          "left": -220,
+          "right": 240,
+          "width": 460
+        }
+      ]
     },
     {
       "name": "mobile-full.png",
@@ -22,9 +41,36 @@
         "width": 390,
         "height": 844
       },
-      "width": 394,
-      "height": 6155,
-      "title": "TFT Board Museum"
+      "width": 390,
+      "height": 7808,
+      "viewportWidth": 390,
+      "title": "TFT Board Museum",
+      "overflow": [
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient a",
+          "left": -10,
+          "right": 510,
+          "width": 520
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient b",
+          "left": -220,
+          "right": 240,
+          "width": 460
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "display-card card-c",
+          "left": 219,
+          "right": 394,
+          "width": 176
+        }
+      ]
     },
     {
       "name": "alchemyflames-desktop-full.png",
@@ -34,8 +80,27 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4862,
-      "title": "TFT Board Museum"
+      "height": 5739,
+      "viewportWidth": 1440,
+      "title": "TFT Board Museum",
+      "overflow": [
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient a",
+          "left": 1040,
+          "right": 1560,
+          "width": 520
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient b",
+          "left": -220,
+          "right": 240,
+          "width": 460
+        }
+      ]
     },
     {
       "name": "alchemyflames-mobile-full.png",
@@ -44,9 +109,36 @@
         "width": 390,
         "height": 844
       },
-      "width": 394,
-      "height": 12319,
-      "title": "TFT Board Museum"
+      "width": 390,
+      "height": 14275,
+      "viewportWidth": 390,
+      "title": "TFT Board Museum",
+      "overflow": [
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient a",
+          "left": -10,
+          "right": 510,
+          "width": 520
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "ambient b",
+          "left": -220,
+          "right": 240,
+          "width": 460
+        },
+        {
+          "tag": "div",
+          "id": "",
+          "className": "display-card card-c",
+          "left": 219,
+          "right": 394,
+          "width": 176
+        }
+      ]
     }
   ]
 }
