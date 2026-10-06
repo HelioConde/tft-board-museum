@@ -25,6 +25,7 @@
     <a class="ghost nav-link" href="./about.html" data-i18n="about">Sobre</a>
     <button id="langToggle" class="ghost" type="button">EN</button>
     <button id="favoritesTop" class="ghost" type="button" data-i18n="favorites">Favoritos</button>
+    <button id="accountBtn" class="ghost account-btn" type="button">Entrar</button>
   </nav>
 </header>
 
@@ -55,6 +56,7 @@
     <div><span data-i18n="winRate">Vitórias</span><strong id="profileWin">—</strong></div>
     <div><span data-i18n="games">Partidas</span><strong id="profileGames">—</strong></div>
   </div>
+  <button id="shareProfileBtn" class="ghost profile-share" type="button">Compartilhar perfil</button>
 </section>
 
 <section class="ad-slot" aria-label="Espaço reservado para anúncio"><b>AD</b><span data-i18n="adReserved">Espaço reservado para anúncio</span></section>
@@ -97,10 +99,56 @@
   <div class="section-head"><div><span class="eyebrow" data-i18n="identity">IDENTIDADE DE JOGO</span><h2 data-i18n="museumInsights">O que seu museu revela</h2></div></div>
   <div id="insightGrid" class="insight-grid"></div>
 </section>
+
+<section id="hallOfFame" class="insights">
+  <div class="section-head"><div><span class="eyebrow">HALL DA FAMA</span><h2>Momentos preservados</h2></div></div>
+  <div id="hallGrid" class="hall-grid"></div>
+</section>
+
+<section id="setHistory" class="insights">
+  <div class="section-head"><div><span class="eyebrow">HISTÓRICO POR SET</span><h2>Evolução da coleção</h2></div></div>
+  <div id="setStatsGrid" class="set-stats-grid"></div>
+</section>
+
+<section id="cloudCollections" class="insights hidden">
+  <div class="section-head">
+    <div><span class="eyebrow">COLEÇÕES</span><h2>Suas exposições salvas</h2></div>
+    <button id="newCollectionBtn" class="ghost" type="button">Nova coleção</button>
+  </div>
+  <div id="collectionGrid" class="collection-grid"></div>
+</section>
 </main>
 
 <dialog id="boardDialog"><button id="closeDialog" class="dialog-close" aria-label="Fechar">×</button><div id="dialogContent"></div></dialog>
 <dialog id="compareDialog"><button id="closeCompare" class="dialog-close" aria-label="Fechar">×</button><div id="compareContent"></div></dialog>
+<dialog id="authDialog">
+  <button id="closeAuth" class="dialog-close" aria-label="Fechar">×</button>
+  <div class="auth-dialog">
+    <span class="eyebrow">SINCRONIZAÇÃO</span>
+    <h2>Leve seu museu para outros dispositivos.</h2>
+    <p id="authCopy">Entre por e-mail para sincronizar favoritos, notas e coleções.</p>
+    <form id="authForm">
+      <input id="authEmail" type="email" autocomplete="email" placeholder="seu@email.com" required>
+      <button class="primary" type="submit">Enviar link de acesso</button>
+    </form>
+    <button id="signOutBtn" class="ghost hidden" type="button">Sair da conta</button>
+    <p id="authStatus" class="dialog-status" aria-live="polite"></p>
+  </div>
+</dialog>
+<dialog id="collectionDialog">
+  <button id="closeCollection" class="dialog-close" aria-label="Fechar">×</button>
+  <div class="auth-dialog">
+    <span class="eyebrow">COLEÇÕES</span>
+    <h2 id="collectionDialogTitle">Adicionar board</h2>
+    <div id="collectionChoices" class="collection-choices"></div>
+    <form id="collectionForm" class="collection-form">
+      <input id="collectionName" maxlength="80" placeholder="Nome da coleção" required>
+      <textarea id="collectionDescription" maxlength="500" placeholder="Descrição opcional"></textarea>
+      <button class="primary" type="submit">Criar coleção</button>
+    </form>
+    <p id="collectionStatusMessage" class="dialog-status" aria-live="polite"></p>
+  </div>
+</dialog>
 
 <div id="updateToast" class="update-toast hidden"><span data-i18n="newVersion">Nova versão disponível.</span><button id="reloadBtn" data-i18n="update">Atualizar</button></div>
 
@@ -109,5 +157,5 @@
   <nav><a href="./about.html" data-i18n="about">Sobre</a><a href="./privacy.html" data-i18n="privacy">Privacidade</a><a href="./terms.html" data-i18n="terms">Termos</a><a href="./contact.html" data-i18n="contact">Contato</a></nav>
 </footer>
 
-<script src="./app.js" defer></script><script src="./live-update.js" defer></script>
+<script src="./app.js" defer></script><script type="module" src="./museum-cloud.js"></script><script src="./live-update.js" defer></script>
 </body></html>
