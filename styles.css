@@ -292,3 +292,13 @@ footer small{font-size:11px}
     margin-top:5px;
   }
 }
+
+/* Capture-driven identity insights compaction */
+@media(max-width:680px){
+  #insights .section-head h2{font-size:27px}
+  #insights .insight-grid{gap:8px;margin-top:14px}
+  #insights .insight-card{padding:12px;border-radius:13px;min-width:0}
+  #insights .insight-card span{font-size:11px;line-height:1.15}
+  #insights .insight-card strong{font-size:18px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #insights .insight-card small{font-size:11px;margin-top:3px;line-height:1.25}
+}
