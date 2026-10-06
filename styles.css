@@ -385,3 +385,11 @@ footer small{font-size:11px}
 @media(max-width:680px){
   .placement-inline img{width:22px;height:22px}
 }
+
+/* Capture-driven hero density after image-pack integration */
+@media(max-width:680px){
+  .hero{padding-top:18px;padding-bottom:18px;gap:12px}
+  .hero-art{height:140px}
+  .riot-search{margin-top:16px}
+  .hero-mascot{width:74px}
+}
