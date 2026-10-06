@@ -19,7 +19,8 @@ var API_BASE="https://bieihhaobdztjyoweewa.supabase.co/functions/v1";
 var lang=localStorage.getItem("tbm-lang")||"pt";
 var activeFilter="all",activeSet="all",view="grid",sortMode="newest",searchTerm="",patchValue="all",collectionSearchTerm="";
 var favorites=new Set(JSON.parse(localStorage.getItem("tbm-favorites")||"[]"));
-var compareSelection=[],staticData=null,loadedRiotId="",loadedPlatform="br1",nextStart=0,pageSize=20,hasMore=false,visibleLimit=48;
+function defaultVisibleLimit(){return window.matchMedia("(max-width: 680px)").matches?4:16}
+var compareSelection=[],staticData=null,loadedRiotId="",loadedPlatform="br1",nextStart=0,pageSize=20,hasMore=false,visibleLimit=defaultVisibleLimit();
 var grid=document.querySelector("#boardGrid"),dialog=document.querySelector("#boardDialog"),setFilter=document.querySelector("#setFilter");
 
 function t(key){return copy[lang][key]||key}
@@ -127,7 +128,7 @@ function render(){
   '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+escapeHtml(board.patch)+'</span></div></div></article>';
  }).join("");
  document.querySelector("#emptyState").classList.toggle("hidden",allData.length>0);
- var reveal=document.querySelector("#revealMoreBtn");if(reveal){reveal.classList.toggle("hidden",allData.length<=visibleLimit);reveal.textContent="Mostrar mais no museu ("+Math.min(48,Math.max(0,allData.length-visibleLimit))+")"}
+ var reveal=document.querySelector("#revealMoreBtn");if(reveal){reveal.classList.toggle("hidden",allData.length<=visibleLimit);reveal.textContent="Mostrar mais no museu ("+Math.min(defaultVisibleLimit(),Math.max(0,allData.length-visibleLimit))+")"}
  bindCards();
 }
 function bindCards(){
@@ -386,10 +387,10 @@ function renderTimeline(){
  }
  el.innerHTML=setButtons+patchButtons;
  el.querySelectorAll("[data-timeline]").forEach(function(btn){btn.addEventListener("click",function(){
-  activeSet=btn.dataset.timeline;setFilter.value="all";patchValue="all";document.querySelector("#patchFilter").value="all";visibleLimit=48;syncMuseumUrlState();renderTimeline();render();
+  activeSet=btn.dataset.timeline;setFilter.value="all";patchValue="all";document.querySelector("#patchFilter").value="all";visibleLimit=defaultVisibleLimit();syncMuseumUrlState();renderTimeline();render();
  })});
  el.querySelectorAll("[data-timeline-patch]").forEach(function(btn){btn.addEventListener("click",function(){
-  patchValue=btn.dataset.timelinePatch;document.querySelector("#patchFilter").value=patchValue;visibleLimit=48;syncMuseumUrlState();renderTimeline();render();
+  patchValue=btn.dataset.timelinePatch;document.querySelector("#patchFilter").value=patchValue;visibleLimit=defaultVisibleLimit();syncMuseumUrlState();renderTimeline();render();
  })});
 }
 function updateCompareBar(){var hint=document.querySelector("#compareHint"),btn=document.querySelector("#compareBtn");if(hint)hint.textContent=compareSelection.length+" / 2 "+t("selected");if(btn)btn.disabled=compareSelection.length!==2}
@@ -531,19 +532,19 @@ function hydrateFromUrl(){
 
 document.querySelector("#closeDialog").addEventListener("click",closeBoard);dialog.addEventListener("click",function(e){if(e.target===dialog)closeBoard()});
 document.querySelector("#langToggle").addEventListener("click",function(){lang=lang==="pt"?"en":"pt";localStorage.setItem("tbm-lang",lang);applyLanguage()});
-document.querySelectorAll(".filter").forEach(function(btn){btn.addEventListener("click",function(){activeFilter=btn.dataset.filter;visibleLimit=48;document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
+document.querySelectorAll(".filter").forEach(function(btn){btn.addEventListener("click",function(){activeFilter=btn.dataset.filter;visibleLimit=defaultVisibleLimit();document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
 document.querySelector("#favoritesTop").addEventListener("click",function(){document.querySelector('[data-filter="favorite"]').click();document.querySelector("#museum").scrollIntoView({behavior:"smooth"})});
-setFilter.addEventListener("change",function(){activeSet="all";renderTimeline();visibleLimit=48;syncMuseumUrlState();render()});
-document.querySelector("#patchFilter").addEventListener("change",function(e){patchValue=e.target.value;visibleLimit=48;syncMuseumUrlState();render()});
-document.querySelector("#sortFilter").addEventListener("change",function(e){sortMode=e.target.value;visibleLimit=48;syncMuseumUrlState();render()});
-document.querySelector("#museumSearch").addEventListener("input",function(e){searchTerm=e.target.value.trim();visibleLimit=48;syncMuseumUrlState();render()});
+setFilter.addEventListener("change",function(){activeSet="all";renderTimeline();visibleLimit=defaultVisibleLimit();syncMuseumUrlState();render()});
+document.querySelector("#patchFilter").addEventListener("change",function(e){patchValue=e.target.value;visibleLimit=defaultVisibleLimit();syncMuseumUrlState();render()});
+document.querySelector("#sortFilter").addEventListener("change",function(e){sortMode=e.target.value;visibleLimit=defaultVisibleLimit();syncMuseumUrlState();render()});
+document.querySelector("#museumSearch").addEventListener("input",function(e){searchTerm=e.target.value.trim();visibleLimit=defaultVisibleLimit();syncMuseumUrlState();render()});
 document.querySelectorAll("[data-view]").forEach(function(btn){btn.addEventListener("click",function(){view=btn.dataset.view;document.querySelectorAll("[data-view]").forEach(function(x){x.classList.toggle("active",x===btn)});syncMuseumUrlState();render()})});
 document.querySelector("#riotForm").addEventListener("submit",async function(e){
  e.preventDefault();var value=document.querySelector("#riotId").value.trim(),platform=document.querySelector("#region").value,button=document.querySelector("#openMuseumBtn");if(!value)return;button.disabled=true;button.textContent=t("loading");setMuseumLoading(true);document.querySelector("#museum").scrollIntoView({behavior:"smooth"});
  try{var results=await Promise.allSettled([loadRiotHistory(value,platform),loadPlayerProfile(value,platform)]);if(results[0].status==="rejected")throw results[0].reason;updateShareUrl(value,platform);maybeOpenBoardFromUrl()}catch(err){boards=demoBoards.slice();var message=friendlyError(err);document.querySelector("#collectionStatus").textContent=message;document.querySelector(".demo-note span").textContent=message;renderAll()}finally{setMuseumLoading(false);button.disabled=false;button.textContent=t("openMuseum")}
 });
 document.querySelector("#compareBtn").addEventListener("click",compareBoards);document.querySelector("#loadMoreBtn").addEventListener("click",loadMoreHistory);
-document.querySelector("#revealMoreBtn").addEventListener("click",function(){visibleLimit+=48;render()});
+document.querySelector("#revealMoreBtn").addEventListener("click",function(){visibleLimit+=defaultVisibleLimit();render()});
 document.querySelector("#closeCompare").addEventListener("click",function(){document.querySelector("#compareDialog").close()});document.querySelector("#compareDialog").addEventListener("click",function(e){if(e.target.id==="compareDialog")e.target.close()});
 document.querySelector("#shareProfileBtn").addEventListener("click",shareProfile);
 document.querySelector("#autoSnapshotBtn").addEventListener("click",async function(){
