@@ -17,7 +17,7 @@ en:{eyebrow:"Your history, transformed into a collection",heroTitle:"Every board
 
 var API_BASE="https://bieihhaobdztjyoweewa.supabase.co/functions/v1";
 var lang=localStorage.getItem("tbm-lang")||"pt";
-var activeFilter="all",activeSet="all",view="grid",sortMode="newest",searchTerm="",patchValue="all";
+var activeFilter="all",activeSet="all",view="grid",sortMode="newest",searchTerm="",patchValue="all",collectionSearchTerm="";
 var favorites=new Set(JSON.parse(localStorage.getItem("tbm-favorites")||"[]"));
 var compareSelection=[],staticData=null,loadedRiotId="",loadedPlatform="br1",nextStart=0,pageSize=20,hasMore=false;
 var grid=document.querySelector("#boardGrid"),dialog=document.querySelector("#boardDialog"),setFilter=document.querySelector("#setFilter");
@@ -241,6 +241,31 @@ function renderInsights(){
  '<article class="insight-card"><span>'+t("threeStars")+'</span><strong>'+three+'</strong><small>3★</small></article>'+
  '<article class="insight-card"><span>'+t("setsPlayed")+'</span><strong>'+sets.size+'</strong><small>'+Array.from(sets).sort(function(a,b){return Number(b)-Number(a)}).map(function(x){return "Set "+x}).join(" · ")+'</small></article>';
 }
+function renderRecentEvolution(){
+ var el=document.querySelector("#evolutionGrid");if(!el||!boards.length)return;
+ var ordered=boards.slice().sort(function(a,b){return Number(b.playedAt||0)-Number(a.playedAt||0)});
+ var recent=ordered.slice(0,10),previous=ordered.slice(10,20);
+ function metrics(list){
+  if(!list.length)return {avg:null,top4:0,wins:0,gold:0};
+  return {
+   avg:list.reduce(function(s,b){return s+Number(b.placement||8)},0)/list.length,
+   top4:Math.round(list.filter(function(b){return Number(b.placement)<=4}).length/list.length*100),
+   wins:list.filter(function(b){return Number(b.placement)===1}).length,
+   gold:Math.round(list.reduce(function(s,b){return s+Number(b.gold||0)},0)/list.length)
+  }
+ }
+ var a=metrics(recent),b=metrics(previous),hasPrevious=previous.length>0;
+ function delta(current,old,inverse){
+  if(!hasPrevious||old==null||current==null)return {text:"—",className:"neutral"};
+  var d=current-old,better=inverse?d<0:d>0;
+  return {text:(d>0?"+":"")+d.toFixed(1),className:Math.abs(d)<0.05?"neutral":(better?"positive":"negative")}
+ }
+ var avgDelta=delta(a.avg,b.avg,true),topDelta=delta(a.top4,b.top4,false),winDelta=delta(a.wins,b.wins,false),goldDelta=delta(a.gold,b.gold,false);
+ el.innerHTML='<article class="evolution-card"><span>Colocação média</span><strong>'+(a.avg!=null?a.avg.toFixed(2):"—")+'</strong><small class="'+avgDelta.className+'">'+avgDelta.text+(hasPrevious?" vs. bloco anterior":"")+'</small></article>'+
+ '<article class="evolution-card"><span>Top 4</span><strong>'+a.top4+'%</strong><small class="'+topDelta.className+'">'+topDelta.text+(hasPrevious?" p.p.":"")+'</small></article>'+
+ '<article class="evolution-card"><span>Vitórias</span><strong>'+a.wins+'</strong><small class="'+winDelta.className+'">'+winDelta.text+(hasPrevious?" partidas":"")+'</small></article>'+
+ '<article class="evolution-card"><span>Ouro médio final</span><strong>'+a.gold+'g</strong><small class="'+goldDelta.className+'">'+goldDelta.text+(hasPrevious?"g":"")+'</small></article>'
+}
 function renderHallOfFame(){
  var el=document.querySelector("#hallGrid");if(!el||!boards.length)return;
  var best=boards.slice().sort(function(a,b){return a.placement-b.placement||b.damage-a.damage})[0];
@@ -289,8 +314,10 @@ async function renderCloudCollections(){
  if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn()){section.classList.add("hidden");return}
  section.classList.remove("hidden");
  try{
-  var list=await window.MuseumCloud.listCollections();
-  grid.innerHTML=list.length?list.map(function(x){return '<article class="collection-card" data-collection-card="'+escapeHtml(x.id)+'"><div><span class="eyebrow">'+(x.is_public?"PÚBLICA":"COLEÇÃO")+'</span><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.description||"")+'</p><div class="collection-actions"><button type="button" data-col-rename="'+escapeHtml(x.id)+'">Editar</button><button type="button" data-col-public="'+escapeHtml(x.id)+'">'+(x.is_public?"Tornar privada":"Tornar pública")+'</button>'+(x.is_public?'<button type="button" data-col-share="'+escapeHtml(x.id)+'">Copiar link público</button>':"")+'<button type="button" data-col-delete="'+escapeHtml(x.id)+'">Excluir</button></div></div><strong>'+((x.board_ids||[]).length)+' boards</strong></article>'}).join(""):'<div class="empty">Crie sua primeira coleção.</div>';
+  var list=await window.MuseumCloud.listCollections(),query=collectionSearchTerm.toLowerCase();
+  var visible=list.filter(function(x){return !query||[x.name,x.description].join(" ").toLowerCase().includes(query)});
+  var count=document.querySelector("#collectionCount");if(count)count.textContent=visible.length+" / "+list.length;
+  grid.innerHTML=visible.length?visible.map(function(x){return '<article class="collection-card" data-collection-card="'+escapeHtml(x.id)+'"><div><span class="eyebrow">'+(x.is_public?"PÚBLICA":"COLEÇÃO")+'</span><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.description||"")+'</p><div class="collection-actions"><button type="button" data-col-rename="'+escapeHtml(x.id)+'">Editar</button><button type="button" data-col-public="'+escapeHtml(x.id)+'">'+(x.is_public?"Tornar privada":"Tornar pública")+'</button>'+(x.is_public?'<button type="button" data-col-share="'+escapeHtml(x.id)+'">Copiar link público</button>':"")+'<button type="button" data-col-delete="'+escapeHtml(x.id)+'">Excluir</button></div></div><strong>'+((x.board_ids||[]).length)+' boards</strong></article>'}).join(""):'<div class="empty">'+(list.length?"Nenhuma coleção encontrada.":"Crie sua primeira coleção.")+'</div>';
   grid.querySelectorAll("[data-col-rename]").forEach(function(btn){btn.addEventListener("click",async function(){var item=list.find(function(x){return x.id===btn.dataset.colRename});if(!item)return;var name=prompt("Nome da coleção",item.name);if(!name||!name.trim())return;var description=prompt("Descrição da coleção",item.description||"");if(description===null)return;try{await window.MuseumCloud.updateCollection(item.id,{name:name,description:description});renderCloudCollections()}catch(err){alert(String(err.message||err))}})});
   grid.querySelectorAll("[data-col-public]").forEach(function(btn){btn.addEventListener("click",async function(){var item=list.find(function(x){return x.id===btn.dataset.colPublic});if(!item)return;try{await window.MuseumCloud.updateCollection(item.id,{is_public:!item.is_public});renderCloudCollections()}catch(err){alert(String(err.message||err))}})});
   grid.querySelectorAll("[data-col-share]").forEach(function(btn){btn.addEventListener("click",async function(){var item=list.find(function(x){return x.id===btn.dataset.colShare});if(!item||!loadedRiotId)return;try{var boardPayload=boards.map(function(b){return Object.assign({},b,{displayTitle:boardDisplayTitle(b)})});var url=await window.MuseumCloud.createPublicShare({kind:"collection",riotId:loadedRiotId,region:loadedPlatform,collection:item,boards:boardPayload});await navigator.clipboard.writeText(url);btn.textContent="Link copiado"}catch(err){alert(String(err.message||err))}})});
@@ -368,7 +395,7 @@ function compareBoards(){
  compareSection(t("augments"),intersect(aa,ba),difference(aa,ba),difference(ba,aa))+'</div>';
  document.querySelector("#compareDialog").showModal();
 }
-function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();renderHallOfFame();renderSetStats();renderPeriodStats();render();renderCloudCollections();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
+function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();renderRecentEvolution();renderHallOfFame();renderSetStats();renderPeriodStats();render();renderCloudCollections();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
 function applyLanguage(){
  document.documentElement.lang=lang==="pt"?"pt-BR":"en";document.querySelectorAll("[data-i18n]").forEach(function(el){var key=el.dataset.i18n;if(copy[lang][key])el.textContent=copy[lang][key]});document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){el.placeholder=t(el.dataset.i18nPlaceholder)});document.querySelector("#langToggle").textContent=lang==="pt"?"EN":"PT";renderAll();
 }
@@ -469,6 +496,7 @@ document.querySelector("#accountBtn").addEventListener("click",function(){docume
 document.querySelector("#closeAuth").addEventListener("click",function(){document.querySelector("#authDialog").close()});
 document.querySelector("#closeCollection").addEventListener("click",function(){document.querySelector("#collectionDialog").close()});
 document.querySelector("#newCollectionBtn").addEventListener("click",function(){openCollectionPicker("")});
+var collectionSearch=document.querySelector("#collectionSearch");if(collectionSearch)collectionSearch.addEventListener("input",function(e){collectionSearchTerm=e.target.value.trim();renderCloudCollections()});
 document.querySelector("#authForm").addEventListener("submit",async function(e){
  e.preventDefault();var email=document.querySelector("#authEmail").value.trim(),status=document.querySelector("#authStatus");if(!email||!window.MuseumCloud)return;
  status.textContent="Enviando…";try{await window.MuseumCloud.signIn(email);status.textContent="Confira seu e-mail para entrar no Museum."}catch(err){status.textContent=String(err.message||err)}
