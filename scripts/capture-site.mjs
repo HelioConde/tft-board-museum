@@ -231,7 +231,21 @@ for (const capture of captures) {
   if (capture.smallTapTargets.length) qualityFailures.push(`${capture.name}: ${capture.smallTapTargets.length} small tap target(s)`);
   if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
   if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
-  if (capture.viewportWidth <= 420 && capture.height > 6000) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 6000px)`);
+  if (capture.viewportWidth <= 420) {
+    if (capture.height > 5200) qualityFailures.push(`${capture.name}: mobile page too tall (${capture.height}px > 5200px)`);
+    const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
+    const budgets = [
+      ["#profilePanel", 280],
+      ["#museum", 1500],
+      [".stats", 120],
+      ["#insights", 300],
+      ["#recentEvolution", 520]
+    ];
+    for (const [selector, maxHeight] of budgets) {
+      const height = sectionHeight(selector);
+      if (height > maxHeight) qualityFailures.push(`${capture.name}: ${selector} too tall (${height}px > ${maxHeight}px)`);
+    }
+  }
 }
 await fs.writeFile(
   path.join(outputDir, "visual-quality.json"),
