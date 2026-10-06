@@ -1,5 +1,8 @@
 {
-  "generatedAt": "2026-10-06T17:01:09.004Z",
-  "passed": true,
-  "failures": []
+  "generatedAt": "2026-10-06T17:18:20.089Z",
+  "passed": false,
+  "failures": [
+    "mobile-full.png: 4 small tap target(s)",
+    "alchemyflames-mobile-full.png: 4 small tap target(s)"
+  ]
 }
