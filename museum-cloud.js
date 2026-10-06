@@ -180,9 +180,21 @@ function sharePayload(board) {
   };
 }
 
-async function createPublicShare({ kind, riotId, region, board = null }) {
+async function createPublicShare({ kind, riotId, region, board = null, collection = null, boards = [] }) {
   if (!currentUser) throw new Error("auth_required");
   const slug = crypto.randomUUID().replaceAll("-", "").slice(0, 20);
+  const payload = board
+    ? sharePayload(board)
+    : collection
+      ? {
+          name: collection.name,
+          description: collection.description || "",
+          board_ids: collection.board_ids || [],
+          boards: (boards || []).filter(b => (collection.board_ids || []).includes(b.id)).slice(0, 50).map(b => ({
+            id: b.id, title: b.displayTitle || b.title, placement: b.placement, set: b.set, patch: b.patch, date: b.date
+          }))
+        }
+      : {};
   const { error } = await client.from("tft_museum_public_shares").insert({
     slug,
     user_id: currentUser.id,
@@ -190,7 +202,7 @@ async function createPublicShare({ kind, riotId, region, board = null }) {
     riot_id: riotId,
     region,
     board_id: board?.id || null,
-    payload: board ? sharePayload(board) : {},
+    payload,
     is_public: true
   });
   if (error) throw error;
