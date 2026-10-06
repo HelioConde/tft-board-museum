@@ -280,7 +280,8 @@ for (const capture of captures) {
       ["#museum", 1500],
       [".stats", 120],
       ["#insights", 300],
-      ["#recentEvolution", 520]
+      ["#recentEvolution", 520],
+      ["#setHistory", 520]
     ];
     for (const [selector, maxHeight] of budgets) {
       const height = sectionHeight(selector);
