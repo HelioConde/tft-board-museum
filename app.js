@@ -548,4 +548,7 @@ window.addEventListener("museum-cloud-state",function(e){
  var state=e.detail||{};favorites=new Set(state.favorites||[]);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));if(state.notes)localStorage.setItem("tbm-notes",JSON.stringify(state.notes));render()
 });
 window.addEventListener("museum-collections-changed",renderCloudCollections);
+if("serviceWorker" in navigator&&location.protocol.startsWith("http")){
+ window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(err){console.warn("service worker",err)})})
+}
 applyLanguage();loadStaticData();hydrateFromUrl();
