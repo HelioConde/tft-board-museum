@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T17:21:44.118Z",
+  "generatedAt": "2026-10-06T17:23:32.404Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -230,7 +230,7 @@
         "height": 844
       },
       "width": 390,
-      "height": 4468,
+      "height": 4394,
       "viewportWidth": 390,
       "viewportHeight": 844,
       "title": "TFT Board Museum",
@@ -371,7 +371,7 @@
           "left": 0,
           "right": 390,
           "width": 390,
-          "height": 663,
+          "height": 589,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -395,7 +395,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4289,
+          "top": 4215,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -455,11 +455,11 @@
           "tag": "div",
           "id": "setStatsGrid",
           "className": "set-stats-grid",
-          "top": 3656,
+          "top": 3645,
           "left": 18,
           "right": 390,
           "width": 372,
-          "height": 232,
+          "height": 196,
           "display": "grid",
           "visibility": "visible",
           "fontSize": 16,
@@ -496,7 +496,7 @@
       "metrics": {
         "heroTitleFontSize": 46,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 5.29
+        "pageHeightInViewports": 5.21
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -727,7 +727,7 @@
         "height": 844
       },
       "width": 390,
-      "height": 4793,
+      "height": 4677,
       "viewportWidth": 390,
       "viewportHeight": 844,
       "title": "TFT Board Museum",
@@ -868,7 +868,7 @@
           "left": 0,
           "right": 390,
           "width": 390,
-          "height": 582,
+          "height": 465,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -892,7 +892,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4614,
+          "top": 4498,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -967,11 +967,11 @@
           "tag": "div",
           "id": "setStatsGrid",
           "className": "set-stats-grid",
-          "top": 4063,
+          "top": 4052,
           "left": 18,
           "right": 390,
           "width": 372,
-          "height": 232,
+          "height": 196,
           "display": "grid",
           "visibility": "visible",
           "fontSize": 16,
@@ -982,11 +982,11 @@
           "tag": "div",
           "id": "periodStatsGrid",
           "className": "period-stats-grid",
-          "top": 4431,
+          "top": 4357,
           "left": 18,
           "right": 390,
           "width": 372,
-          "height": 126,
+          "height": 83,
           "display": "grid",
           "visibility": "visible",
           "fontSize": 16,
@@ -1023,7 +1023,7 @@
       "metrics": {
         "heroTitleFontSize": 46,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 5.68
+        "pageHeightInViewports": 5.54
       },
       "consoleErrors": [],
       "failedRequests": []

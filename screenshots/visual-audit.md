@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T17:21:44.118Z
+Generated: 2026-10-06T17:23:32.404Z
 
 ## desktop-full.png
 
@@ -34,7 +34,7 @@ Generated: 2026-10-06T17:21:44.118Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4468 (5.29 viewports tall)
+- Page: 390×4394 (5.21 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 4
@@ -53,9 +53,9 @@ Generated: 2026-10-06T17:21:44.118Z
 - #insights: top 2435px · 390×248px
 - #recentEvolution: top 2741px · 390×490px
 - #hallOfFame: top 3275px · 390×236px
-- #setHistory: top 3568px · 390×663px
+- #setHistory: top 3568px · 390×589px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4289px · 354×179px
+- footer: top 4215px · 354×179px
 
 ### Tiny text
 - 10px: AD
@@ -92,7 +92,7 @@ Generated: 2026-10-06T17:21:44.118Z
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4793 (5.68 viewports tall)
+- Page: 390×4677 (5.54 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 6
@@ -111,9 +111,9 @@ Generated: 2026-10-06T17:21:44.118Z
 - #insights: top 2841px · 390×248px
 - #recentEvolution: top 3147px · 390×490px
 - #hallOfFame: top 3681px · 390×236px
-- #setHistory: top 3975px · 390×582px
+- #setHistory: top 3975px · 390×465px
 - #cloudCollections: top 1318px · 0×0px
-- footer: top 4614px · 354×179px
+- footer: top 4498px · 354×179px
 
 ### Tiny text
 - 10px: AD
