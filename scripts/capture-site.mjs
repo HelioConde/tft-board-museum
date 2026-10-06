@@ -18,17 +18,17 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
     if (msg.type() === "error") console.error("[browser]", msg.text());
   });
 
-  await page.goto(url, { waitUntil: "networkidle", timeout: 120000 });
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+  await page.waitForSelector("#museum", { timeout: 15000 });
+  await page.waitForTimeout(1200);
 
   if (waitForProfile) {
     try {
-      await page.waitForSelector("#profilePanel:not(.hidden)", { timeout: 45000 });
-      await page.waitForTimeout(2500);
+      await page.waitForSelector("#profilePanel:not(.hidden)", { timeout: 20000 });
+      await page.waitForTimeout(1500);
     } catch {
       console.warn("Profile did not become visible before timeout; capturing current state.");
     }
-  } else {
-    await page.waitForTimeout(1200);
   }
 
   await page.screenshot({
