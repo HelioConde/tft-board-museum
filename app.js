@@ -131,6 +131,26 @@ function openBoard(id){
   dialog.showModal();
 }
 
+
+function syncSetFilter(){
+  var current=setFilter.value||"all";
+  var sets=Array.from(new Set(boards.map(function(b){return String(b.set||"")}))).filter(Boolean).sort(function(a,b){return Number(b)-Number(a)});
+  setFilter.innerHTML='<option value="all">'+t("allSets")+'</option>'+sets.map(function(s){return '<option value="'+s+'">Set '+s+'</option>'}).join("");
+  if(sets.includes(current))setFilter.value=current;else setFilter.value="all";
+}
+function updateStats(){
+  var total=boards.length;
+  var top4=total?Math.round(boards.filter(function(b){return b.placement<=4}).length/total*100):0;
+  var best=total?Math.min.apply(null,boards.map(function(b){return b.placement})):0;
+  var counts={};
+  boards.forEach(function(b){(b.traits||[]).forEach(function(trait){var name=String(trait).replace(/^\d+\s+/,"");counts[name]=(counts[name]||0)+1})});
+  var fav=Object.keys(counts).sort(function(a,b){return counts[b]-counts[a]})[0]||"—";
+  document.querySelector("#statBoards").textContent=String(total);
+  document.querySelector("#statTop4").textContent=top4+"%";
+  document.querySelector("#statTrait").textContent=fav;
+  document.querySelector("#statBest").textContent=best?placementLabel(best):"—";
+}
+
 function renderTimeline(){
   var el=document.querySelector("#timeline");if(!el)return;
   var groups={};
@@ -163,7 +183,7 @@ function applyLanguage(){
   document.documentElement.lang=lang==="pt"?"pt-BR":"en";
   document.querySelectorAll("[data-i18n]").forEach(function(el){var key=el.dataset.i18n;if(copy[lang][key])el.textContent=copy[lang][key]});
   document.querySelector("#langToggle").textContent=lang==="pt"?"EN":"PT";
-  renderTimeline();updateCompareBar();render();
+  syncSetFilter();renderTimeline();updateCompareBar();updateStats();render();
 }
 
 
@@ -197,14 +217,14 @@ async function loadRiotHistory(riotId,platform){
   var data=await response.json().catch(function(){return {}});
   if(!response.ok||data.error)throw new Error(data.message||data.error||"riot_history_failed");
   if(!Array.isArray(data.matches)||!data.matches.length)throw new Error(lang==="pt"?"Nenhuma partida recente encontrada.":"No recent matches found.");
-  boards=data.matches.map(normalizeRiotMatch);
+  boards=data.matches.map(normalizeRiotMatch);compareSelection=[];activeSet="all";
   document.querySelector("#museumTitle").textContent=(data.player&&data.player.gameName?data.player.gameName:parts[0])+"#"+(data.player&&data.player.tagLine?data.player.tagLine:parts.slice(1).join("#"));
   status.textContent=boards.length+(lang==="pt"?" boards oficiais carregados.":" official boards loaded.");
   note.textContent=t("realData");
   setFilter.value="all";
   activeFilter="all";
   document.querySelectorAll(".filter").forEach(function(x){x.classList.toggle("active",x.dataset.filter==="all")});
-  render();
+  syncSetFilter();renderTimeline();updateCompareBar();updateStats();render();
 }
 
 document.querySelector("#closeDialog").addEventListener("click",function(){dialog.close()});
