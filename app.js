@@ -36,7 +36,16 @@ function starText(stars){return Array.from({length:Math.max(1,Number(stars)||1)}
 function rarityCost(rarity){return Math.max(1,Math.min(5,(Number(rarity)||0)+1))}
 function visualSlots(count){var preferred=[17,18,16,10,11,9,24,23,25,3,4,2,12,19,15,22,26,5,6,1,13,20,14,21,27,7,8,0];return preferred.slice(0,count)}
 function notes(){try{return JSON.parse(localStorage.getItem("tbm-notes")||"{}")}catch(_){return {}}}
-function saveNote(id,value){var all=notes();all[id]=value;localStorage.setItem("tbm-notes",JSON.stringify(all))}
+var cloudSaveTimer=null;
+function queueCloudStateSave(){
+ clearTimeout(cloudSaveTimer);
+ cloudSaveTimer=setTimeout(function(){
+  if(window.MuseumCloud&&window.MuseumCloud.isSignedIn()){
+   window.MuseumCloud.saveState({favorites:Array.from(favorites),notes:notes()}).catch(console.error)
+  }
+ },500)
+}
+function saveNote(id,value){var all=notes();all[id]=value;localStorage.setItem("tbm-notes",JSON.stringify(all));queueCloudStateSave()}
 
 async function loadStaticData(){
  try{
@@ -108,14 +117,60 @@ function bindCards(){
   card.addEventListener("keydown",function(e){if(e.key==="Enter")openBoard(card.dataset.id,true)});
  });
  document.querySelectorAll("[data-compare]").forEach(function(btn){btn.addEventListener("click",function(e){e.stopPropagation();var id=btn.dataset.compare;if(compareSelection.includes(id))compareSelection=compareSelection.filter(function(x){return x!==id});else if(compareSelection.length<2)compareSelection.push(id);else compareSelection=[compareSelection[1],id];updateCompareBar();render()})});
- document.querySelectorAll("[data-fav]").forEach(function(btn){btn.addEventListener("click",function(e){e.stopPropagation();var id=btn.dataset.fav;if(favorites.has(id))favorites.delete(id);else favorites.add(id);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));render()})});
+ document.querySelectorAll("[data-fav]").forEach(function(btn){btn.addEventListener("click",function(e){e.stopPropagation();var id=btn.dataset.fav;if(favorites.has(id))favorites.delete(id);else favorites.add(id);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));queueCloudStateSave();render()})});
 }
 function unitListHtml(b){
  return b.units.map(function(u){var e=staticEntry(staticData&&staticData.champions,u[4]||u[0]),image=assetUrl("champion",e),cost=rarityCost(u[5]);return '<span class="unit-chip cost-'+cost+'">'+(image?'<img src="'+image+'" alt="">':"")+'<span>'+escapeHtml(u[0])+' · '+u[1]+'★</span><span class="item-icons">'+itemImages(u[3])+'</span></span>'}).join("");
 }
 function updateBoardUrl(id){var url=new URL(location.href);if(id)url.searchParams.set("board",id);else url.searchParams.delete("board");history.replaceState({},"",url)}
 function boardShareUrl(id){var url=new URL(location.href);if(loadedRiotId){url.searchParams.set("riot",loadedRiotId);url.searchParams.set("region",loadedPlatform)}url.searchParams.set("board",id);return url.toString()}
-async function shareBoard(id){var url=boardShareUrl(id),b=boards.find(function(x){return x.id===id});try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+(b?b.title:"Board"),url:url});else{await navigator.clipboard.writeText(url);alert(t("saved"))}}catch(_){}}
+async function publicBoardShareUrl(id){
+ var b=boards.find(function(x){return x.id===id});
+ if(window.MuseumCloud&&window.MuseumCloud.isSignedIn()&&loadedRiotId&&b){
+  try{return await window.MuseumCloud.createPublicShare({kind:"board",riotId:loadedRiotId,region:loadedPlatform,board:b})}catch(err){console.error(err)}
+ }
+ return boardShareUrl(id)
+}
+async function shareBoard(id){var url=await publicBoardShareUrl(id),b=boards.find(function(x){return x.id===id});try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+(b?b.title:"Board"),url:url});else{await navigator.clipboard.writeText(url);alert(t("saved"))}}catch(_){}}
+async function shareProfile(){
+ if(!loadedRiotId)return;
+ var url=new URL(location.href);url.searchParams.set("riot",loadedRiotId);url.searchParams.set("region",loadedPlatform);url.searchParams.delete("board");
+ if(window.MuseumCloud&&window.MuseumCloud.isSignedIn()){
+  try{url=new URL(await window.MuseumCloud.createPublicShare({kind:"profile",riotId:loadedRiotId,region:loadedPlatform}))}catch(err){console.error(err)}
+ }
+ try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+loadedRiotId,url:url.toString()});else await navigator.clipboard.writeText(url.toString())}catch(_){}
+}
+function exportBoardPng(id){
+ var b=boards.find(function(x){return x.id===id});if(!b)return;
+ var canvas=document.createElement("canvas");canvas.width=1200;canvas.height=630;var ctx=canvas.getContext("2d");
+ var g=ctx.createLinearGradient(0,0,1200,630);g.addColorStop(0,"#171b28");g.addColorStop(1,"#090b12");ctx.fillStyle=g;ctx.fillRect(0,0,1200,630);
+ ctx.fillStyle="#d7ad62";ctx.font="700 26px Arial";ctx.fillText("TFT BOARD MUSEUM",70,70);
+ ctx.fillStyle="#f5f1e6";ctx.font="700 64px Georgia";ctx.fillText(String(b.title).slice(0,30),70,155);
+ ctx.fillStyle="#d7ad62";ctx.font="700 46px Arial";ctx.fillText(placementLabel(b.placement),70,225);
+ ctx.fillStyle="#a8abb9";ctx.font="26px Arial";ctx.fillText("Set "+b.set+" · "+b.patch+" · "+b.date,155,222);
+ ctx.font="22px Arial";ctx.fillText((b.traits||[]).slice(0,4).join("  ·  "),70,278);
+ var x=70,y=340;
+ (b.units||[]).slice(0,12).forEach(function(u,i){
+  var col=i%6,row=Math.floor(i/6),cx=x+col*175,cy=y+row*115;
+  ctx.fillStyle="#202536";ctx.beginPath();ctx.roundRect(cx,cy,155,88,16);ctx.fill();
+  ctx.fillStyle="#f0cb83";ctx.font="700 21px Arial";ctx.fillText(String(u[0]).slice(0,12),cx+14,cy+32);
+  ctx.fillStyle="#a8abb9";ctx.font="18px Arial";ctx.fillText(starText(u[1]),cx+14,cy+61);
+ });
+ ctx.fillStyle="#777d90";ctx.font="18px Arial";ctx.fillText("tft-board-museum · "+(loadedRiotId||"demo"),70,600);
+ var a=document.createElement("a");a.download="tft-board-"+String(b.id).replace(/[^a-z0-9_-]/gi,"-")+".png";a.href=canvas.toDataURL("image/png");a.click();
+}
+async function openCollectionPicker(boardId){
+ var dlg=document.querySelector("#collectionDialog"),choices=document.querySelector("#collectionChoices"),status=document.querySelector("#collectionStatusMessage");
+ if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn()){document.querySelector("#authDialog").showModal();return}
+ dlg.dataset.boardId=boardId||"";status.textContent="";choices.innerHTML="Carregando…";dlg.showModal();
+ try{
+  var list=await window.MuseumCloud.listCollections();
+  choices.innerHTML=list.length?list.map(function(x){return '<button type="button" class="collection-choice" data-collection-id="'+escapeHtml(x.id)+'"><strong>'+escapeHtml(x.name)+'</strong><span>'+((x.board_ids||[]).length)+' boards</span></button>'}).join(""):'<span class="collection-empty">Nenhuma coleção ainda.</span>';
+  choices.querySelectorAll("[data-collection-id]").forEach(function(btn){btn.addEventListener("click",async function(){
+   try{await window.MuseumCloud.addBoardToCollection(btn.dataset.collectionId,boardId);status.textContent="Board adicionado.";renderCloudCollections()}catch(err){status.textContent=String(err.message||err)}
+  })})
+ }catch(err){choices.innerHTML='<span class="collection-empty">'+escapeHtml(err.message||err)+'</span>'}
+}
 function openBoard(id,updateUrl){
  var b=boards.find(function(x){return x.id===id});if(!b)return;
  if(updateUrl)updateBoardUrl(id);
@@ -125,12 +180,14 @@ function openBoard(id,updateUrl){
  '<div class="dialog-stat-grid"><div class="dialog-stat"><span>'+t("level")+'</span><strong>'+b.level+'</strong></div><div class="dialog-stat"><span>'+t("gold")+'</span><strong>'+b.gold+'g</strong></div><div class="dialog-stat"><span>'+t("queue")+'</span><strong>'+escapeHtml(queueLabel(b.queueId))+'</strong></div><div class="dialog-stat"><span>'+t("duration")+'</span><strong>'+formatDuration(b.duration)+'</strong></div><div class="dialog-stat"><span>'+t("damage")+'</span><strong>'+Number(b.damage||0)+'</strong></div><div class="dialog-stat"><span>'+t("eliminations")+'</span><strong>'+Number(b.eliminations||0)+'</strong></div></div>'+
  '<span class="eyebrow">'+t("traits")+'</span><div class="trait-row">'+traitHtml(b)+'</div><span class="eyebrow" style="margin-top:24px">'+t("augments")+'</span>'+augmentHtml(b)+
  '<span class="eyebrow" style="margin-top:24px">'+t("units")+'</span><div class="unit-list">'+unitListHtml(b)+'</div>'+
- '<div class="board-actions"><button class="primary-action" data-share-board="'+escapeHtml(b.id)+'">'+t("share")+'</button><button data-copy-board="'+escapeHtml(b.id)+'">'+t("copyLink")+'</button></div>'+
+ '<div class="board-actions"><button class="primary-action" data-share-board="'+escapeHtml(b.id)+'">'+t("share")+'</button><button data-copy-board="'+escapeHtml(b.id)+'">'+t("copyLink")+'</button><button data-export-board="'+escapeHtml(b.id)+'">PNG</button><button data-collection-board="'+escapeHtml(b.id)+'">Coleção</button></div>'+
  '<div class="note-box"><label>'+t("note")+'</label><textarea data-note-board="'+escapeHtml(b.id)+'" placeholder="'+t("notePlaceholder")+'">'+escapeHtml(note)+'</textarea></div>'+
  (b.real?'<p style="margin-top:18px;color:#777d90;font-size:11px;line-height:1.5">'+t("visualLayout")+'</p>':"")+'</div></div>';
  dialog.showModal();
  var share=document.querySelector("[data-share-board]");if(share)share.addEventListener("click",function(){shareBoard(b.id)});
- var copyBtn=document.querySelector("[data-copy-board]");if(copyBtn)copyBtn.addEventListener("click",async function(){try{await navigator.clipboard.writeText(boardShareUrl(b.id));copyBtn.textContent=t("saved")}catch(_){}});
+ var copyBtn=document.querySelector("[data-copy-board]");if(copyBtn)copyBtn.addEventListener("click",async function(){try{await navigator.clipboard.writeText(await publicBoardShareUrl(b.id));copyBtn.textContent=t("saved")}catch(_){}})
+ var exportBtn=document.querySelector("[data-export-board]");if(exportBtn)exportBtn.addEventListener("click",function(){exportBoardPng(b.id)});
+ var collectionBtn=document.querySelector("[data-collection-board]");if(collectionBtn)collectionBtn.addEventListener("click",function(){openCollectionPicker(b.id)});
  var noteEl=document.querySelector("[data-note-board]");if(noteEl)noteEl.addEventListener("input",function(){saveNote(b.id,noteEl.value)});
 }
 function closeBoard(){dialog.close();updateBoardUrl("")}
@@ -151,6 +208,37 @@ function renderInsights(){
  '<article class="insight-card"><span>'+t("mostUsedItem")+'</span><strong>'+escapeHtml(top(items))+'</strong><small>'+((items[top(items)]||0))+'x</small></article>'+
  '<article class="insight-card"><span>'+t("threeStars")+'</span><strong>'+three+'</strong><small>3★</small></article>'+
  '<article class="insight-card"><span>'+t("setsPlayed")+'</span><strong>'+sets.size+'</strong><small>'+Array.from(sets).sort(function(a,b){return Number(b)-Number(a)}).map(function(x){return "Set "+x}).join(" · ")+'</small></article>';
+}
+function renderHallOfFame(){
+ var el=document.querySelector("#hallGrid");if(!el||!boards.length)return;
+ var best=boards.slice().sort(function(a,b){return a.placement-b.placement||b.damage-a.damage})[0];
+ var richest=boards.slice().sort(function(a,b){return b.gold-a.gold})[0];
+ var mostThree=boards.slice().sort(function(a,b){
+  var aa=a.units.filter(function(u){return Number(u[1])>=3}).length,bb=b.units.filter(function(u){return Number(u[1])>=3}).length;return bb-aa
+ })[0];
+ var damage=boards.slice().sort(function(a,b){return Number(b.damage||0)-Number(a.damage||0)})[0];
+ function card(label,b,value){return '<button class="hall-card" data-open-hall="'+escapeHtml(b.id)+'"><span>'+label+'</span><strong>'+escapeHtml(value)+'</strong><small>'+escapeHtml(b.title)+' · '+escapeHtml(b.date)+'</small></button>'}
+ el.innerHTML=card("Melhor resultado",best,placementLabel(best.placement))+card("Mais ouro restante",richest,richest.gold+"g")+card("Mais unidades 3★",mostThree,mostThree.units.filter(function(u){return Number(u[1])>=3}).length+" × 3★")+card("Maior dano registrado",damage,String(damage.damage||0));
+ el.querySelectorAll("[data-open-hall]").forEach(function(btn){btn.addEventListener("click",function(){openBoard(btn.dataset.openHall,true)})})
+}
+function renderSetStats(){
+ var el=document.querySelector("#setStatsGrid");if(!el)return;var groups={};
+ boards.forEach(function(b){var k=String(b.set||"?");if(!groups[k])groups[k]=[];groups[k].push(b)});
+ el.innerHTML=Object.keys(groups).sort(function(a,b){return Number(b)-Number(a)}).map(function(k){
+  var list=groups[k],games=list.length,avg=list.reduce(function(s,b){return s+b.placement},0)/games,top4=Math.round(list.filter(function(b){return b.placement<=4}).length/games*100),wins=list.filter(function(b){return b.placement===1}).length;
+  var traits={};list.forEach(function(b){(b.traits||[]).forEach(function(tr){var n=String(tr).replace(/^\d+\s+/,"");traits[n]=(traits[n]||0)+1})});var topTrait=Object.keys(traits).sort(function(a,b){return traits[b]-traits[a]})[0]||"—";
+  return '<article class="set-stat-card"><span class="eyebrow">Set '+escapeHtml(k)+'</span><div class="set-stat-kpis"><div><small>Partidas</small><strong>'+games+'</strong></div><div><small>Média</small><strong>'+avg.toFixed(2)+'</strong></div><div><small>Top 4</small><strong>'+top4+'%</strong></div><div><small>Vitórias</small><strong>'+wins+'</strong></div></div><p>'+escapeHtml(topTrait)+'</p></article>'
+ }).join("")
+}
+async function renderCloudCollections(){
+ var section=document.querySelector("#cloudCollections"),grid=document.querySelector("#collectionGrid");
+ if(!section||!grid)return;
+ if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn()){section.classList.add("hidden");return}
+ section.classList.remove("hidden");
+ try{
+  var list=await window.MuseumCloud.listCollections();
+  grid.innerHTML=list.length?list.map(function(x){return '<article class="collection-card"><div><span class="eyebrow">COLEÇÃO</span><h3>'+escapeHtml(x.name)+'</h3><p>'+escapeHtml(x.description||"")+'</p></div><strong>'+((x.board_ids||[]).length)+' boards</strong></article>'}).join(""):'<div class="empty">Crie sua primeira coleção.</div>'
+ }catch(err){grid.innerHTML='<div class="empty">'+escapeHtml(err.message||err)+'</div>'}
 }
 function renderTimeline(){
  var el=document.querySelector("#timeline");if(!el)return;
@@ -214,7 +302,7 @@ function compareBoards(){
  compareSection(t("augments"),intersect(aa,ba),difference(aa,ba),difference(ba,aa))+'</div>';
  document.querySelector("#compareDialog").showModal();
 }
-function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();render();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
+function renderAll(){syncSetFilter();syncPatchFilter();renderTimeline();updateCompareBar();updateStats();renderInsights();renderHallOfFame();renderSetStats();render();renderCloudCollections();var more=document.querySelector("#loadMoreBtn");if(more)more.classList.toggle("hidden",!hasMore)}
 function applyLanguage(){
  document.documentElement.lang=lang==="pt"?"pt-BR":"en";document.querySelectorAll("[data-i18n]").forEach(function(el){var key=el.dataset.i18n;if(copy[lang][key])el.textContent=copy[lang][key]});document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){el.placeholder=t(el.dataset.i18nPlaceholder)});document.querySelector("#langToggle").textContent=lang==="pt"?"EN":"PT";renderAll();
 }
@@ -266,4 +354,27 @@ document.querySelector("#riotForm").addEventListener("submit",async function(e){
 });
 document.querySelector("#compareBtn").addEventListener("click",compareBoards);document.querySelector("#loadMoreBtn").addEventListener("click",loadMoreHistory);
 document.querySelector("#closeCompare").addEventListener("click",function(){document.querySelector("#compareDialog").close()});document.querySelector("#compareDialog").addEventListener("click",function(e){if(e.target.id==="compareDialog")e.target.close()});
+document.querySelector("#shareProfileBtn").addEventListener("click",shareProfile);
+document.querySelector("#accountBtn").addEventListener("click",function(){document.querySelector("#authDialog").showModal()});
+document.querySelector("#closeAuth").addEventListener("click",function(){document.querySelector("#authDialog").close()});
+document.querySelector("#closeCollection").addEventListener("click",function(){document.querySelector("#collectionDialog").close()});
+document.querySelector("#newCollectionBtn").addEventListener("click",function(){openCollectionPicker("")});
+document.querySelector("#authForm").addEventListener("submit",async function(e){
+ e.preventDefault();var email=document.querySelector("#authEmail").value.trim(),status=document.querySelector("#authStatus");if(!email||!window.MuseumCloud)return;
+ status.textContent="Enviando…";try{await window.MuseumCloud.signIn(email);status.textContent="Confira seu e-mail para entrar no Museum."}catch(err){status.textContent=String(err.message||err)}
+});
+document.querySelector("#signOutBtn").addEventListener("click",async function(){if(window.MuseumCloud)await window.MuseumCloud.signOut()});
+document.querySelector("#collectionForm").addEventListener("submit",async function(e){
+ e.preventDefault();var name=document.querySelector("#collectionName").value.trim(),desc=document.querySelector("#collectionDescription").value.trim(),dlg=document.querySelector("#collectionDialog"),boardId=dlg.dataset.boardId||"",status=document.querySelector("#collectionStatusMessage");
+ if(!window.MuseumCloud||!window.MuseumCloud.isSignedIn())return;
+ try{var col=await window.MuseumCloud.createCollection({name:name,description:desc,boardIds:boardId?[boardId]:[]});status.textContent="Coleção criada: "+col.name;document.querySelector("#collectionName").value="";document.querySelector("#collectionDescription").value="";renderCloudCollections();if(boardId)openCollectionPicker(boardId)}catch(err){status.textContent=String(err.message||err)}
+});
+window.addEventListener("museum-auth-change",function(e){
+ var user=e.detail&&e.detail.user,btn=document.querySelector("#accountBtn"),out=document.querySelector("#signOutBtn"),copy=document.querySelector("#authCopy");
+ btn.textContent=user?(user.email||"Conta"):"Entrar";out.classList.toggle("hidden",!user);copy.textContent=user?"Sincronização ativa neste dispositivo.":"Entre por e-mail para sincronizar favoritos, notas e coleções.";renderCloudCollections()
+});
+window.addEventListener("museum-cloud-state",function(e){
+ var state=e.detail||{};favorites=new Set(state.favorites||[]);localStorage.setItem("tbm-favorites",JSON.stringify(Array.from(favorites)));if(state.notes)localStorage.setItem("tbm-notes",JSON.stringify(state.notes));render()
+});
+window.addEventListener("museum-collections-changed",renderCloudCollections);
 applyLanguage();loadStaticData();hydrateFromUrl();
