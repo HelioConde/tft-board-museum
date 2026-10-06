@@ -30,10 +30,28 @@ async function runDesktop() {
   await assert(await page.locator("#compareDialog").evaluate(el => el.open), "Compare dialog did not open");
   await page.locator("#closeCompare").click();
 
+  const coverage = await page.evaluate(() => {
+    const pt = Object.keys(window.copy?.pt || {}).sort();
+    const en = Object.keys(window.copy?.en || {}).sort();
+    return {
+      missingInEn: pt.filter(key => !en.includes(key)),
+      missingInPt: en.filter(key => !pt.includes(key))
+    };
+  });
+  await assert(coverage.missingInEn.length === 0, "Missing EN keys: " + coverage.missingInEn.join(", "));
+  await assert(coverage.missingInPt.length === 0, "Missing PT-BR keys: " + coverage.missingInPt.join(", "));
+
   await page.locator("#langToggle").click();
   await assert((await page.locator("html").getAttribute("lang")) === "en", "Language did not change to EN");
+  await assert((await page.locator("#recentEvolution .eyebrow").textContent()) === "RECENT EVOLUTION", "Recent evolution section did not translate");
+  await assert((await page.locator("#hallOfFame h2").textContent()) === "Preserved moments", "Hall of Fame did not translate");
+  await assert((await page.locator("#setHistory .section-head h2").textContent()) === "Collection evolution", "Set history did not translate");
+  await assert((await page.locator("#newCollectionBtn").textContent()) === "New collection", "Collections UI did not translate");
+  await assert((await page.locator("#authDialog h2").textContent()) === "Take your museum across devices.", "Auth dialog did not translate");
+
   await page.locator("#langToggle").click();
   await assert((await page.locator("html").getAttribute("lang")) === "pt-BR", "Language did not return to PT-BR");
+  await assert((await page.locator("#recentEvolution .eyebrow").textContent()) === "EVOLUÇÃO RECENTE", "Recent evolution did not return to PT-BR");
 
   await page.close();
 }
