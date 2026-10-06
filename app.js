@@ -152,7 +152,33 @@ function renderInsights(){
  '<article class="insight-card"><span>'+t("threeStars")+'</span><strong>'+three+'</strong><small>3★</small></article>'+
  '<article class="insight-card"><span>'+t("setsPlayed")+'</span><strong>'+sets.size+'</strong><small>'+Array.from(sets).sort(function(a,b){return Number(b)-Number(a)}).map(function(x){return "Set "+x}).join(" · ")+'</small></article>';
 }
-function renderTimeline(){var el=document.querySelector("#timeline");if(!el)return;var groups={};boards.forEach(function(b){var key=String(b.set||"?");groups[key]=(groups[key]||0)+1});var keys=Object.keys(groups).sort(function(a,b){return Number(b)-Number(a)});el.innerHTML='<button data-timeline="all" class="'+(activeSet==="all"?"active":"")+'"><strong>'+t("timelineAll")+'</strong><span>'+boards.length+' boards</span></button>'+keys.map(function(k){return '<button data-timeline="'+k+'" class="'+(String(activeSet)===k?"active":"")+'"><strong>Set '+k+'</strong><span>'+groups[k]+' boards</span></button>'}).join("");el.querySelectorAll("[data-timeline]").forEach(function(btn){btn.addEventListener("click",function(){activeSet=btn.dataset.timeline;setFilter.value="all";renderTimeline();render()})})}
+function renderTimeline(){
+ var el=document.querySelector("#timeline");if(!el)return;
+ var groups={};
+ boards.forEach(function(b){
+  var setKey=String(b.set||"?");
+  if(!groups[setKey])groups[setKey]={count:0,patches:{}};
+  groups[setKey].count++;
+  var patchKey=String(b.patch||"—");
+  groups[setKey].patches[patchKey]=(groups[setKey].patches[patchKey]||0)+1;
+ });
+ var keys=Object.keys(groups).sort(function(a,b){return Number(b)-Number(a)});
+ var setButtons='<div class="timeline-sets"><button data-timeline="all" class="'+(activeSet==="all"?"active":"")+'"><strong>'+t("timelineAll")+'</strong><span>'+boards.length+' boards</span></button>'+
+  keys.map(function(k){return '<button data-timeline="'+k+'" class="'+(String(activeSet)===k?"active":"")+'"><strong>Set '+k+'</strong><span>'+groups[k].count+' boards</span></button>'}).join("")+'</div>';
+ var patchButtons="";
+ if(activeSet!=="all"&&groups[String(activeSet)]){
+  var patches=Object.keys(groups[String(activeSet)].patches).sort().reverse();
+  patchButtons='<div class="timeline-patches"><span class="timeline-label">Set '+escapeHtml(activeSet)+' → '+t("patch")+'</span><button data-timeline-patch="all" class="'+(patchValue==="all"?"active":"")+'">'+t("allPatches")+'</button>'+
+   patches.map(function(p){return '<button data-timeline-patch="'+escapeHtml(p)+'" class="'+(String(patchValue)===p?"active":"")+'">'+escapeHtml(p)+' <small>'+groups[String(activeSet)].patches[p]+'</small></button>'}).join("")+'</div>';
+ }
+ el.innerHTML=setButtons+patchButtons;
+ el.querySelectorAll("[data-timeline]").forEach(function(btn){btn.addEventListener("click",function(){
+  activeSet=btn.dataset.timeline;setFilter.value="all";patchValue="all";document.querySelector("#patchFilter").value="all";renderTimeline();render();
+ })});
+ el.querySelectorAll("[data-timeline-patch]").forEach(function(btn){btn.addEventListener("click",function(){
+  patchValue=btn.dataset.timelinePatch;document.querySelector("#patchFilter").value=patchValue;renderTimeline();render();
+ })});
+}
 function updateCompareBar(){var hint=document.querySelector("#compareHint"),btn=document.querySelector("#compareBtn");if(hint)hint.textContent=compareSelection.length+" / 2 "+t("selected");if(btn)btn.disabled=compareSelection.length!==2}
 function compareBoards(){
  if(compareSelection.length!==2)return;
