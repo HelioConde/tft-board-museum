@@ -157,21 +157,36 @@ async function shareProfile(){
  }
  try{if(navigator.share)await navigator.share({title:"TFT Board Museum · "+loadedRiotId,url:url.toString()});else await navigator.clipboard.writeText(url.toString())}catch(_){}
 }
-function exportBoardPng(id){
+async function loadCanvasBitmap(url){
+ if(!url)return null;
+ try{
+  var response=await fetch(url,{mode:"cors"});if(!response.ok)return null;
+  var blob=await response.blob();return await createImageBitmap(blob)
+ }catch(_){return null}
+}
+async function exportBoardPng(id){
  var b=boards.find(function(x){return x.id===id});if(!b)return;
  var canvas=document.createElement("canvas");canvas.width=1200;canvas.height=630;var ctx=canvas.getContext("2d");
  var g=ctx.createLinearGradient(0,0,1200,630);g.addColorStop(0,"#171b28");g.addColorStop(1,"#090b12");ctx.fillStyle=g;ctx.fillRect(0,0,1200,630);
  ctx.fillStyle="#d7ad62";ctx.font="700 26px Arial";ctx.fillText("TFT BOARD MUSEUM",70,70);
- ctx.fillStyle="#f5f1e6";ctx.font="700 64px Georgia";ctx.fillText(String(boardDisplayTitle(b)).slice(0,30),70,155);
- ctx.fillStyle="#d7ad62";ctx.font="700 46px Arial";ctx.fillText(placementLabel(b.placement),70,225);
- ctx.fillStyle="#a8abb9";ctx.font="26px Arial";ctx.fillText("Set "+b.set+" · "+b.patch+" · "+b.date,155,222);
- ctx.font="22px Arial";ctx.fillText((b.traits||[]).slice(0,4).join("  ·  "),70,278);
- var x=70,y=340;
- (b.units||[]).slice(0,12).forEach(function(u,i){
-  var col=i%6,row=Math.floor(i/6),cx=x+col*175,cy=y+row*115;
-  ctx.fillStyle="#202536";ctx.beginPath();ctx.roundRect(cx,cy,155,88,16);ctx.fill();
-  ctx.fillStyle="#f0cb83";ctx.font="700 21px Arial";ctx.fillText(String(u[0]).slice(0,12),cx+14,cy+32);
-  ctx.fillStyle="#a8abb9";ctx.font="18px Arial";ctx.fillText(starText(u[1]),cx+14,cy+61);
+ ctx.fillStyle="#f5f1e6";ctx.font="700 58px Georgia";ctx.fillText(String(boardDisplayTitle(b)).slice(0,34),70,150);
+ ctx.fillStyle="#d7ad62";ctx.font="700 44px Arial";ctx.fillText(placementLabel(b.placement),70,215);
+ ctx.fillStyle="#a8abb9";ctx.font="25px Arial";ctx.fillText("Set "+b.set+" · "+b.patch+" · "+b.date,155,212);
+ ctx.font="20px Arial";ctx.fillText((b.rawTraits||[]).slice(0,4).map(localizedTraitLabel).join("  ·  ")||(b.traits||[]).slice(0,4).join("  ·  "),70,262);
+ var unitData=await Promise.all((b.units||[]).slice(0,12).map(async function(u){
+  var champ=staticEntry(staticData&&staticData.champions,u[4]||u[0]);
+  var portrait=await loadCanvasBitmap(assetUrl("champion",champ));
+  var itemBitmaps=await Promise.all((u[3]||[]).slice(0,3).map(async function(itemId){var e=staticEntry(staticData&&staticData.items,itemId);return await loadCanvasBitmap(assetUrl("item",e))}));
+  return {u:u,portrait:portrait,items:itemBitmaps}
+ }));
+ var x=70,y=315;
+ unitData.forEach(function(entry,i){
+  var u=entry.u,col=i%6,row=Math.floor(i/6),cx=x+col*175,cy=y+row*125;
+  ctx.fillStyle="#202536";ctx.beginPath();ctx.roundRect(cx,cy,155,100,16);ctx.fill();
+  if(entry.portrait){ctx.save();ctx.beginPath();ctx.roundRect(cx+8,cy+8,52,52,12);ctx.clip();ctx.drawImage(entry.portrait,cx+8,cy+8,52,52);ctx.restore()}
+  ctx.fillStyle="#f0cb83";ctx.font="700 18px Arial";ctx.fillText(String(u[0]).slice(0,11),cx+66,cy+30);
+  ctx.fillStyle="#a8abb9";ctx.font="16px Arial";ctx.fillText(starText(u[1]),cx+66,cy+54);
+  entry.items.forEach(function(bitmap,j){if(bitmap)ctx.drawImage(bitmap,cx+8+j*29,cy+68,24,24)});
  });
  ctx.fillStyle="#777d90";ctx.font="18px Arial";ctx.fillText("tft-board-museum · "+(loadedRiotId||"demo"),70,600);
  var a=document.createElement("a");a.download="tft-board-"+String(b.id).replace(/[^a-z0-9_-]/gi,"-")+".png";a.href=canvas.toDataURL("image/png");a.click();
