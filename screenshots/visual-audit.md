@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-07T05:13:55.721Z
+Generated: 2026-10-07T05:17:24.135Z
 
 ## desktop-full.png
 
@@ -35,11 +35,11 @@ Generated: 2026-10-07T05:13:55.721Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4546 (5.39 viewports tall)
+- Page: 390×4484 (5.31 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 3
-- Small tap targets: 4
+- Small tap targets: 0
 - Tiny text nodes (<11px): 0
 - Console errors: 0
 - Failed requests: 0
@@ -50,23 +50,17 @@ Generated: 2026-10-07T05:13:55.721Z
 
 ### Sections
 - .topbar: top 0px · 390×69px
-- .hero: top 97px · 390×820px
+- .hero: top 79px · 390×782px
 - #profilePanel: top 0px · 0×0px
-- .ad-slot: top 957px · 354×82px
-- #museum: top 1087px · 390×1365px
-- .stats: top 2452px · 354×100px
-- #insights: top 2599px · 390×248px
-- #recentEvolution: top 2904px · 390×490px
-- #hallOfFame: top 3438px · 390×338px
-- #setHistory: top 3834px · 390×487px
+- .ad-slot: top 883px · 354×82px
+- #museum: top 1013px · 390×1365px
+- .stats: top 2378px · 354×100px
+- #insights: top 2525px · 390×248px
+- #recentEvolution: top 2830px · 390×490px
+- #hallOfFame: top 3364px · 390×338px
+- #setHistory: top 3760px · 390×487px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4379px · 354×167px
-
-### Small tap targets
-- a#.: 43×32px
-- a#.: 78×32px
-- a#.: 51×32px
-- a#.: 55×32px
+- footer: top 4305px · 354×179px
 
 ## alchemyflames-desktop-full.png
 
@@ -95,17 +89,17 @@ Generated: 2026-10-07T05:13:55.721Z
 - #recentEvolution: top 3223px · 1220×419px
 - #hallOfFame: top 3732px · 1220×242px
 - #setHistory: top 4064px · 1220×411px
-- #cloudCollections: top 48px · 0×0px
+- #cloudCollections: top 32px · 0×0px
 - footer: top 4565px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4861 (5.76 viewports tall)
+- Page: 390×4799 (5.69 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 4
-- Small tap targets: 4
+- Small tap targets: 0
 - Tiny text nodes (<11px): 0
 - Console errors: 0
 - Failed requests: 0
@@ -116,20 +110,14 @@ Generated: 2026-10-07T05:13:55.721Z
 
 ### Sections
 - .topbar: top 0px · 390×69px
-- .hero: top 97px · 390×820px
-- #profilePanel: top 957px · 354×240px
-- .ad-slot: top 1231px · 354×82px
-- #museum: top 1361px · 390×1414px
-- .stats: top 2775px · 354×100px
-- #insights: top 2921px · 390×248px
-- #recentEvolution: top 3227px · 390×490px
-- #hallOfFame: top 3761px · 390×338px
-- #setHistory: top 4157px · 390×480px
-- #cloudCollections: top 842px · 0×0px
-- footer: top 4694px · 354×167px
-
-### Small tap targets
-- a#.: 43×32px
-- a#.: 78×32px
-- a#.: 51×32px
-- a#.: 55×32px
+- .hero: top 79px · 390×782px
+- #profilePanel: top 883px · 354×240px
+- .ad-slot: top 1157px · 354×82px
+- #museum: top 1287px · 390×1414px
+- .stats: top 2701px · 354×100px
+- #insights: top 2847px · 390×248px
+- #recentEvolution: top 3153px · 390×490px
+- #hallOfFame: top 3687px · 390×338px
+- #setHistory: top 4083px · 390×480px
+- #cloudCollections: top 724px · 0×0px
+- footer: top 4620px · 354×179px
