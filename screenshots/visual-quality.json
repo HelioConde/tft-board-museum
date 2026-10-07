@@ -1,8 +1,5 @@
 {
-  "generatedAt": "2026-10-07T05:17:24.135Z",
-  "passed": false,
-  "failures": [
-    "mobile-full.png: .hero too tall (782px > 740px)",
-    "alchemyflames-mobile-full.png: .hero too tall (782px > 740px)"
-  ]
+  "generatedAt": "2026-10-07T05:19:08.127Z",
+  "passed": true,
+  "failures": []
 }

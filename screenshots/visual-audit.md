@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-07T05:17:24.135Z
+Generated: 2026-10-07T05:19:08.127Z
 
 ## desktop-full.png
 
@@ -35,12 +35,12 @@ Generated: 2026-10-07T05:17:24.135Z
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4484 (5.31 viewports tall)
+- Page: 390×4434 (5.25 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 3
 - Small tap targets: 0
-- Tiny text nodes (<11px): 0
+- Tiny text nodes (<11px): 2
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 8
@@ -50,17 +50,21 @@ Generated: 2026-10-07T05:17:24.135Z
 
 ### Sections
 - .topbar: top 0px · 390×69px
-- .hero: top 79px · 390×782px
+- .hero: top 79px · 390×732px
 - #profilePanel: top 0px · 0×0px
-- .ad-slot: top 883px · 354×82px
-- #museum: top 1013px · 390×1365px
-- .stats: top 2378px · 354×100px
-- #insights: top 2525px · 390×248px
-- #recentEvolution: top 2830px · 390×490px
-- #hallOfFame: top 3364px · 390×338px
-- #setHistory: top 3760px · 390×487px
+- .ad-slot: top 833px · 354×82px
+- #museum: top 963px · 390×1365px
+- .stats: top 2328px · 354×100px
+- #insights: top 2475px · 390×248px
+- #recentEvolution: top 2780px · 390×490px
+- #hallOfFame: top 3314px · 390×338px
+- #setHistory: top 3710px · 390×487px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4305px · 354×179px
+- footer: top 4255px · 354×179px
+
+### Tiny text
+- 9px: Set 15
+- 9px: Set 15
 
 ## alchemyflames-desktop-full.png
 
@@ -89,18 +93,18 @@ Generated: 2026-10-07T05:17:24.135Z
 - #recentEvolution: top 3223px · 1220×419px
 - #hallOfFame: top 3732px · 1220×242px
 - #setHistory: top 4064px · 1220×411px
-- #cloudCollections: top 32px · 0×0px
+- #cloudCollections: top 0px · 0×0px
 - footer: top 4565px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4799 (5.69 viewports tall)
+- Page: 390×4749 (5.63 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 4
 - Small tap targets: 0
-- Tiny text nodes (<11px): 0
+- Tiny text nodes (<11px): 2
 - Console errors: 0
 - Failed requests: 0
 - Images loaded: 49
@@ -110,14 +114,18 @@ Generated: 2026-10-07T05:17:24.135Z
 
 ### Sections
 - .topbar: top 0px · 390×69px
-- .hero: top 79px · 390×782px
-- #profilePanel: top 883px · 354×240px
-- .ad-slot: top 1157px · 354×82px
-- #museum: top 1287px · 390×1414px
-- .stats: top 2701px · 354×100px
-- #insights: top 2847px · 390×248px
-- #recentEvolution: top 3153px · 390×490px
-- #hallOfFame: top 3687px · 390×338px
-- #setHistory: top 4083px · 390×480px
-- #cloudCollections: top 724px · 0×0px
-- footer: top 4620px · 354×179px
+- .hero: top 79px · 390×732px
+- #profilePanel: top 833px · 354×240px
+- .ad-slot: top 1107px · 354×82px
+- #museum: top 1237px · 390×1414px
+- .stats: top 2651px · 354×100px
+- #insights: top 2797px · 390×248px
+- #recentEvolution: top 3103px · 390×490px
+- #hallOfFame: top 3637px · 390×338px
+- #setHistory: top 4033px · 390×480px
+- #cloudCollections: top 458px · 0×0px
+- footer: top 4570px · 354×179px
+
+### Tiny text
+- 9px: Set 15
+- 9px: Set 15
