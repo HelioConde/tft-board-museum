@@ -739,3 +739,15 @@ footer a{min-height:32px;display:inline-flex;align-items:center}
     padding:8px 4px;
   }
 }
+
+
+/* Final mobile hero budget adjustment */
+@media(max-width:680px){
+  .hero-art{height:145px!important}
+  .orb{width:145px;height:145px;top:0}
+  .display-card{width:108px;height:138px;padding:12px}
+  .display-card strong{font-size:14px}
+  .display-card small{font-size:9px}
+  .card-a{top:4px}
+  .card-b{top:20px}
+}
