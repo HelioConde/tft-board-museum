@@ -717,3 +717,25 @@ footer a{min-height:32px;display:inline-flex;align-items:center}
   .info-page{padding:0 18px;margin-top:34px}
   .info-page h1{font-size:42px}
 }
+
+
+/* Visual quality gate follow-up */
+@media(max-width:680px){
+  .hero{
+    min-height:0!important;
+    padding:22px 18px 26px!important;
+    margin-top:10px;
+    margin-bottom:22px;
+  }
+  .hero h1{font-size:44px!important;line-height:.96}
+  .hero-copy>p{font-size:13.5px!important;line-height:1.6}
+  .riot-search{margin-top:20px}
+  .hero-art{height:195px!important}
+  .display-card{width:122px;height:158px;padding:14px}
+  .display-card strong{font-size:16px}
+  .orb{width:180px;height:180px;top:20px}
+  footer nav a{
+    min-height:44px;
+    padding:8px 4px;
+  }
+}
