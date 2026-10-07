@@ -2,6 +2,8 @@
 
 Museu visual da sua história no Teamfight Tactics.
 
+> **Status:** MVP tecnicamente concluído em 07/10/2026 · validação pós-MVP / manutenção.
+
 ## Produção
 
 GitHub Pages: https://helioconde.github.io/tft-board-museum/
@@ -57,3 +59,17 @@ Acesse http://localhost:4173.
 ## Compliance
 
 TFT Board Museum não é endossado pela Riot Games e não reflete as opiniões da Riot Games ou de qualquer pessoa oficialmente envolvida na produção ou gestão das propriedades da Riot Games.
+
+
+## Política pós-MVP
+
+O núcleo do produto está fechado. A partir de 07/10/2026, novas features ficam congeladas até existir feedback real, bug P0/P1, requisito de segurança/compliance ou mudança relevante da Riot.
+
+Permanecem como validação externa/humana:
+- testar perfis TFT reais adicionais e históricos maiores;
+- validar magic link no domínio publicado com redirects corretos do Supabase Auth;
+- confirmar sincronização autenticada de favoritos, notas e coleções em uso real;
+- revisar snapshots automáticos desktop/mobile apenas para regressões objetivas;
+- ativar AdSense somente após aprovação/configuração real.
+
+A ausência de posicionamento final exato das units é uma limitação oficial da fonte de dados: não deve bloquear o MVP nem ser "corrigida" com inferência não confiável.
