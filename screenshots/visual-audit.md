@@ -1,6 +1,6 @@
 # Visual audit
 
-Generated: 2026-10-06T21:52:44.412Z
+Generated: 2026-10-07T04:15:45.339Z
 
 ## desktop-full.png
 
@@ -89,7 +89,7 @@ Generated: 2026-10-06T21:52:44.412Z
 - #recentEvolution: top 3226px · 1220×419px
 - #hallOfFame: top 3735px · 1220×242px
 - #setHistory: top 4066px · 1220×411px
-- #cloudCollections: top 117px · 0×0px
+- #cloudCollections: top 0px · 0×0px
 - footer: top 4567px · 1440×123px
 
 ## alchemyflames-mobile-full.png
@@ -119,5 +119,5 @@ Generated: 2026-10-06T21:52:44.412Z
 - #recentEvolution: top 3114px · 390×490px
 - #hallOfFame: top 3648px · 390×338px
 - #setHistory: top 4043px · 390×480px
-- #cloudCollections: top 710px · 0×0px
+- #cloudCollections: top 809px · 0×0px
 - footer: top 4581px · 354×179px
