@@ -1,5 +1,7 @@
 # Roadmap de implementação
 
+> **Gate:** MVP tecnicamente concluído em 07/10/2026. O restante abaixo é validação externa, limitação de dados ou V2.
+
 ## Concluído
 - [x] Riot ID + região.
 - [x] Perfil TFT com rank, colocação média, Top 4, win rate e partidas.
@@ -63,3 +65,15 @@
 - [x] Diagnóstico automático de overflow nos snapshots.
 - [x] Skip link, foco visível e respeito a prefers-reduced-motion.
 - [x] JSON-LD e card social estático para a home.
+
+
+## Gate de encerramento
+
+- [x] MVP tecnicamente concluído.
+- [x] QA automatizado e E2E presentes.
+- [x] Mobile/overflow cobertos por automação.
+- [x] Persistência autenticada implementada.
+- [x] Limitações da Riot documentadas sem inventar telemetria.
+- [x] Monetização preparada e mantida desligada até aprovação.
+
+**Regra:** não adicionar features por refinamento incremental. Reabrir implementação apenas por bug P0/P1, segurança/compliance, feedback real ou mudança relevante da API.
