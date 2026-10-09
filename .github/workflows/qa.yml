@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check JavaScript syntax
-        run: node --check app.js && node --check live-update.js && node --check museum-cloud.js && node --check ads-config.js && node --check ads-consent.js
+        run: node --check app.js && node --check live-update.js && node --check museum-cloud.js && node --check ads-config.js && node --check ads-consent.js && node --check sw.js && node --check scripts/e2e.mjs
       - name: Check required production files
         shell: bash
         run: |
@@ -35,6 +35,9 @@ jobs:
           test -f og-card.svg
           test -f scripts/e2e.mjs
           test -f sw.js
+          grep -q 'tbm-shell-v4' sw.js
+          grep -q 'SHELL_PATHS.has(url.pathname)' sw.js
+          grep -q 'runPwaSecurity' scripts/e2e.mjs
       - name: Guard against private Riot keys in frontend
         shell: bash
         run: |
