@@ -2,7 +2,7 @@
 
 Museu visual da sua história no Teamfight Tactics.
 
-> **Status:** MVP tecnicamente concluído em 07/10/2026 · validação pós-MVP / manutenção.
+> **TFT Board Museum 1.0:** desenvolvimento principal concluído e publicado. Auditoria de 09/10/2026 aprovou E2E, capturas desktop/mobile e segurança do cache PWA. O produto está pronto para **beta controlado**, com homologação humana ainda pendente. Consulte o [relatório de encerramento técnico](RELEASE_V1.md).
 
 ## Produção
 
