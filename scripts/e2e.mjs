@@ -69,9 +69,72 @@ async function runMobile() {
   await page.close();
 }
 
+async function runPwaSecurity() {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+
+  await page.evaluate(async () => {
+    const otherProject = await caches.open("agendaleve-shell-sentinel");
+    await otherProject.put("/other-project-sentinel", new Response("keep", { status: 200 }));
+    await navigator.serviceWorker.register("./sw.js");
+    await navigator.serviceWorker.ready;
+  });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
+
+  // Query-bearing links must never be written into Cache Storage.
+  const privateUrl = new URL(baseUrl);
+  privateUrl.searchParams.set("token", "private-regression-token");
+  await page.goto(privateUrl.href, { waitUntil: "domcontentloaded" });
+  await page.evaluate(async () => {
+    await fetch("./version.json?token=private-regression-token", { cache: "no-store" });
+  });
+
+  let state = await page.evaluate(async () => {
+    const names = await caches.keys();
+    const cachedUrls = [];
+    for (const name of names) {
+      const cache = await caches.open(name);
+      cachedUrls.push(...(await cache.keys()).map(request => request.url));
+    }
+    const foreign = await caches.open("agendaleve-shell-sentinel");
+    return {
+      names,
+      cachedUrls,
+      foreignValue: await (await foreign.match("/other-project-sentinel"))?.text()
+    };
+  });
+
+  await assert(state.names.includes("tbm-shell-v4"), "Current Museum shell was not installed");
+  await assert(state.foreignValue === "keep", "Museum PWA cleared another project's cache");
+  await assert(!state.cachedUrls.some(url => url.includes("private-regression-token")), "Private URL leaked into Cache Storage");
+
+  // Trigger a fresh worker activation rather than checking after an already activated worker.
+  await page.evaluate(async () => {
+    await caches.open("tbm-shell-v2");
+    await navigator.serviceWorker.register("./sw.js?qa=pwa-upgrade", { scope: "./" });
+  });
+  await page.waitForFunction(async () => !(await caches.keys()).includes("tbm-shell-v2"), null, { timeout: 12000 });
+  state = await page.evaluate(() => caches.keys());
+  await assert(state.includes("tbm-shell-v4"), "Current Museum shell was lost after upgrade");
+  await assert(state.includes("agendaleve-shell-sentinel"), "Upgrade erased another project's cache");
+
+  // Offline mode must return the local Museum app shell rather than an HTTP error.
+  await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  await page.context().setOffline(true);
+  try {
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await assert(await page.locator("#museum").count() === 1, "Museum app shell unavailable offline");
+  } finally {
+    await page.context().setOffline(false);
+    await page.close();
+  }
+}
+
 try {
   await runDesktop();
   await runMobile();
+  await runPwaSecurity();
   console.log("E2E smoke tests passed");
 } finally {
   await browser.close();
