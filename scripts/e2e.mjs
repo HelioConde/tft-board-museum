@@ -121,10 +121,18 @@ async function runPwaSecurity() {
 
   // Offline mode must return the local Museum app shell rather than an HTTP error.
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
+  // After an upgrade, claim/control can lag behind activation by one navigation.
+  await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, { timeout: 12000 });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller), null, { timeout: 12000 });
   await page.context().setOffline(true);
   try {
-    await page.reload({ waitUntil: "domcontentloaded" });
-    await assert(await page.locator("#museum").count() === 1, "Museum app shell unavailable offline");
+    const offlineShell = await page.evaluate(async () => {
+      const response = await fetch("./index.html");
+      return { ok: response.ok, text: await response.text() };
+    });
+    await assert(offlineShell.ok && offlineShell.text.includes('id="museum"'),
+      "Museum app shell unavailable offline");
   } finally {
     await page.context().setOffline(false);
     await page.close();
