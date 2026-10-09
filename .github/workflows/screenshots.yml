@@ -42,8 +42,7 @@ jobs:
       - name: Install Chromium system dependencies
         run: npx playwright install-deps chromium
 
-      - name: Install Chromium
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Install Chromium for exact Playwright version
         run: npx playwright install chromium
 
       - name: Start local site
