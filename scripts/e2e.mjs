@@ -69,6 +69,57 @@ async function runMobile() {
   await page.close();
 }
 
+async function runMobileBoardCardOverlapRegression() {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+  await page.waitForSelector("#museum");
+  await page.evaluate(() => {
+    // Match the long Set 18 trait shown in the real-device screenshot.
+    const units = demoBoards[0].units.map((u, i) => [u[0], u[1], i < 7 ? i : i === 7 ? 14 : 27, u[3], u[4], u[5]]);
+    boards = [
+      { ...demoBoards[0], id: "mobile-layout-1", title: "3 Congregação das Bruxas", set: 18,
+        patch: "TFT Unreal Version ?.?", units,
+        traits: ["3 Congregação das Bruxas", "3 Vanguarda", "2 Devastador", "1 Flora Fatalis"] },
+      { ...demoBoards[0], id: "mobile-layout-2", title: "4 Congregação das Bruxas", set: 18,
+        patch: "TFT Unreal Version ?.?", units }
+    ];
+    activeFilter = "all"; activeSet = "all"; searchTerm = ""; patchValue = "all"; visibleLimit = 2;
+    document.querySelector("#setFilter").value = "all";
+    render();
+  });
+  for (const width of [320, 360, 390, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    const issues = await page.evaluate(() => {
+      const errors = [];
+      for (const card of document.querySelectorAll(".board-card")) {
+        const title = card.querySelector(".board-meta-heading h3")?.getBoundingClientRect();
+        const button = card.querySelector(".board-meta-heading .compare-toggle")?.getBoundingClientRect();
+        const top = card.querySelector(".board-card-top")?.getBoundingClientRect();
+        const mini = card.querySelector(".mini-board")?.getBoundingClientRect();
+        const meta = card.querySelector(".board-meta")?.getBoundingClientRect();
+        const footer = card.querySelector(".board-card-footer")?.getBoundingClientRect();
+        if (!title || !button || !top || !mini || !meta || !footer) {
+          errors.push("Missing board regions");
+          continue;
+        }
+        if (mini.bottom > top.bottom + 2) errors.push("Hex portraits overlap metadata");
+        if (top.bottom > meta.top + 2) errors.push("Board region overlaps title");
+        if (title.right > button.left - 3 && title.top < button.bottom && button.top < title.bottom) {
+          errors.push("Composition title overlaps comparison control");
+        }
+        if (button.bottom > meta.bottom + 2) errors.push("Comparison control overlaps footer");
+        if (footer.top < title.bottom - 2) errors.push("Footer overlaps composition title");
+      }
+      if (document.documentElement.scrollWidth > innerWidth + 1) errors.push("Horizontal scrolling");
+      return errors;
+    });
+    await assert(issues.length === 0, width + "px Set 18 mobile card: " + issues.join("; "));
+  }
+  await page.locator(".board-card .compare-toggle").first().click();
+  await assert((await page.locator("#compareHint").textContent()).includes("1 / 2"), "Compare control does not work after relocation");
+  await page.close();
+}
+
 async function runPwaSecurity() {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
@@ -142,6 +193,7 @@ async function runPwaSecurity() {
 try {
   await runDesktop();
   await runMobile();
+  await runMobileBoardCardOverlapRegression();
   await runPwaSecurity();
   console.log("E2E smoke tests passed");
 } finally {
