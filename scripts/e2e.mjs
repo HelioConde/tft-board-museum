@@ -115,6 +115,8 @@ async function runMobileBoardCardOverlapRegression() {
     });
     await assert(issues.length === 0, width + "px Set 18 mobile card: " + issues.join("; "));
   }
+  await assert((await page.locator(".board-card-footer").first().textContent()).includes("Patch não informado"),
+    "Unknown TFT Unreal patch must have a readable fallback");
   await page.locator(".board-card .compare-toggle").first().click();
   await assert((await page.locator("#compareHint").textContent()).includes("1 / 2"), "Compare control does not work after relocation");
   await page.close();
