@@ -25,6 +25,12 @@ var grid=document.querySelector("#boardGrid"),dialog=document.querySelector("#bo
 
 function t(key){return copy[lang][key]||key}
 function placementLabel(n){return lang==="pt"?n+"º":"#"+n}
+function patchDisplayLabel(value){
+  var raw=String(value||"").trim();
+  if(!raw||/[?]/.test(raw))return lang==="pt"?"Patch não informado":"Unknown patch";
+  var match=raw.match(/(?:^|[^\d])(\d{2}\.\d{1,3})(?:\.\d+)?(?:$|[^\d])/);
+  return match?match[1]:raw.replace(/^TFT Unreal Version\s*/i,"");
+}
 function initials(name){return String(name||"?").split(/\s+/).map(function(p){return p[0]}).join("").slice(0,2).toUpperCase()}
 function escapeHtml(value){return String(value==null?"":value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]})}
 function cleanEntityName(value){var text=String(value||"").split("_").pop()||"Unknown";return text.replace(/^TFT\d*/i,"").replace(/([a-z])([A-Z])/g,"$1 $2").replace(/_/g," ").trim()||"Unknown"}
@@ -134,7 +140,7 @@ function render(){
   '<button type="button" class="favorite-btn '+(favorites.has(board.id)?"active":"")+'" data-fav="'+escapeHtml(board.id)+'" title="'+(favorites.has(board.id)?t("unfavorite"):t("favorite"))+'" aria-label="'+(favorites.has(board.id)?t("unfavorite"):t("favorite"))+'" aria-pressed="'+favorites.has(board.id)+'">★</button>'+
   '<div class="board-card-top">'+placementBadgeHtml(board.placement)+miniBoard(board)+'</div>'+
   '<div class="board-meta"><div class="board-meta-heading"><h3>'+escapeHtml(boardDisplayTitle(board))+'</h3><button type="button" class="compare-toggle '+(compareSelection.includes(board.id)?"active":"")+'" data-compare="'+escapeHtml(board.id)+'" aria-label="'+t("compareTitle")+': '+escapeHtml(boardDisplayTitle(board))+'" aria-pressed="'+compareSelection.includes(board.id)+'">'+(compareSelection.includes(board.id)?"✓":"＋")+'</button></div><p>Set '+escapeHtml(board.set)+' · '+escapeHtml(board.date)+' <span class="source-badge '+(board.real?"real":"demo")+'">'+(board.real?t("officialSource"):t("demoSource"))+'</span>'+(board.real?'<span class="source-badge '+(board.hasTelemetry?"real":"demo")+'">'+(board.hasTelemetry?t("recordedPosition"):t("visualPosition"))+'</span>':"")+'</p><div class="trait-row">'+traitHtml(board)+'</div>'+
-  '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+escapeHtml(board.patch)+'</span></div></div></article>';
+  '<div class="board-card-footer"><span>Lv. '+board.level+'</span><span>'+board.gold+'g</span><span>'+escapeHtml(patchDisplayLabel(board.patch))+'</span></div></div></article>';
  }).join("");
  document.querySelector("#emptyState").classList.toggle("hidden",allData.length>0);
  var reveal=document.querySelector("#revealMoreBtn");if(reveal){reveal.classList.toggle("hidden",allData.length<=visibleLimit);reveal.textContent=t("showMoreMuseum")+" ("+Math.min(defaultVisibleLimit(),Math.max(0,allData.length-visibleLimit))+")"}
