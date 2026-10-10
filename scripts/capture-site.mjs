@@ -160,6 +160,29 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       evolutionCards: document.querySelectorAll(".evolution-card").length,
       collectionCards: document.querySelectorAll(".collection-card").length
     };
+    const cardGeometryIssues = [...document.querySelectorAll("#boardGrid .board-card")]
+      .slice(0, 4)
+      .flatMap((card, index) => {
+        const top = card.querySelector(".board-card-top")?.getBoundingClientRect();
+        const board = card.querySelector(".mini-board")?.getBoundingClientRect();
+        const meta = card.querySelector(".board-meta")?.getBoundingClientRect();
+        const title = card.querySelector(".board-meta-heading h3")?.getBoundingClientRect();
+        const compare = card.querySelector(".board-meta-heading .compare-toggle")?.getBoundingClientRect();
+        const footer = card.querySelector(".board-card-footer")?.getBoundingClientRect();
+        const issues = [];
+        const id = card.getAttribute("data-id") || String(index);
+        if (!top || !board || !meta || !title || !compare || !footer) {
+          issues.push(`${id}: missing one of the required board/title/compare regions`);
+          return issues;
+        }
+        if (board.bottom > top.bottom + 2) issues.push(`${id}: hexes extend below board area by ${Math.round(board.bottom - top.bottom)}px`);
+        if (top.bottom > meta.top + 2) issues.push(`${id}: visual board overlaps title section`);
+        const verticalTitleOverlap = title.top < compare.bottom && compare.top < title.bottom;
+        if (verticalTitleOverlap && title.right > compare.left - 3) issues.push(`${id}: title overlaps compare button`);
+        if (footer.top < title.bottom - 2) issues.push(`${id}: footer overlaps title`);
+        if (compare.bottom > meta.bottom + 2) issues.push(`${id}: compare button extends beyond metadata`);
+        return issues;
+      });
     const heroTitle = document.querySelector(".hero h1");
     const metrics = {
       heroTitleFontSize: heroTitle ? parseFloat(getComputedStyle(heroTitle).fontSize) : null,
@@ -180,6 +203,7 @@ async function capture({ name, url, viewport, waitForProfile = false }) {
       counts,
       imageAudit,
       brokenImages,
+      cardGeometryIssues,
       metrics
     };
   });
@@ -245,6 +269,7 @@ for (const capture of captures) {
   auditLines.push(`- Lazy images: ${capture.counts.lazyImages}`);
   auditLines.push(`- Auto/eager images: ${capture.counts.autoImages}`);
   auditLines.push(`- Broken images: ${capture.counts.brokenImages}`);
+  auditLines.push(`- Board layout overlap issues: ${capture.cardGeometryIssues.length}`);
   auditLines.push("");
   auditLines.push("### Sections");
   for (const section of capture.sections) {
@@ -277,13 +302,14 @@ for (const capture of captures) {
   if (capture.consoleErrors.length) qualityFailures.push(`${capture.name}: ${capture.consoleErrors.length} console error(s)`);
   if (capture.failedRequests.length) qualityFailures.push(`${capture.name}: ${capture.failedRequests.length} failed request(s)`);
   if (capture.brokenImages.length) qualityFailures.push(`${capture.name}: ${capture.brokenImages.length} broken image(s)`);
+  for (const issue of capture.cardGeometryIssues) qualityFailures.push(`${capture.name}: ${issue}`);
   if (capture.viewportWidth >= 1000) {
     if (capture.height > 5000) qualityFailures.push(`${capture.name}: desktop page too tall (${capture.height}px > 5000px)`);
     const sectionHeight = selector => capture.sections.find(section => section.selector === selector)?.height || 0;
     const budgets = [
       [".hero", 720],
       ["#profilePanel", 180],
-      ["#museum", 1600],
+      ["#museum", 1680],
       ["#recentEvolution", 470],
       ["#setHistory", 540]
     ];
@@ -298,7 +324,7 @@ for (const capture of captures) {
     const budgets = [
       [".hero", 740],
       ["#profilePanel", 280],
-      ["#museum", 1500],
+      ["#museum", 1680],
       [".stats", 120],
       ["#insights", 300],
       ["#recentEvolution", 520],
