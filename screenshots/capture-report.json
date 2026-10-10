@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T12:16:19.614Z",
+  "generatedAt": "2026-10-10T01:47:56.260Z",
   "baseUrl": "http://127.0.0.1:4173/",
   "riotId": "AlchemyFlames#br1",
   "region": "br1",
@@ -12,7 +12,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4207,
+      "height": 4232,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -83,7 +83,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 1318,
+          "height": 1343,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -93,7 +93,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2287,
+          "top": 2312,
           "left": 138,
           "right": 1302,
           "width": 1164,
@@ -107,7 +107,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2484,
+          "top": 2509,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -121,7 +121,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 2783,
+          "top": 2809,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -135,7 +135,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3292,
+          "top": 3318,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -149,7 +149,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 3606,
+          "top": 3631,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -177,7 +177,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4084,
+          "top": 4109,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -332,10 +332,11 @@
         }
       ],
       "brokenImages": [],
+      "cardGeometryIssues": [],
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.21
+        "pageHeightInViewports": 4.23
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -348,7 +349,7 @@
         "height": 844
       },
       "width": 390,
-      "height": 4434,
+      "height": 4546,
       "viewportWidth": 390,
       "viewportHeight": 844,
       "title": "TFT Board Museum",
@@ -419,7 +420,7 @@
           "left": 0,
           "right": 390,
           "width": 390,
-          "height": 1365,
+          "height": 1477,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -429,7 +430,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2328,
+          "top": 2440,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -443,7 +444,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2475,
+          "top": 2586,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -457,7 +458,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 2780,
+          "top": 2892,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -471,7 +472,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3314,
+          "top": 3426,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -485,7 +486,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 3710,
+          "top": 3822,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -513,7 +514,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4255,
+          "top": 4367,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -528,7 +529,7 @@
           "tag": "div",
           "id": "evolutionGrid",
           "className": "evolution-grid",
-          "top": 2914,
+          "top": 3026,
           "left": 18,
           "right": 390,
           "width": 372,
@@ -543,7 +544,7 @@
           "tag": "div",
           "id": "placementDistribution",
           "className": "placement-distribution",
-          "top": 3237,
+          "top": 3349,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -558,7 +559,7 @@
           "tag": "div",
           "id": "setStatsGrid",
           "className": "set-stats-grid",
-          "top": 3787,
+          "top": 3899,
           "left": 18,
           "right": 390,
           "width": 372,
@@ -689,10 +690,11 @@
         }
       ],
       "brokenImages": [],
+      "cardGeometryIssues": [],
       "metrics": {
         "heroTitleFontSize": 44,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 5.25
+        "pageHeightInViewports": 5.39
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -705,7 +707,7 @@
         "height": 1000
       },
       "width": 1440,
-      "height": 4688,
+      "height": 4742,
       "viewportWidth": 1440,
       "viewportHeight": 1000,
       "title": "TFT Board Museum",
@@ -776,7 +778,7 @@
           "left": 110,
           "right": 1330,
           "width": 1220,
-          "height": 1566,
+          "height": 1620,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -786,7 +788,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2701,
+          "top": 2755,
           "left": 138,
           "right": 1302,
           "width": 1164,
@@ -800,7 +802,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2898,
+          "top": 2952,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -814,7 +816,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 3223,
+          "top": 3277,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -828,7 +830,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3732,
+          "top": 3786,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -842,7 +844,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 4064,
+          "top": 4118,
           "left": 110,
           "right": 1330,
           "width": 1220,
@@ -856,7 +858,7 @@
           "tag": "section",
           "id": "cloudCollections",
           "className": "insights hidden visual-section visual-collections",
-          "top": 48,
+          "top": 50,
           "left": 0,
           "right": 0,
           "width": 0,
@@ -870,7 +872,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4565,
+          "top": 4619,
           "left": 0,
           "right": 1440,
           "width": 1440,
@@ -2627,10 +2629,11 @@
         }
       ],
       "brokenImages": [],
+      "cardGeometryIssues": [],
       "metrics": {
         "heroTitleFontSize": 92,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 4.69
+        "pageHeightInViewports": 4.74
       },
       "consoleErrors": [],
       "failedRequests": []
@@ -2643,7 +2646,7 @@
         "height": 844
       },
       "width": 390,
-      "height": 4749,
+      "height": 4934,
       "viewportWidth": 390,
       "viewportHeight": 844,
       "title": "TFT Board Museum",
@@ -2714,7 +2717,7 @@
           "left": 0,
           "right": 390,
           "width": 390,
-          "height": 1414,
+          "height": 1598,
           "display": "block",
           "visibility": "visible",
           "fontSize": 16
@@ -2724,7 +2727,7 @@
           "tag": "section",
           "id": "",
           "className": "stats",
-          "top": 2651,
+          "top": 2835,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -2738,7 +2741,7 @@
           "tag": "section",
           "id": "insights",
           "className": "insights",
-          "top": 2797,
+          "top": 2981,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -2752,7 +2755,7 @@
           "tag": "section",
           "id": "recentEvolution",
           "className": "insights",
-          "top": 3103,
+          "top": 3287,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -2766,7 +2769,7 @@
           "tag": "section",
           "id": "hallOfFame",
           "className": "insights visual-section visual-hall",
-          "top": 3637,
+          "top": 3821,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -2780,7 +2783,7 @@
           "tag": "section",
           "id": "setHistory",
           "className": "insights",
-          "top": 4033,
+          "top": 4217,
           "left": 0,
           "right": 390,
           "width": 390,
@@ -2794,7 +2797,7 @@
           "tag": "section",
           "id": "cloudCollections",
           "className": "insights hidden visual-section visual-collections",
-          "top": 301,
+          "top": 753,
           "left": 0,
           "right": 0,
           "width": 0,
@@ -2808,7 +2811,7 @@
           "tag": "footer",
           "id": "",
           "className": "",
-          "top": 4570,
+          "top": 4755,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -2838,7 +2841,7 @@
           "tag": "div",
           "id": "evolutionGrid",
           "className": "evolution-grid",
-          "top": 3237,
+          "top": 3421,
           "left": 18,
           "right": 390,
           "width": 372,
@@ -2853,7 +2856,7 @@
           "tag": "div",
           "id": "placementDistribution",
           "className": "placement-distribution",
-          "top": 3560,
+          "top": 3744,
           "left": 18,
           "right": 372,
           "width": 354,
@@ -2868,7 +2871,7 @@
           "tag": "div",
           "id": "setStatsGrid",
           "className": "set-stats-grid",
-          "top": 4110,
+          "top": 4294,
           "left": 18,
           "right": 390,
           "width": 372,
@@ -2975,8 +2978,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -2984,8 +2987,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3020,8 +3023,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3056,8 +3059,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3065,8 +3068,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3101,8 +3104,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3110,7 +3113,7 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -3119,7 +3122,7 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -3128,7 +3131,7 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -3137,8 +3140,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 32,
-          "renderedHeight": 31,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3146,8 +3149,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 31,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3155,8 +3158,8 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
-          "renderedHeight": 13,
+          "renderedWidth": 12,
+          "renderedHeight": 12,
           "loading": "lazy"
         },
         {
@@ -3209,8 +3212,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3236,8 +3239,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3245,8 +3248,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 30,
-          "renderedHeight": 28,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3263,8 +3266,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3272,8 +3275,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3281,8 +3284,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 30,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3290,7 +3293,7 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -3299,7 +3302,7 @@
           "complete": true,
           "naturalWidth": 128,
           "naturalHeight": 128,
-          "renderedWidth": 13,
+          "renderedWidth": 12,
           "renderedHeight": 12,
           "loading": "lazy"
         },
@@ -3308,8 +3311,8 @@
           "complete": true,
           "naturalWidth": 1024,
           "naturalHeight": 512,
-          "renderedWidth": 31,
-          "renderedHeight": 31,
+          "renderedWidth": 23,
+          "renderedHeight": 23,
           "loading": "lazy"
         },
         {
@@ -3368,10 +3371,11 @@
         }
       ],
       "brokenImages": [],
+      "cardGeometryIssues": [],
       "metrics": {
         "heroTitleFontSize": 44,
         "bodyFontSize": 16,
-        "pageHeightInViewports": 5.63
+        "pageHeightInViewports": 5.85
       },
       "consoleErrors": [],
       "failedRequests": []

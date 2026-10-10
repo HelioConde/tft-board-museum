@@ -1,11 +1,11 @@
 # Visual audit
 
-Generated: 2026-10-09T12:16:19.614Z
+Generated: 2026-10-10T01:47:56.260Z
 
 ## desktop-full.png
 
 - Viewport: 1440×1000
-- Page: 1440×4207 (4.21 viewports tall)
+- Page: 1440×4232 (4.23 viewports tall)
 - Boards rendered: 8
 - Overflow elements: 0
 - Horizontal scrollers: 0
@@ -17,25 +17,26 @@ Generated: 2026-10-09T12:16:19.614Z
 - Lazy images: 11
 - Auto/eager images: 3
 - Broken images: 0
+- Board layout overlap issues: 0
 
 ### Sections
 - .topbar: top 0px · 1220×89px
 - .hero: top 117px · 1220×660px
 - #profilePanel: top 0px · 0×0px
 - .ad-slot: top 817px · 1164×82px
-- #museum: top 969px · 1220×1318px
-- .stats: top 2287px · 1164×112px
-- #insights: top 2484px · 1220×210px
-- #recentEvolution: top 2783px · 1220×419px
-- #hallOfFame: top 3292px · 1220×223px
-- #setHistory: top 3606px · 1220×388px
+- #museum: top 969px · 1220×1343px
+- .stats: top 2312px · 1164×112px
+- #insights: top 2509px · 1220×210px
+- #recentEvolution: top 2809px · 1220×419px
+- #hallOfFame: top 3318px · 1220×223px
+- #setHistory: top 3631px · 1220×388px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4084px · 1440×123px
+- footer: top 4109px · 1440×123px
 
 ## mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4434 (5.25 viewports tall)
+- Page: 390×4546 (5.39 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 3
@@ -47,20 +48,21 @@ Generated: 2026-10-09T12:16:19.614Z
 - Lazy images: 5
 - Auto/eager images: 3
 - Broken images: 0
+- Board layout overlap issues: 0
 
 ### Sections
 - .topbar: top 0px · 390×69px
 - .hero: top 79px · 390×732px
 - #profilePanel: top 0px · 0×0px
 - .ad-slot: top 833px · 354×82px
-- #museum: top 963px · 390×1365px
-- .stats: top 2328px · 354×100px
-- #insights: top 2475px · 390×248px
-- #recentEvolution: top 2780px · 390×490px
-- #hallOfFame: top 3314px · 390×338px
-- #setHistory: top 3710px · 390×487px
+- #museum: top 963px · 390×1477px
+- .stats: top 2440px · 354×100px
+- #insights: top 2586px · 390×248px
+- #recentEvolution: top 2892px · 390×490px
+- #hallOfFame: top 3426px · 390×338px
+- #setHistory: top 3822px · 390×487px
 - #cloudCollections: top 0px · 0×0px
-- footer: top 4255px · 354×179px
+- footer: top 4367px · 354×179px
 
 ### Tiny text
 - 9px: Set 15
@@ -69,7 +71,7 @@ Generated: 2026-10-09T12:16:19.614Z
 ## alchemyflames-desktop-full.png
 
 - Viewport: 1440×1000
-- Page: 1440×4688 (4.69 viewports tall)
+- Page: 1440×4742 (4.74 viewports tall)
 - Boards rendered: 8
 - Overflow elements: 0
 - Horizontal scrollers: 0
@@ -81,25 +83,26 @@ Generated: 2026-10-09T12:16:19.614Z
 - Lazy images: 188
 - Auto/eager images: 4
 - Broken images: 0
+- Board layout overlap issues: 0
 
 ### Sections
 - .topbar: top 0px · 1220×89px
 - .hero: top 117px · 1220×660px
 - #profilePanel: top 817px · 1164×132px
 - .ad-slot: top 983px · 1164×82px
-- #museum: top 1135px · 1220×1566px
-- .stats: top 2701px · 1164×112px
-- #insights: top 2898px · 1220×236px
-- #recentEvolution: top 3223px · 1220×419px
-- #hallOfFame: top 3732px · 1220×242px
-- #setHistory: top 4064px · 1220×411px
-- #cloudCollections: top 48px · 0×0px
-- footer: top 4565px · 1440×123px
+- #museum: top 1135px · 1220×1620px
+- .stats: top 2755px · 1164×112px
+- #insights: top 2952px · 1220×236px
+- #recentEvolution: top 3277px · 1220×419px
+- #hallOfFame: top 3786px · 1220×242px
+- #setHistory: top 4118px · 1220×411px
+- #cloudCollections: top 50px · 0×0px
+- footer: top 4619px · 1440×123px
 
 ## alchemyflames-mobile-full.png
 
 - Viewport: 390×844
-- Page: 390×4749 (5.63 viewports tall)
+- Page: 390×4934 (5.85 viewports tall)
 - Boards rendered: 2
 - Overflow elements: 0
 - Horizontal scrollers: 4
@@ -111,20 +114,21 @@ Generated: 2026-10-09T12:16:19.614Z
 - Lazy images: 45
 - Auto/eager images: 4
 - Broken images: 0
+- Board layout overlap issues: 0
 
 ### Sections
 - .topbar: top 0px · 390×69px
 - .hero: top 79px · 390×732px
 - #profilePanel: top 833px · 354×240px
 - .ad-slot: top 1107px · 354×82px
-- #museum: top 1237px · 390×1414px
-- .stats: top 2651px · 354×100px
-- #insights: top 2797px · 390×248px
-- #recentEvolution: top 3103px · 390×490px
-- #hallOfFame: top 3637px · 390×338px
-- #setHistory: top 4033px · 390×480px
-- #cloudCollections: top 301px · 0×0px
-- footer: top 4570px · 354×179px
+- #museum: top 1237px · 390×1598px
+- .stats: top 2835px · 354×100px
+- #insights: top 2981px · 390×248px
+- #recentEvolution: top 3287px · 390×490px
+- #hallOfFame: top 3821px · 390×338px
+- #setHistory: top 4217px · 390×480px
+- #cloudCollections: top 753px · 0×0px
+- footer: top 4755px · 354×179px
 
 ### Tiny text
 - 9px: Set 15
