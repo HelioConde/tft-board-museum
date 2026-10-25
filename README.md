@@ -1,85 +1,74 @@
-# TFT Board Museum — Museu das suas composições
+<div align="center">
 
-**Explore as composições que você jogou, compare tabuleiros e preserve os momentos mais marcantes da sua jornada em TFT.**
+<h1>🏛️ TFT Board Museum</h1>
 
-[**Abrir a versão publicada**](https://helioconde.github.io/tft-board-museum/) · [**Relatório técnico do beta**](RELEASE_V1.md)
+<strong>Um museu visual das composições que marcaram sua jornada em Teamfight Tactics</strong>
 
-**Experiência:** consulta de histórico, tabuleiros visuais, filtros, coleções, favoritos e exportação para compartilhamento.
+<p>Revisite tabuleiros, acompanhe sua evolução entre Sets e compartilhe seus melhores momentos.</p>
 
-> Produto documentado como beta controlado, com homologação de usuários ainda pendente. A abrangência do histórico depende dos dados da Riot e da persistência configurada.
+<a href="https://helioconde.github.io/tft-board-museum/"><img alt="Abrir TFT Board Museum" src="https://img.shields.io/badge/EXPLORAR-MUSEU%20TFT-334155?style=for-the-badge"></a>
+
+<p><a href="https://helioconde.github.io/tft-board-museum/"><strong>Ver projeto publicado</strong></a> · <a href="RELEASE_V1.md"><strong>Relatório técnico</strong></a> · <a href="#como-usar"><strong>Como usar</strong></a></p>
+
+</div>
 
 ---
 
-Museu visual da sua história no Teamfight Tactics.
+## O que é TFT Board Museum?
 
-> **TFT Board Museum 1.0:** desenvolvimento principal concluído e publicado. Auditoria de 09/10/2026 aprovou E2E, capturas desktop/mobile e segurança do cache PWA. O produto está pronto para **beta controlado**, com homologação humana ainda pendente. Consulte o [relatório de encerramento técnico](RELEASE_V1.md).
+Um produto visual para revisitar sua história no **Teamfight Tactics**. Em vez de mostrar apenas uma tabela de resultados, a aplicação organiza o histórico do jogador em **boards, coleções, comparações e recordes**.
 
-## Produção
+**Situação:** MVP técnico 1.0 publicado e descrito como **beta controlado**. Testes com usuários e validação externa continuam importantes antes de tratar o produto como lançamento público estável.
 
-GitHub Pages: https://helioconde.github.io/tft-board-museum/
+## Experiências principais
 
-## Funcionalidades
+| Área | O que você encontra |
+| --- | --- |
+| **Histórico** | Busca por Riot ID, rank, partidas recentes e filtros |
+| **Boards** | Unidades, estrelas, traits, itens e augments |
+| **Comparação** | Dois tabuleiros lado a lado |
+| **Coleções** | Favoritos, anotações e agrupamentos |
+| **Memórias** | Hall da Fama, marcos e visão por Sets |
+| **Compartilhar** | Exportação de imagem e links de perfil/board |
+| **Dados** | Consulta ao backend Riot e sincronização opcional para recursos autenticados |
 
-- busca por Riot ID e região;
-- perfil TFT com rank e resumo;
-- histórico oficial via backend, sem expor RIOT_API_KEY;
-- paginação de até 100 partidas recentes;
-- boards visuais com champions, estrelas, custo/raridade e itens;
-- nomes de traits/composições localizados em PT-BR pelo Data Dragon, com inglês separado;
-- traits com ícones e augments;
-- filtros por Set, patch, resultado, favoritos e busca textual;
-- ordenação por data, colocação e ouro;
-- linha do tempo por Set;
-- favoritos e notas locais com sincronização autenticada opcional;
-- coleções persistidas no Supabase;
-- arquivo privado de partidas para acumular histórico além do recorte da Riot;
-- comparação lado a lado de units, traits, itens, augments e estrelas;
-- URLs compartilháveis de perfil e board com preview server-rendered;
-- exportação PNG de board;
-- Hall da Fama, estatísticas por Set, mês e ano;
-- evolução recente comparando blocos de partidas;
-- recomendação de boards historicamente parecidos por units e traits;
-- renderização progressiva para arquivos grandes, evitando centenas de cards simultâneos;
-- insights de champion assinatura, item recorrente, 3★ e Sets;
-- PT-BR principal e English;
-- layout responsivo;
-- espaços reservados para anúncios;
-- atualização automática de versão;
-- SEO básico, sitemap, robots, manifest, favicon e páginas legais;
-- QA no GitHub Actions;
-- E2E Playwright e screenshots automáticos desktop/mobile;
-- atualização automática opcional do histórico a cada 6 horas para perfis autenticados.
+### Sobre a precisão dos tabuleiros
 
-## Regra de posicionamento
+A API de partidas da Riot **não informa o posicionamento final exato das unidades em todos os casos**. Quando a posição não é conhecida, a aplicação usa uma organização visual e deve informar essa limitação ao jogador.
 
-A Riot Match API não fornece o posicionamento final exato das units. Quando não há dado confiável de posição, o site usa uma organização visual e informa isso explicitamente.
+**Não confunda reconstrução visual com replay literal.**
 
-## Dados demonstrativos
+## Como usar
 
-O site mantém uma coleção demonstrativa como fallback quando nenhum Riot ID foi consultado ou quando a integração oficial está indisponível.
+1. Acesse [TFT Board Museum](https://helioconde.github.io/tft-board-museum/).
+2. Pesquise usando seu **Riot ID** e a região.
+3. Abra uma partida e explore o tabuleiro, os itens e traits disponíveis.
+4. Salve favoritos, compare partidas ou compartilhe a composição.
 
-## Desenvolvimento local
+Os dados disponíveis podem variar conforme a API, a região, o histórico recente e a persistência configurada. Conteúdo de demonstração deve continuar claramente identificado.
+
+## Desenvolvimento e validação
+
+O projeto é um frontend web publicado via GitHub Pages, com integração Riot por backend — **a chave privada Riot não pertence ao JavaScript público**.
+
+Os scripts documentados incluem:
 
 ```bash
-python -m http.server 4173
+npm install
+npm run e2e
+npm run screenshots
 ```
 
-Acesse http://localhost:4173.
+Os scripts executam verificações e capturas previstas no repositório; dependem das ferramentas e da configuração do ambiente. O relatório técnico histórico e as execuções em CI podem ser consultados antes de afirmar que uma versão está homologada.
 
-## Compliance
+## Próximos passos
 
-TFT Board Museum não é endossado pela Riot Games e não reflete as opiniões da Riot Games ou de qualquer pessoa oficialmente envolvida na produção ou gestão das propriedades da Riot Games.
+O objetivo pós-MVP é **validar a utilidade real para jogadores**, corrigir problemas críticos, aprimorar cobertura de dados e reforçar privacidade e estabilidade. As limitações da Riot API continuam sendo parte do produto.
 
+[Relatório técnico](RELEASE_V1.md) · [Histórico anterior do README](docs/README_HISTORY_2026-10-25.md)
 
-## Política pós-MVP
+> Projeto independente, não oficial e não afiliado à Riot Games. Teamfight Tactics é propriedade de seus respectivos titulares.
 
-O núcleo do produto está fechado. A partir de 07/10/2026, novas features ficam congeladas até existir feedback real, bug P0/P1, requisito de segurança/compliance ou mudança relevante da Riot.
+---
 
-Permanecem como validação externa/humana:
-- testar perfis TFT reais adicionais e históricos maiores;
-- validar magic link no domínio publicado com redirects corretos do Supabase Auth;
-- confirmar sincronização autenticada de favoritos, notas e coleções em uso real;
-- revisar snapshots automáticos desktop/mobile apenas para regressões objetivas;
-- ativar AdSense somente após aprovação/configuração real.
-
-A ausência de posicionamento final exato das units é uma limitação oficial da fonte de dados: não deve bloquear o MVP nem ser "corrigida" com inferência não confiável.
+<div align="center"><strong>Desenvolvido por <a href="https://github.com/HelioConde">Hélio Conde</a></strong></div>
