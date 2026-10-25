@@ -1,4 +1,14 @@
-# TFT Board Museum
+# TFT Board Museum — Museu das suas composições
+
+**Explore as composições que você jogou, compare tabuleiros e preserve os momentos mais marcantes da sua jornada em TFT.**
+
+[**Abrir a versão publicada**](https://helioconde.github.io/tft-board-museum/) · [**Relatório técnico do beta**](RELEASE_V1.md)
+
+**Experiência:** consulta de histórico, tabuleiros visuais, filtros, coleções, favoritos e exportação para compartilhamento.
+
+> Produto documentado como beta controlado, com homologação de usuários ainda pendente. A abrangência do histórico depende dos dados da Riot e da persistência configurada.
+
+---
 
 Museu visual da sua história no Teamfight Tactics.
 
